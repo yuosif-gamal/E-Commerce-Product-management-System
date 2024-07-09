@@ -19,20 +19,15 @@ public class WebSecurityConfig {
     }
     @Bean
     SecurityFilterChain filterChain (HttpSecurity http ) throws  Exception{
+        http.csrf().disable();
         http.httpBasic();
         http.authorizeHttpRequests().
-                requestMatchers(HttpMethod.GET, "/**").hasAnyRole("USER","ADMIN","MANAGER")
-                .requestMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN","MANAGER")
-                .requestMatchers(HttpMethod.DELETE,"/**").hasAnyRole("MANAGER")
-                    .and()
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(
-                                new AntPathRequestMatcher("/url1/**"),
-                                new AntPathRequestMatcher("/url2/**")
-                        )
-                );
+                requestMatchers(HttpMethod.GET, "/**").hasAnyAuthority("ADMIN","USER","MANAGER")
+                .requestMatchers(HttpMethod.POST, "/**").hasAnyAuthority("ADMIN","MANAGER")
+                .requestMatchers(HttpMethod.DELETE,"/**").hasAnyAuthority("MANAGER");
 
-        return null;
+
+        return http.build();
 
     }
 }
