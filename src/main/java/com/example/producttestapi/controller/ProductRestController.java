@@ -4,6 +4,7 @@ import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.Voucher;
 import com.example.producttestapi.repos.ProductRepo;
 import com.example.producttestapi.repos.VoucherRepo;
+import com.example.producttestapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +14,12 @@ import java.util.Optional;
 
 @RestController
 public class ProductRestController {
+    private final ProductService productService;
 
     @Autowired
-    private ProductRepo repo;
-
-    @Autowired
-    private VoucherRepo Vrepo;
+    public ProductRestController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/")
     public String hello() {
@@ -27,52 +28,31 @@ public class ProductRestController {
 
     @GetMapping("/products")
     public List<Product> getAllProducts() {
-        List<Product> products = repo.findAll();
-        products.forEach(this::applyVoucherDiscount);
-        return products;
+        return productService.getAllProducts();
     }
 
     @GetMapping("/product/{id}")
     public Product getProduct(@PathVariable("id") int id) {
-        Optional<Product> optionalProduct = repo.findById(id);
-        optionalProduct.ifPresent(this::applyVoucherDiscount);
-        return optionalProduct.orElse(null);
+        return productService.getProductById(id);
     }
 
     @GetMapping("/products/category/{categoryID}")
-    public List<Product> getProductsInCategory(@PathVariable("categoryID") int categoryID) {
-        List<Product> products = repo.findByCategoryID(categoryID);
-        products.forEach(this::applyVoucherDiscount);
-        return products;
+    public List<Product> getProductsByCategory(@PathVariable("categoryID") int categoryID) {
+        return productService.getProductsByCategory(categoryID);
     }
 
     @PostMapping("/product")
     public Product createProduct(@RequestBody Product product) {
-        applyVoucherDiscount(product);
-        return repo.save(product);
+        return productService.createProduct(product);
     }
 
     @PutMapping("/product")
     public Product updateProduct(@RequestBody Product product) {
-        applyVoucherDiscount(product);
-        return repo.save(product);
+        return productService.updateProduct(product);
     }
 
     @DeleteMapping("/product/{id}")
     public void deleteProduct(@PathVariable("id") int id) {
-        repo.deleteById(id);
-    }
-
-    private void applyVoucherDiscount(Product product) {
-        if (product.getVoucher() != null) {
-            Voucher voucher = Vrepo.findByCode(product.getVoucher());
-            if (voucher != null) {
-                BigDecimal discount = voucher.getDiscount();
-                BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
-                BigDecimal discountedPrice = productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
-
-                product.setPrice(discountedPrice.doubleValue());
-            }
-        }
+        productService.deleteProduct(id);
     }
 }
