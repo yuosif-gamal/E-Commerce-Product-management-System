@@ -53,12 +53,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(Product product) {
-        applyVoucherDiscount(product);
+        if (!productRepo.existsById(product.getId())) {
+            throw new ResourceNotFoundException("Product not found with id: " + product.getId());
+        }
         return productRepo.save(product);
     }
 
     @Override
     public void deleteProduct(int id) {
+        if (!productRepo.existsById(id)) {
+            throw new ResourceNotFoundException("Product not found with id: " + id);
+        }
         productRepo.deleteById(id);
     }
 

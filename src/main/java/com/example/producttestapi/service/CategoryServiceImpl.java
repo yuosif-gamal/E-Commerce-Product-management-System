@@ -40,6 +40,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(int id) {
+        if (!categoryRepo.existsById(id)) {
+            throw new ResourceNotFoundException("Category not found with id: " + id);
+        }
         categoryRepo.deleteById(id);
     }
+
 }
