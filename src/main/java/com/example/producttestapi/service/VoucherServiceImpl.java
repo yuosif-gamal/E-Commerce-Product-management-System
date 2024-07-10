@@ -1,9 +1,12 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.entities.Voucher;
+import com.example.producttestapi.excetion.ResourceNotFoundException;
 import com.example.producttestapi.repos.VoucherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class VoucherServiceImpl implements VoucherService {
@@ -20,8 +23,12 @@ public class VoucherServiceImpl implements VoucherService {
     }
 
     @Override
-    public Voucher findVoucherByCode(String code) {
-        return voucherRepo.findByCode(code);
+    public Optional<Voucher> findVoucherByCode(String code) {
+        Optional<Voucher> optionalVoucher = Optional.ofNullable(voucherRepo.findByCode(code));
+        if (!optionalVoucher.isPresent()) {
+            throw new ResourceNotFoundException("Voucher not found with this code : " + code);
+        }
+        return optionalVoucher;
     }
 
     @Override

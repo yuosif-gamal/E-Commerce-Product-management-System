@@ -1,6 +1,7 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.entities.Category;
+import com.example.producttestapi.excetion.ResourceNotFoundException;
 import com.example.producttestapi.repos.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +25,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategory(int id) {
+    public Optional<Category> getCategory(int id) {
         Optional<Category> optionalCategory = categoryRepo.findById(id);
-        return optionalCategory.orElse(null);
+        if (!optionalCategory.isPresent()) {
+            throw new ResourceNotFoundException("Category not found with id: " + id);
+        }
+        return optionalCategory;
     }
 
     @Override

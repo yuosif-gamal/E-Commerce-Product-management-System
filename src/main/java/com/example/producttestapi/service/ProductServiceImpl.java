@@ -2,6 +2,7 @@ package com.example.producttestapi.service;
 
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.Voucher;
+import com.example.producttestapi.excetion.ResourceNotFoundException;
 import com.example.producttestapi.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +30,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(int id) {
+    public Optional<Product> getProductById(int id) {
         Optional<Product> optionalProduct = productRepo.findById(id);
-        optionalProduct.ifPresent(this::applyVoucherDiscount);
-        return optionalProduct.orElse(null);
+        if (!optionalProduct.isPresent()) {
+            throw new ResourceNotFoundException("Product not found with id: " + id);
+        }
+        return optionalProduct;
     }
 
     @Override
@@ -61,9 +64,9 @@ public class ProductServiceImpl implements ProductService {
 
     private void applyVoucherDiscount(Product product) {
         if (product.getVoucher() != null) {
-            Voucher voucher = voucherService.findVoucherByCode(product.getVoucher());
+            Optional<Voucher> voucher = voucherService.findVoucherByCode(product.getVoucher());
             if (voucher != null) {
-                BigDecimal discount = voucher.getDiscount();
+                BigDecimal discount = voucher.get().getDiscount();
                 BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
                 BigDecimal discountedPrice = productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
 

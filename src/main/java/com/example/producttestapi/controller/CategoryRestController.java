@@ -1,12 +1,12 @@
 package com.example.producttestapi.controller;
 
 import com.example.producttestapi.entities.Category;
-import com.example.producttestapi.repos.CategoryRepo;
 import com.example.producttestapi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CategoryRestController {
@@ -24,7 +24,7 @@ public class CategoryRestController {
     }
 
     @GetMapping("/category/{id}")
-    public Category getCategory(@PathVariable("id") int id) {
+    public Optional<Category> getCategory(@PathVariable("id") int id) {
         return categoryService.getCategory(id);
     }
 
