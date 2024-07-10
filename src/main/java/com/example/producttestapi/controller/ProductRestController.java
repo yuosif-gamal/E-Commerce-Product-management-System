@@ -1,14 +1,10 @@
 package com.example.producttestapi.controller;
 
 import com.example.producttestapi.entities.Product;
-import com.example.producttestapi.entities.Voucher;
-import com.example.producttestapi.repos.ProductRepo;
-import com.example.producttestapi.repos.VoucherRepo;
 import com.example.producttestapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +28,7 @@ public class ProductRestController {
     }
 
     @GetMapping("/product/{id}")
-    public Product getProduct(@PathVariable("id") int id) {
+    public Optional<Product> getProduct(@PathVariable("id") int id) {
         return productService.getProductById(id);
     }
 

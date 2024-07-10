@@ -1,10 +1,11 @@
 package com.example.producttestapi.controller;
 
 import com.example.producttestapi.entities.Voucher;
-import com.example.producttestapi.repos.VoucherRepo;
 import com.example.producttestapi.service.VoucherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class VoucherController {
@@ -21,7 +22,7 @@ public class VoucherController {
     }
 
     @GetMapping("/voucher/{code}")
-    public Voucher getVoucher(@PathVariable("code") String code) {
+    public Optional<Voucher> getVoucher(@PathVariable("code") String code) {
         return voucherService.findVoucherByCode(code);
     }
 
