@@ -1,7 +1,7 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.entities.Voucher;
-import com.example.producttestapi.excetion.ResourceNotFoundException;
+import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.repos.VoucherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
