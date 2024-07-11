@@ -26,12 +26,12 @@ public class VoucherServiceImpl implements VoucherService {
     }
 
     @Override
-    public Optional<Voucher> findVoucherByCode(String code) {
-        Optional<Voucher> optionalVoucher = Optional.ofNullable(voucherRepo.findByCode(code));
-        if (!optionalVoucher.isPresent()) {
+    public Voucher findVoucherByCode(String code) {
+        Voucher voucher = voucherRepo.findByCode(code);
+        if (voucher == null) {
             throw new ResourceNotFoundException("Voucher not found with this code : " + code);
         }
-        return optionalVoucher;
+        return voucher;
     }
 
     @Override
@@ -43,9 +43,9 @@ public class VoucherServiceImpl implements VoucherService {
     }
     public void applyVoucherDiscount(Product product) {
         if (product.getVoucher() != null) {
-            Optional<Voucher> voucher = findVoucherByCode(product.getVoucher());
+            Voucher voucher = findVoucherByCode(product.getVoucher());
             if (voucher != null) {
-                BigDecimal discount = voucher.get().getDiscount();
+                BigDecimal discount = voucher.getDiscount();
                 BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
                 BigDecimal discountedPrice = productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
 
