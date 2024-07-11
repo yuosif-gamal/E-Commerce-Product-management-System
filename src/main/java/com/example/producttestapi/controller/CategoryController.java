@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
-public class CategoryRestController {
+@RequestMapping("/category")
+public class CategoryController {
 
     private final CategoryService categoryService;
 
     @Autowired
-    public CategoryRestController(CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 

@@ -1,9 +1,7 @@
 package com.example.producttestapi;
 
-import com.example.producttestapi.entities.RegistrationRequest;
 import com.example.producttestapi.entities.Role;
 import com.example.producttestapi.repos.RoleRepo;
-import com.example.producttestapi.service.AuthenticationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
