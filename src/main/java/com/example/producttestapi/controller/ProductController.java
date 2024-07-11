@@ -30,8 +30,9 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public Optional<Product> getProduct(@PathVariable("id") int id) {
-        return productService.getProductById(id);
+    public Product getProduct(@PathVariable("id") int id) {
+
+        return productService.findProductById(id);
     }
 
     @GetMapping("/products/category/{categoryID}")

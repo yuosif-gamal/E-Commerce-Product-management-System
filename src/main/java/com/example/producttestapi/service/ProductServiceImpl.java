@@ -29,12 +29,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> getProductById(int id) {
-        Optional<Product> optionalProduct = productRepo.findById(id);
-        if (!optionalProduct.isPresent()) {
+    public Product findProductById(int id) {
+        Product product = productRepo.findById(id).orElse(null);
+        if (product == null) {
             throw new ResourceNotFoundException("Product not found with id: " + id);
         }
-        return optionalProduct;
+        return product;
     }
 
     @Override

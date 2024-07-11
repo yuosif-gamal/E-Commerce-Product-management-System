@@ -24,7 +24,7 @@ public class VoucherController {
     }
 
     @GetMapping("/voucher/{code}")
-    public Optional<Voucher> getVoucher(@PathVariable("code") String code) {
+    public Voucher getVoucher(@PathVariable("code") String code) {
         return voucherService.findVoucherByCode(code);
     }
 

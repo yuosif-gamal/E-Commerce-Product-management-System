@@ -25,12 +25,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Optional<Category> getCategory(int id) {
-        Optional<Category> optionalCategory = categoryRepo.findById(id);
-        if (!optionalCategory.isPresent()) {
+    public Category getCategory(int id) {
+        Category category = categoryRepo.findById(id).orElse(null);
+        if (category == null) {
             throw new ResourceNotFoundException("Category not found with id: " + id);
         }
-        return optionalCategory;
+        return category;
     }
 
     @Override
