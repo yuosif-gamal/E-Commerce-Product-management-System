@@ -2,6 +2,7 @@ package com.example.producttestapi.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,14 @@ public class User {
 
         public User() {
         }
+
+    public User(String firstName, String lastName, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(
                 name = "user_role",
@@ -75,6 +84,13 @@ public class User {
 
         public void setRoles(Set<Role> roles) {
             this.roles = roles;
+        }
+        // helper method
+        public void addRole(Role role){
+            if(roles == null){
+                roles = new HashSet<>();
+            }
+            roles.add(role);
         }
 
 }
