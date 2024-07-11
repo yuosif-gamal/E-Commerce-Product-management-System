@@ -18,15 +18,17 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
     @Bean
-    SecurityFilterChain filterChain (HttpSecurity http ) throws  Exception{
+    public SecurityFilterChain filterChain (HttpSecurity http ) throws  Exception{
         http.csrf().disable();
         http.httpBasic();
-        http.authorizeHttpRequests().
-                requestMatchers(HttpMethod.GET, "/**").hasAnyAuthority("ADMIN","USER","MANAGER")
-                .requestMatchers(HttpMethod.POST, "/**").hasAnyAuthority("ADMIN","MANAGER")
-                .requestMatchers(HttpMethod.DELETE,"/**").hasAnyAuthority("MANAGER");
-
-
+        http.authorizeHttpRequests(
+          auth -> {
+              auth.requestMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority("ADMIN","USER","MANAGER")
+                      .requestMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority("ADMIN","MANAGER")
+                      .requestMatchers(HttpMethod.DELETE,"/api/**").hasAnyAuthority("MANAGER");
+              auth.anyRequest().permitAll();
+          }
+        );
         return http.build();
 
     }
