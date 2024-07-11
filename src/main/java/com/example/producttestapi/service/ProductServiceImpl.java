@@ -25,7 +25,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProducts() {
         List<Product> products = productRepo.findAll();
-        products.forEach(this::applyVoucherDiscount);
         return products;
     }
 
@@ -41,13 +40,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsByCategory(int categoryID) {
         List<Product> products = productRepo.findByCategoryID(categoryID);
-        products.forEach(this::applyVoucherDiscount);
         return products;
     }
 
     @Override
     public Product createProduct(Product product) {
-        applyVoucherDiscount(product);
+        voucherService.applyVoucherDiscount(product);
         return productRepo.save(product);
     }
 
@@ -67,16 +65,4 @@ public class ProductServiceImpl implements ProductService {
         productRepo.deleteById(id);
     }
 
-    private void applyVoucherDiscount(Product product) {
-        if (product.getVoucher() != null) {
-            Optional<Voucher> voucher = voucherService.findVoucherByCode(product.getVoucher());
-            if (voucher != null) {
-                BigDecimal discount = voucher.get().getDiscount();
-                BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
-                BigDecimal discountedPrice = productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
-
-                product.setPrice(discountedPrice.doubleValue());
-            }
-        }
-    }
 }

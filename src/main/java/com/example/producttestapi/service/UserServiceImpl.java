@@ -1,10 +1,15 @@
 package com.example.producttestapi.service;
 
-import com.example.producttestapi.entities.RegistrationRequest;
+import com.example.producttestapi.entities.Product;
+import com.example.producttestapi.entities.Voucher;
+import com.example.producttestapi.model.RegistrationRequest;
 import com.example.producttestapi.entities.Role;
 import com.example.producttestapi.entities.User;
 import com.example.producttestapi.repos.UserRepo;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{

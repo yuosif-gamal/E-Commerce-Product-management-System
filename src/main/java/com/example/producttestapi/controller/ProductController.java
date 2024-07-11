@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/product")
 
-public class ProductRestController {
+public class ProductController {
     private final ProductService productService;
 
     @Autowired
-    public ProductRestController(ProductService productService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 

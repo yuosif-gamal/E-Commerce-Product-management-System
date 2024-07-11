@@ -1,4 +1,4 @@
-package com.example.producttestapi.entities;
+package com.example.producttestapi.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
