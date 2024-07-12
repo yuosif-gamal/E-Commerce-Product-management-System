@@ -42,8 +42,9 @@ public class VoucherServiceImpl implements VoucherService {
         voucherRepo.deleteById(id);
     }
     public void applyVoucherDiscount(Product product) {
-        if (product.getVoucher() != null) {
-            Voucher voucher = findVoucherByCode(product.getVoucher());
+        if (product.getVoucherCode() != null) {
+            Voucher voucher = product.getVoucherCode();
+            System.out.println(voucher);
             if (voucher != null) {
                 BigDecimal discount = voucher.getDiscount();
                 BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
