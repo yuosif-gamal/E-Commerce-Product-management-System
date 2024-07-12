@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,10 +24,14 @@ public class ProductServiceImpl implements ProductService {
         this.productRepo = productRepo;
         this.voucherService = voucherService;
     }
-
     @Override
     public List<Product> getAllProducts() {
         List<Product> products = productRepo.findAll();
+
+        for (Product product : products) {
+            voucherService.applyVoucherDiscount(product);
+        }
+
         return products;
     }
 
@@ -34,18 +41,26 @@ public class ProductServiceImpl implements ProductService {
         if (product == null) {
             throw new ResourceNotFoundException("Product not found with id: " + id);
         }
+        voucherService.applyVoucherDiscount(product);
         return product;
     }
 
     @Override
     public List<Product> getProductsByCategory(int categoryID) {
-        List<Product> products = productRepo.findByCategoryID(categoryID);
-        return products;
+        return null;
     }
+
+//    @Override
+//    public List<Product> getProductsByCategory(int categoryID) {
+//        List<Product> products = productRepo.findByCategoryID(categoryID);
+//        for (Product product : products) {
+//            voucherService.applyVoucherDiscount(product);
+//        }
+//        return products;
+//    }
 
     @Override
     public Product createProduct(Product product) {
-        voucherService.applyVoucherDiscount(product);
         return productRepo.save(product);
     }
 

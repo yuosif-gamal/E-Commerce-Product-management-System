@@ -23,9 +23,9 @@ public class WebSecurityConfig {
         http.httpBasic();
         http.authorizeHttpRequests(
           auth -> {
-              auth.requestMatchers(HttpMethod.GET, "/api/**").hasAnyAuthority("ADMIN","USER","MANAGER")
-                      .requestMatchers(HttpMethod.POST, "/api/**").hasAnyAuthority("ADMIN","MANAGER")
-                      .requestMatchers(HttpMethod.DELETE,"/api/**").hasAnyAuthority("MANAGER");
+              auth.requestMatchers(HttpMethod.GET, "/**").hasAnyAuthority("ADMIN","USER","MANAGER")
+                      .requestMatchers(HttpMethod.POST, "/**").hasAnyAuthority("ADMIN","MANAGER")
+                      .requestMatchers(HttpMethod.DELETE,"/ **").hasAnyAuthority("MANAGER");
               auth.anyRequest().permitAll();
           }
         );
