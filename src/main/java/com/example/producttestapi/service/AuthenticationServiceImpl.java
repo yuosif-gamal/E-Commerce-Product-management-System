@@ -1,6 +1,7 @@
 package com.example.producttestapi.service;
 
-import com.example.producttestapi.model.RegistrationRequest;
+import com.example.producttestapi.dto.UserDto;
+import com.example.producttestapi.entities.User;
 import com.example.producttestapi.exception.DuplicateResourceException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,9 @@ public class AuthenticationServiceImpl implements AuthenticationService{
     }
 
     @Override
-    public void register(RegistrationRequest request) {
-        if(userService.UserExistsByEmail(request.getEmail())){
+    public void register(UserDto request) {
+        User u = userService.findUserByEmail(request.getEmail());
+        if(u != null){
             throw new DuplicateResourceException("Email is connected to another account.");
         }
         request.setPassword(passwordEncoder.encode(request.getPassword()));
