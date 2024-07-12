@@ -1,15 +1,14 @@
 package com.example.producttestapi.service;
 
-import com.example.producttestapi.entities.Product;
-import com.example.producttestapi.entities.Voucher;
-import com.example.producttestapi.model.RegistrationRequest;
-import com.example.producttestapi.entities.Role;
+import com.example.producttestapi.dto.UserDto;
+import com.example.producttestapi.exception.ResourceNotFoundException;
+import com.example.producttestapi.mapper.UserMapper;
 import com.example.producttestapi.entities.User;
 import com.example.producttestapi.repos.UserRepo;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -22,23 +21,41 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void createUser(RegistrationRequest request) {
-        User user = new User(request.getFirstName(),
-                request.getLastName(),
-                request.getPassword(),
-                request.getEmail());
-        Role userRole = roleService.findRoleByName("USER");
-        user.addRole(userRole);
+    public void createUser(UserDto userDto) {
+        User user = UserMapper.convertDtoToEntity(userDto);
         userRepo.save(user);
     }
 
+
+
     @Override
-    public User findUserByEmail(String email) {
-        return userRepo.findByEmail(email);
+    public List<UserDto> getAllUsers() {
+        List<User> userList = userRepo.findAll();
+        List<UserDto> userDtoList = new ArrayList<>();
+        for(User user:userList) {
+            UserDto userDto = UserMapper.convertEntityToDto(user);
+            userDtoList.add(userDto);
+        }
+        return userDtoList;
     }
 
     @Override
-    public boolean UserExistsByEmail(String email) {
-        return userRepo.existsByEmail(email);
+    public UserDto getUserById(Long userId) {
+        User user = userRepo.getUserById(userId);
+        return UserMapper.convertEntityToDto(user);
+    }
+
+    @Override
+    public UserDto deleteUserById(Long userId) {
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
+        userRepo.deleteById(userId);
+        return UserMapper.convertEntityToDto(user);
+    }
+
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepo.findAllByEmail(email);
     }
 }
