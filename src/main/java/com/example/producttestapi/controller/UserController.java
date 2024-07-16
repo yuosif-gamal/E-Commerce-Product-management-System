@@ -11,10 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
     private UserService userService;
 
@@ -29,13 +30,13 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long userId) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable("id") int userId) {
         UserDto savedUser = userService.getUserById(userId);
         return ResponseEntity.ok(savedUser);
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<SuccessResponse> deleteUserById(@PathVariable("id") Long userId) {
+    public ResponseEntity<SuccessResponse> deleteUserById(@PathVariable("id") int userId) {
         UserDto deletedUser = userService.deleteUserById(userId);
         return ResponseEntity.ok(new SuccessResponse("User deleted successfully", true, deletedUser, HttpStatus.OK.value()));
     }

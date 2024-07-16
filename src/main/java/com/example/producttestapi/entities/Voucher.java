@@ -10,18 +10,18 @@ import java.util.List;
 public class Voucher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String code;
     private BigDecimal discount;
     private String expireDate;
     @OneToMany(mappedBy = "voucherCode")
     @JsonIgnore
     private List<Product> products;
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

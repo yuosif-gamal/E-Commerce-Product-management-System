@@ -34,7 +34,7 @@ public class VoucherController {
     }
 
     @DeleteMapping("/voucher/{id}")
-    public ResponseEntity<SuccessResponse> deleteVoucher(@PathVariable Long id) {
+    public ResponseEntity<SuccessResponse> deleteVoucher(@PathVariable int id) {
         voucherService.deleteVoucher(id);
         SuccessResponse response = new SuccessResponse("Voucher deleted successfully", true, null, HttpStatus.NO_CONTENT.value());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
