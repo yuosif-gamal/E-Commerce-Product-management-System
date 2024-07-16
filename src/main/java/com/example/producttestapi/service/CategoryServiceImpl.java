@@ -20,11 +20,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getAllCategory() {
-        return categoryRepo.findAll();
-    }
-
-    @Override
     public Category getCategory(int id) {
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
@@ -44,6 +39,22 @@ public class CategoryServiceImpl implements CategoryService {
             throw new ResourceNotFoundException("Category not found with id: " + id);
         }
         categoryRepo.deleteById(id);
+    }
+
+    @Override
+    public List<Category> getAllMainCategories() {
+        return categoryRepo.getAllMainCategories();
+    }
+
+    @Override
+    public List<Category> getCategoryChildren(int categoryId) {
+        Category category = categoryRepo.findById(Math.toIntExact(categoryId)).orElse(null);
+
+        if (category ==null){
+            throw new ResourceNotFoundException("no category with this ID : " + categoryId);
+        }
+        else
+            return categoryRepo.getCategoryChildren(categoryId);
     }
 
 }

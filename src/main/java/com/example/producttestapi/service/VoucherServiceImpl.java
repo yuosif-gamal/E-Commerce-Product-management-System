@@ -35,7 +35,7 @@ public class VoucherServiceImpl implements VoucherService {
     }
 
     @Override
-    public void deleteVoucher(Long id) {
+    public void deleteVoucher(int id) {
         if (!voucherRepo.existsById(id)) {
             throw new ResourceNotFoundException("Voucher not found with id: " + id);
         }

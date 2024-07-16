@@ -40,13 +40,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto getUserById(Long userId) {
+    public UserDto getUserById(int userId) {
         User user = userRepo.getUserById(userId);
         return UserMapper.convertEntityToDto(user);
     }
 
     @Override
-    public UserDto deleteUserById(Long userId) {
+    public UserDto deleteUserById(int userId) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
         userRepo.deleteById(userId);

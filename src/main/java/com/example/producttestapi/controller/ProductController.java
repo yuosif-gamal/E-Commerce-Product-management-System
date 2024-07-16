@@ -31,17 +31,18 @@ public class ProductController {
         return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
     }
 
+    @GetMapping("/products/category/{id}")
+    public ResponseEntity<SuccessResponse> getAllProductsFromSpecificCategory(@PathVariable int id){
+        List<Product> products = productService.getProductsByCategoryID(id);
+        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
+
+    }
+
     @GetMapping("/product/{id}")
     public ResponseEntity<SuccessResponse> getProduct(@PathVariable("id") int id) {
         Product product =  productService.findProductById(id);
         return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, product, HttpStatus.OK.value()));
 
-    }
-
-    @GetMapping("/products/category/{categoryID}")
-    public ResponseEntity<SuccessResponse> getProductsByCategory(@PathVariable("categoryID") int categoryID) {
-        List<Product> products = productService.getProductsByCategory(categoryID);
-        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
     }
 
     @PostMapping("/product")

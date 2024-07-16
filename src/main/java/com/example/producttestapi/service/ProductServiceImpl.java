@@ -1,8 +1,10 @@
 package com.example.producttestapi.service;
 
+import com.example.producttestapi.entities.Category;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.Voucher;
 import com.example.producttestapi.exception.ResourceNotFoundException;
+import com.example.producttestapi.repos.CategoryRepo;
 import com.example.producttestapi.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +19,14 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
+    private final CategoryRepo categoryRepo;
     private final VoucherService voucherService;
 
     @Autowired
-    public ProductServiceImpl(ProductRepo productRepo, VoucherService voucherService) {
+    public ProductServiceImpl(ProductRepo productRepo, VoucherService voucherService , CategoryRepo categoryRepo) {
         this.productRepo = productRepo;
         this.voucherService = voucherService;
+        this.categoryRepo = categoryRepo;
     }
     @Override
     public List<Product> getAllProducts() {
@@ -46,18 +50,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getProductsByCategory(int categoryID) {
-        return null;
-    }
+    public List<Product> getProductsByCategoryID(int categoryID) {
+        Category category = categoryRepo.findById(categoryID).orElse(null);
+        if (category == null){
+            throw new ResourceNotFoundException("no category found with id: " + categoryID);
 
-//    @Override
-//    public List<Product> getProductsByCategory(int categoryID) {
-//        List<Product> products = productRepo.findByCategoryID(categoryID);
-//        for (Product product : products) {
-//            voucherService.applyVoucherDiscount(product);
-//        }
-//        return products;
-//    }
+        }
+        List<Product> products = productRepo.findByCategoryID(categoryID);
+        for (Product product : products) {
+            voucherService.applyVoucherDiscount(product);
+        }
+        return products;
+    }
 
     @Override
     public Product createProduct(Product product) {

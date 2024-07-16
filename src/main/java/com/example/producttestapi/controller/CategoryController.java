@@ -20,12 +20,17 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/categories")
-    public ResponseEntity<SuccessResponse> getAllCategories() {
-        List<Category> categories = categoryService.getAllCategory();
-        return ResponseEntity.ok(new SuccessResponse("Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
+    @GetMapping("/main-categories")
+    public ResponseEntity<SuccessResponse> getAllMainCategories() {
+        List<Category> categories = categoryService.getAllMainCategories();
+        return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
 
+    @GetMapping("/categories/{categoryId}/children")
+    public  ResponseEntity<SuccessResponse> getCategoryChildren(@PathVariable int categoryId){
+        List<Category> categories = categoryService.getCategoryChildren( categoryId);
+        return ResponseEntity.ok(new SuccessResponse("children Categories retrieved successfully",true , categories,HttpStatus.OK.value()));
+    }
     @GetMapping("/category/{id}")
     public ResponseEntity<SuccessResponse> getCategory(@PathVariable("id") int id) {
         Category category = categoryService.getCategory(id);

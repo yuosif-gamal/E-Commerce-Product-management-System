@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Getter
 @Setter
 public class UserDto {
-    private Long id;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
