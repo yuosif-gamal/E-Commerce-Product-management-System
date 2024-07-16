@@ -1,5 +1,6 @@
 package com.example.producttestapi.controller;
 
+import com.example.producttestapi.dto.CategoryDto;
 import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.Category;
 import com.example.producttestapi.service.CategoryService;
@@ -22,13 +23,13 @@ public class CategoryController {
 
     @GetMapping("/main-categories")
     public ResponseEntity<SuccessResponse> getAllMainCategories() {
-        List<Category> categories = categoryService.getAllMainCategories();
+        List<CategoryDto> categories = categoryService.getAllMainCategories();
         return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
 
     @GetMapping("/categories/{categoryId}/children")
     public  ResponseEntity<SuccessResponse> getCategoryChildren(@PathVariable int categoryId){
-        List<Category> categories = categoryService.getCategoryChildren( categoryId);
+        List<CategoryDto> categories = categoryService.getCategoryChildren( categoryId);
         return ResponseEntity.ok(new SuccessResponse("children Categories retrieved successfully",true , categories,HttpStatus.OK.value()));
     }
     @GetMapping("/category/{id}")

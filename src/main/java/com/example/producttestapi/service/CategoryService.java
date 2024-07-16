@@ -1,5 +1,6 @@
 package com.example.producttestapi.service;
 
+import com.example.producttestapi.dto.CategoryDto;
 import com.example.producttestapi.entities.Category;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,7 +12,7 @@ public interface CategoryService {
     Category createCategory(Category category);
 
     void deleteCategory(int id);
-    List<Category> getAllMainCategories();
+    List<CategoryDto> getAllMainCategories();
 
-    List<Category> getCategoryChildren(int categoryId);
+    List<CategoryDto> getCategoryChildren(int categoryId);
 }
