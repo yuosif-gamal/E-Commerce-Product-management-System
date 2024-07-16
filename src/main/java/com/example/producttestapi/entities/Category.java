@@ -23,6 +23,7 @@ public class Category {
     private List<Product> products;
 
 
+    @ManyToOne
     @JoinColumn(name = "Parent_id")
     private Category parentCategory ;
     @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL, orphanRemoval = true)
