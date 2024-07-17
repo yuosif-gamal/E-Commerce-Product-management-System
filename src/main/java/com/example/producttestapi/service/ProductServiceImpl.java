@@ -19,14 +19,12 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
-    private final CategoryRepo categoryRepo;
     private final VoucherService voucherService;
 
     @Autowired
-    public ProductServiceImpl(ProductRepo productRepo, VoucherService voucherService , CategoryRepo categoryRepo) {
+    public ProductServiceImpl(ProductRepo productRepo, VoucherService voucherService ) {
         this.productRepo = productRepo;
         this.voucherService = voucherService;
-        this.categoryRepo = categoryRepo;
     }
     @Override
     public List<Product> getAllProducts() {
@@ -51,12 +49,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getProductsByCategoryID(int categoryID) {
-        Category category = categoryRepo.findById(categoryID).orElse(null);
-        if (category == null){
-            throw new ResourceNotFoundException("no category found with id: " + categoryID);
-
-        }
-        List<Product> products = productRepo.findByCategoryID(categoryID);
+        List<Product> products = productRepo.findAllByCategoryID(categoryID);
         for (Product product : products) {
             voucherService.applyVoucherDiscount(product);
         }

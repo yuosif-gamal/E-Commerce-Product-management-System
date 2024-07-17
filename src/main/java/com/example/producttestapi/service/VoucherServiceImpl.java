@@ -22,6 +22,10 @@ public class VoucherServiceImpl implements VoucherService {
 
     @Override
     public Voucher createVoucher(Voucher voucher) {
+        String s = voucher.getCode();
+        if (voucherRepo.findByCode(s) != null){
+            throw  new ResourceNotFoundException("already exist Code : " + s);
+        }
         return voucherRepo.save(voucher);
     }
 

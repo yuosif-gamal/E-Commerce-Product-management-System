@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/category/{id}")
-    public ResponseEntity<SuccessResponse> getAllProductsFromSpecificCategory(@PathVariable int id){
+    public ResponseEntity<SuccessResponse> getProductsByCategoryID(@PathVariable int id){
         List<Product> products = productService.getProductsByCategoryID(id);
         return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
 

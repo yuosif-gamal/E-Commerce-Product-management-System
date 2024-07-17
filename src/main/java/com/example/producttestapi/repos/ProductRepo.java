@@ -10,8 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product,Integer> {
-
-    @Query ("select p from Product p where p.categoryID =:categoryID")
-    List<Product> findByCategoryID(int categoryID);
-
+    @Query(value = "select * from Product p where p.categoryID = :categoryID", nativeQuery = true)
+    List<Product> findAllByCategoryID(int categoryID);
 }
