@@ -25,8 +25,10 @@ public class Category {
 
     @ManyToOne
     @JoinColumn(name = "Parent_id")
+    @JsonIgnore
+
     private Category parentCategory ;
-    @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parentCategory",fetch = FetchType.LAZY)
     private List<Category> subCategories;
 
 }

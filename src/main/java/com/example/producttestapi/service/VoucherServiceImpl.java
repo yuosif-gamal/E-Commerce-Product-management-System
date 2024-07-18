@@ -3,21 +3,29 @@ package com.example.producttestapi.service;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.Voucher;
 import com.example.producttestapi.exception.ResourceNotFoundException;
+import com.example.producttestapi.repos.ProductRepo;
 import com.example.producttestapi.repos.VoucherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class VoucherServiceImpl implements VoucherService {
     private final VoucherRepo voucherRepo;
+    private final ProductRepo productRepo;
+
 
 
     @Autowired
-    public VoucherServiceImpl(VoucherRepo voucherRepo) {
+    public VoucherServiceImpl(VoucherRepo voucherRepo ,ProductRepo productRepo) {
         this.voucherRepo = voucherRepo;
+        this.productRepo = productRepo;
+
     }
 
     @Override
@@ -40,6 +48,12 @@ public class VoucherServiceImpl implements VoucherService {
 
     @Override
     public void deleteVoucher(int id) {
+        List<Product> products = productRepo.findAllByVoucherID(id);
+
+        for (Product product : products) {
+            product.setVoucherCode(null);
+            productRepo.save(product);
+        }
         if (!voucherRepo.existsById(id)) {
             throw new ResourceNotFoundException("Voucher not found with id: " + id);
         }
@@ -48,13 +62,24 @@ public class VoucherServiceImpl implements VoucherService {
     public void applyVoucherDiscount(Product product) {
         if (product.getVoucherCode() != null) {
             Voucher voucher = product.getVoucherCode();
-            System.out.println(voucher);
             if (voucher != null) {
-                BigDecimal discount = voucher.getDiscount();
-                BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
-                BigDecimal discountedPrice = productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
+                LocalDateTime now = LocalDateTime.now();
+                LocalDateTime expireDateTime = voucher.getExpireDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
-                product.setPrice(discountedPrice.doubleValue());
+                if (expireDateTime.isAfter(now)) {
+                    BigDecimal discount = voucher.getDiscount();
+                    BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
+                    BigDecimal discountedPrice = productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
+
+                    product.setPrice(discountedPrice.doubleValue());
+                }
+                else {
+                    int id = voucher.getId();
+                    deleteVoucher(id);
+                    product.setPrice(product.getPrice());
+
+                }
+
             }
         }
     }
