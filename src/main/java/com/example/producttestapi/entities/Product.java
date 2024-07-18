@@ -19,11 +19,14 @@ public class Product {
     private String description;
     private double price;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category categoryID ;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+
     @JoinColumn(name = "voucher_code")
     private Voucher voucherCode;
+
 
 
 }

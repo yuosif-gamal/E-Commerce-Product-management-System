@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,7 +16,7 @@ public class Voucher {
     private int id;
     private String code;
     private BigDecimal discount;
-    private String expireDate;
+    private Date expireDate;
     @OneToMany(mappedBy = "voucherCode")
     @JsonIgnore
     private List<Product> products;
@@ -41,11 +44,11 @@ public class Voucher {
         this.discount = discount;
     }
 
-    public String getExpireDate() {
+    public Date getExpireDate() {
         return expireDate;
     }
 
-    public void setExpireDate(String expireDate) {
+    public void setExpireDate(Date expireDate) {
         this.expireDate = expireDate;
     }
 
