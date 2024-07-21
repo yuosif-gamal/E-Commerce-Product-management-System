@@ -18,6 +18,20 @@ public class ProductTestApiApplication {
         SpringApplication.run(ProductTestApiApplication.class, args);
     }
     @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return false;
+            }
+        };
+    }
+    @Bean
     public CommandLineRunner commandLineRunner(RoleRepo roleRepo, UserRepo userRepo , PasswordEncoder passwordEncoder){
         return args -> {
             if(roleRepo.findByName("USER") == null){
