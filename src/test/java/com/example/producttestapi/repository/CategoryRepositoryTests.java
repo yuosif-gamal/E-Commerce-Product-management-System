@@ -116,6 +116,5 @@ public class CategoryRepositoryTests {
         categoryChildrenList =categoryRepo.getCategoryChildren(category4.getId());
         Assertions.assertThat(categoryChildrenList.size()).isEqualTo(0);
 
-
     }
 }
