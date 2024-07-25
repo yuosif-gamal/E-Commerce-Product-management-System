@@ -88,8 +88,6 @@ public class CategoryServiceTests {
         Assertions.assertThatThrownBy(() -> categoryService.getCategoryChildren(nonExistentCategoryId))
                 .isInstanceOf(ResourceNotFoundException.class)
                 .hasMessageContaining("no category with this ID : " + nonExistentCategoryId);
-
-
     }
     @Test
     public void CategoryService_DeleteCategoryById_ReturnVoid() {
