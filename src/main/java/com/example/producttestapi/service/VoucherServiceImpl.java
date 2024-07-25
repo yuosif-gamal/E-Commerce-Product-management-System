@@ -34,7 +34,13 @@ public class VoucherServiceImpl implements VoucherService {
         if (voucherRepo.findByCode(s) != null){
             throw  new ResourceNotFoundException("already exist Code : " + s);
         }
-        return voucherRepo.save(voucher);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expireDateTime = voucher.getExpireDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+        if (expireDateTime.isAfter(now)) {
+            throw new ResourceNotFoundException("this is expired date .. ");
+        }
+            return voucherRepo.save(voucher);
     }
 
     @Override
