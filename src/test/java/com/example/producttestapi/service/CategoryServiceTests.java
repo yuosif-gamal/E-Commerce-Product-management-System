@@ -80,6 +80,18 @@ public class CategoryServiceTests {
     }
 
     @Test
+    public void CategoryService_GetSubCategories_ThrowsExceptionWhenCategoryNotFound(){
+        int nonExistentCategoryId = 1;
+
+        lenient().when(categoryRepo.existsById(nonExistentCategoryId)).thenReturn(false);
+
+        Assertions.assertThatThrownBy(() -> categoryService.getCategoryChildren(nonExistentCategoryId))
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessageContaining("no category with this ID : " + nonExistentCategoryId);
+
+
+    }
+    @Test
     public void CategoryService_DeleteCategoryById_ReturnVoid() {
         int categoryId = 1;
         when(categoryRepo.existsById(categoryId)).thenReturn(true);
