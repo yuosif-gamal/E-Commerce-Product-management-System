@@ -37,7 +37,7 @@ public class VoucherServiceImpl implements VoucherService {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime expireDateTime = voucher.getExpireDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
-        if (expireDateTime.isAfter(now)) {
+        if (expireDateTime.isBefore(now)) {
             throw new ResourceNotFoundException("this is expired date .. ");
         }
             return voucherRepo.save(voucher);

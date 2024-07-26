@@ -1,23 +1,21 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.CategoryDto;
-import com.example.producttestapi.dto.UserDto;
 import com.example.producttestapi.entities.Category;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.CategoryMapper;
+import com.example.producttestapi.model.CategoryModel;
+import com.example.producttestapi.dto.CategoryModelDto;
 import com.example.producttestapi.repos.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepo categoryRepo;
-
     @Autowired
     public CategoryServiceImpl(CategoryRepo categoryRepo) {
         this.categoryRepo = categoryRepo;
@@ -58,7 +56,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> getCategoryChildren(int categoryId) {
-        Category category = categoryRepo.findById(Math.toIntExact(categoryId)).orElse(null);
+        Category category = categoryRepo.findById(categoryId).orElse(null);
         if (category ==null){
             throw new ResourceNotFoundException("no category with this ID : " + categoryId);
         }
@@ -71,6 +69,36 @@ public class CategoryServiceImpl implements CategoryService {
             }
             return categoryDto;
         }
+    }
+
+    @Override
+    public List<CategoryModelDto> getCategoriesTree() {
+        List<Category> categoriesList = categoryRepo.findAll();
+        Map<Integer, CategoryModel> categoryModelMap = new HashMap<>();
+        List<CategoryModel> result = new ArrayList<>();
+
+        for (Category cat : categoriesList) {
+            CategoryModel categoryModel = new CategoryModel(cat.getId(), cat.getName(), new ArrayList<>());
+            categoryModelMap.put(cat.getId(), categoryModel);
+        }
+
+        for (Category cat : categoriesList) {
+            CategoryModel categoryModel = categoryModelMap.get(cat.getId());
+
+            if (cat.getParentCategory() != null) {
+                CategoryModel parentCategoryModel = categoryModelMap.get(cat.getParentCategory().getId());
+                parentCategoryModel.getCategoriesModelList().add(categoryModel);
+            } else {
+                result.add(categoryModel);
+            }
+        }
+        List<CategoryModelDto> finalResult = new ArrayList<>();
+        for (CategoryModel categoryModel : result) {
+            CategoryModelDto c = CategoryMapper.convertToDTO(categoryModel);
+            finalResult.add(c);
+        }
+
+        return finalResult;
     }
 
 }

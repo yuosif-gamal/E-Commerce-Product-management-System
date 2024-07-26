@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class    UserServiceImpl implements UserService{
     private final UserRepo userRepo;
     private final RoleService roleService;
 
