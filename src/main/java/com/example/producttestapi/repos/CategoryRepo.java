@@ -10,11 +10,8 @@ import java.util.List;
 @Repository
 public interface CategoryRepo extends JpaRepository<Category, Integer> {
 
-    @Query("SELECT c FROM Category c WHERE c.parentCategory IS NULL")
-
+    @Query("SELECT c FROM Category c WHERE c.parentCategory IS null ")
     List<Category> getAllMainCategories();
-
     @Query("SELECT c FROM Category c WHERE c.parentCategory.id = :categoryId")
     List<Category>getCategoryChildren(Integer categoryId);
-
 }

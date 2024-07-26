@@ -3,6 +3,7 @@ package com.example.producttestapi.controller;
 import com.example.producttestapi.dto.CategoryDto;
 import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.Category;
+import com.example.producttestapi.dto.CategoryModelDto;
 import com.example.producttestapi.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,12 @@ public class CategoryController {
         List<CategoryDto> categories = categoryService.getAllMainCategories();
         return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
+    @GetMapping("/categories-tree")
+    public ResponseEntity<SuccessResponse> getCategoriesTree() {
+        List<CategoryModelDto> categories = categoryService.getCategoriesTree();
+        return ResponseEntity.ok(new SuccessResponse("all Categories Tree retrieved successfully", true, categories, HttpStatus.OK.value()));
+    }
+
 
     @GetMapping("/categories/{categoryId}/children")
     public  ResponseEntity<SuccessResponse> getCategoryChildren(@PathVariable int categoryId){
