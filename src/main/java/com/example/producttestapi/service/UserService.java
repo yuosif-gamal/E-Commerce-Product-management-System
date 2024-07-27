@@ -6,6 +6,7 @@ import com.example.producttestapi.entities.User;
 import java.util.List;
 
 public interface UserService {
+    void register(UserDto request);
 
     void createUser(UserDto userDto);
 

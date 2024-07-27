@@ -1,10 +1,12 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.UserDto;
+import com.example.producttestapi.exception.DuplicateResourceException;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.UserMapper;
 import com.example.producttestapi.entities.User;
 import com.example.producttestapi.repos.UserRepo;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,11 +15,16 @@ import java.util.List;
 @Service
 public class    UserServiceImpl implements UserService{
     private final UserRepo userRepo;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+
     private final RoleService roleService;
 
-    public UserServiceImpl(UserRepo userRepo, RoleService roleService) {
+    public UserServiceImpl(UserRepo userRepo, RoleService roleService, PasswordEncoder passwordEncoder , UserService userService) {
         this.userRepo = userRepo;
         this.roleService = roleService;
+        this.userService = userService;
+        this.passwordEncoder= passwordEncoder;
     }
 
     @Override
@@ -53,6 +60,16 @@ public class    UserServiceImpl implements UserService{
         return UserMapper.convertEntityToDto(user);
     }
 
+
+    @Override
+    public void register(UserDto request) {
+        User u = userService.findUserByEmail(request.getEmail());
+        if(u != null){
+            throw new DuplicateResourceException("Email is connected to another account.");
+        }
+        request.setPassword(passwordEncoder.encode(request.getPassword()));
+        userService.createUser(request);
+    }
 
     @Override
     public User findUserByEmail(String email) {

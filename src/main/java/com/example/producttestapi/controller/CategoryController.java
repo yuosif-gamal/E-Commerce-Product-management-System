@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/category")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -22,36 +23,36 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/main-categories")
+    @GetMapping("/find-all-main")
     public ResponseEntity<SuccessResponse> getAllMainCategories() {
         List<CategoryDto> categories = categoryService.getAllMainCategories();
         return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
-    @GetMapping("/categories-tree")
+    @GetMapping("/tree")
     public ResponseEntity<SuccessResponse> getCategoriesTree() {
         List<CategoryModelDto> categories = categoryService.getCategoriesTree();
         return ResponseEntity.ok(new SuccessResponse("all Categories Tree retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
 
 
-    @GetMapping("/categories/{categoryId}/children")
-    public  ResponseEntity<SuccessResponse> getCategoryChildren(@PathVariable int categoryId){
-        List<CategoryDto> categories = categoryService.getCategoryChildren( categoryId);
+    @GetMapping("/{Id}/children")
+    public  ResponseEntity<SuccessResponse> getCategoryChildren(@PathVariable int Id){
+        List<CategoryDto> categories = categoryService.getCategoryChildren( Id);
         return ResponseEntity.ok(new SuccessResponse("children Categories retrieved successfully",true , categories,HttpStatus.OK.value()));
     }
-    @GetMapping("/category/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SuccessResponse> getCategory(@PathVariable("id") int id) {
         Category category = categoryService.getCategory(id);
         return ResponseEntity.ok(new SuccessResponse("Category retrieved successfully", true, category, HttpStatus.OK.value()));
     }
 
-    @PostMapping("/category")
+    @PostMapping("")
     public ResponseEntity<SuccessResponse> createCategory(@RequestBody Category category) {
         Category createdCategory = categoryService.createCategory(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Category created successfully", true, createdCategory, HttpStatus.CREATED.value()));
     }
 
-    @DeleteMapping("/category/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<SuccessResponse> deleteCategory(@PathVariable("id") int id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.ok(new SuccessResponse("Category deleted successfully", true, null, HttpStatus.OK.value()));

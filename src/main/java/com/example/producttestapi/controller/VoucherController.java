@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/voucher")
 public class VoucherController {
 
     private final VoucherService voucherService;
@@ -19,21 +20,21 @@ public class VoucherController {
         this.voucherService = voucherService;
     }
 
-    @PostMapping("/voucher")
+    @PostMapping("/")
     public ResponseEntity<SuccessResponse> create(@RequestBody Voucher voucher) {
         Voucher createdVoucher = voucherService.createVoucher(voucher);
         SuccessResponse response = new SuccessResponse("Voucher created successfully", true, createdVoucher, HttpStatus.CREATED.value());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/voucher/{code}")
+    @GetMapping("/{code}")
     public ResponseEntity<SuccessResponse> getVoucher(@PathVariable("code") String code) {
         Voucher voucher = voucherService.findVoucherByCode(code);
         SuccessResponse response = new SuccessResponse("Voucher retrieved successfully", true, voucher, HttpStatus.OK.value());
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping("/voucher/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<SuccessResponse> deleteVoucher(@PathVariable int id) {
         voucherService.deleteVoucher(id);
         SuccessResponse response = new SuccessResponse("Voucher deleted successfully", true, null, HttpStatus.NO_CONTENT.value());

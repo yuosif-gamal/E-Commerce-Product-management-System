@@ -24,10 +24,5 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerNewUser(@RequestBody UserDto request){
-        authenticationService.register(request);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
 // to do login !
 }
