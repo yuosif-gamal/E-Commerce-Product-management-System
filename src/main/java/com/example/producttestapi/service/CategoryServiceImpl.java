@@ -8,6 +8,8 @@ import com.example.producttestapi.model.CategoryModel;
 import com.example.producttestapi.dto.CategoryModelDto;
 import com.example.producttestapi.repos.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -22,6 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(value = "categories",key = "#id")
     public Category getCategory(int id) {
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
@@ -36,6 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @CacheEvict(value = "categories" , key = "#id")
     public void deleteCategory(int id) {
         if (!categoryRepo.existsById(id)) {
             throw new ResourceNotFoundException("Category not found with id: " + id);
@@ -44,6 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(value = "categories")
     public List<CategoryDto> getAllMainCategories() {
         List<Category> categories = categoryRepo.getAllMainCategories();
         List<CategoryDto> categoryDto = new ArrayList<>();
@@ -72,6 +77,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(value = "categories")
+
     public List<CategoryModelDto> getCategoriesTree() {
         List<Category> categoriesList = categoryRepo.findAll();
         Map<Integer, CategoryModel> categoryModelMap = new HashMap<>();

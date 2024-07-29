@@ -7,6 +7,9 @@ import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.repos.CategoryRepo;
 import com.example.producttestapi.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -27,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
         this.voucherService = voucherService;
     }
     @Override
+    @Cacheable(value = "products")
     public List<Product> getAllProducts() {
         List<Product> products = productRepo.findAll();
 
@@ -38,6 +42,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(value = "products" , key = "#id")
     public Product findProductById(int id) {
         Product product = productRepo.findById(id).orElse(null);
         if (product == null) {
@@ -62,6 +67,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CachePut(value = "products", key = "#product.id")
     public Product updateProduct(Product product) {
         if (!productRepo.existsById(product.getId())) {
             throw new ResourceNotFoundException("Product not found with id: " + product.getId());
@@ -70,6 +76,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @CacheEvict(value = "products" , key = "#id")
     public void deleteProduct(int id) {
         if (!productRepo.existsById(id)) {
             throw new ResourceNotFoundException("Product not found with id: " + id);

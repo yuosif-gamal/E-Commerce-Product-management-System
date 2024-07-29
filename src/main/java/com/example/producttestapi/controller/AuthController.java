@@ -15,14 +15,5 @@ import java.util.List;
 @RestController
 public class AuthController {
 
-    private final AuthenticationService authenticationService;
-    private final UserService userService;
-
-    @Autowired
-    public AuthController(AuthenticationService authenticationService, UserService userService) {
-        this.authenticationService = authenticationService;
-        this.userService = userService;
-    }
-
 // to do login !
 }
