@@ -8,11 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService{
-    private final PasswordEncoder passwordEncoder;
 
-    public AuthenticationServiceImpl(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
 
 
 }

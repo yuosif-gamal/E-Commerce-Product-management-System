@@ -30,6 +30,7 @@ public class Category {
     @JsonIgnore
 
     private Category parentCategory ;
+    @JsonIgnore
     @OneToMany(mappedBy = "parentCategory",fetch = FetchType.LAZY)
     private List<Category> subCategories;
 

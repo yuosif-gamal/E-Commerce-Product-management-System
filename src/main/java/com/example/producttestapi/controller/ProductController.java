@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("/product")
 public class ProductController {
     private final ProductService productService;
 
@@ -25,6 +25,7 @@ public class ProductController {
     public ResponseEntity<SuccessResponse> hello() {
         return ResponseEntity.ok(new SuccessResponse("Hello", true, null, HttpStatus.OK.value()));
     }
+
 
     @GetMapping("/find-all")
     public ResponseEntity<SuccessResponse> getAllProducts() {
