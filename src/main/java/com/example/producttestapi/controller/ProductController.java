@@ -21,7 +21,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public ResponseEntity<SuccessResponse> hello() {
         return ResponseEntity.ok(new SuccessResponse("Hello", true, null, HttpStatus.OK.value()));
     }
@@ -47,13 +47,13 @@ public class ProductController {
 
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<SuccessResponse> createProduct(@RequestBody Product product) {
         Product createdProduct = productService.createProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Product created successfully", true, createdProduct, HttpStatus.CREATED.value()));
     }
 
-    @PutMapping("/")
+    @PutMapping()
     public ResponseEntity<SuccessResponse> updateProduct(@RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(product);
         return ResponseEntity.ok(new SuccessResponse("Product updated successfully", true, updatedProduct, HttpStatus.OK.value()));

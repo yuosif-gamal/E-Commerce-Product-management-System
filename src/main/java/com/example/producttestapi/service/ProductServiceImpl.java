@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -42,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(value = "products" , key = "#id")
+    @Cacheable(value = "FindProduct" , key = "#id")
     public Product findProductById(int id) {
         Product product = productRepo.findById(id).orElse(null);
         if (product == null) {
@@ -53,6 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable(value = "productsForCategory", key = "#product.category.id")
     public List<Product> getProductsByCategoryID(int categoryID) {
         List<Product> products = productRepo.findAllByCategoryID(categoryID);
         for (Product product : products) {
@@ -62,13 +64,27 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "products", allEntries = true),
+                    @CacheEvict(value = "findProduct", allEntries = true),
+                    @CacheEvict(value = "productsForCategory", key = "#product.category.id")
+            }
+    )
     public Product createProduct(Product product) {
         return productRepo.save(product);
     }
 
     @Override
-    @CachePut(value = "products", key = "#product.id")
-    public Product updateProduct(Product product) {
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "products", allEntries = true),
+                    @CacheEvict(value = "productsForCategory", allEntries = true)
+            },
+            put = {
+                    @CachePut(value = "FindProduct", key = "#product.id"),
+            }
+    )    public Product updateProduct(Product product) {
         if (!productRepo.existsById(product.getId())) {
             throw new ResourceNotFoundException("Product not found with id: " + product.getId());
         }
@@ -76,7 +92,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @CacheEvict(value = "products" , key = "#id")
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "products", allEntries = true),
+                    @CacheEvict(value = "findProduct", key = "#id"),
+                    @CacheEvict(value = "productsForCategory", allEntries = true)
+            }
+    )
     public void deleteProduct(int id) {
         if (!productRepo.existsById(id)) {
             throw new ResourceNotFoundException("Product not found with id: " + id);
