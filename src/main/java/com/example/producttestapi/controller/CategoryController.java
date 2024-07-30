@@ -30,6 +30,11 @@ public class CategoryController {
         return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
 
+    @GetMapping("/find-all")
+    public ResponseEntity<SuccessResponse> getAllCategories() {
+        List<CategoryDto> categories = categoryService.getAllCategory();
+        return ResponseEntity.ok(new SuccessResponse("ALL Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
+    }
     @GetMapping("/tree")
     public ResponseEntity<SuccessResponse> getCategoriesTree() {
         List<CategoryModelDto> categories = categoryService.getCategoriesTree();

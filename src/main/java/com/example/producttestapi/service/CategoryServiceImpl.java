@@ -9,7 +9,9 @@ import com.example.producttestapi.dto.CategoryModelDto;
 import com.example.producttestapi.repos.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -23,8 +25,20 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepo = categoryRepo;
     }
 
+    @Cacheable(value = "categories")
     @Override
-    @Cacheable(value = "categories",key = "#id")
+    public List<CategoryDto> getAllCategory() {
+        List<Category> categories = categoryRepo.findAll();
+        List<CategoryDto> categoryDto = new ArrayList<>();
+        for (Category category1 : categories ){
+            CategoryDto c = CategoryMapper.convertEntityToDto(category1);
+            categoryDto.add(c);
+        }
+        return categoryDto;
+    }
+
+    @Override
+    @Cacheable(value = "findCategory",key = "#id")
     public Category getCategory(int id) {
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
@@ -32,14 +46,30 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return category;
     }
-
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "categories", allEntries = true),
+            @CacheEvict(value = "mainCategories", allEntries = true),
+            @CacheEvict(value = "categoryTree", allEntries = true),
+            @CacheEvict(value = "subCategories", allEntries = true),
+            @CacheEvict(value = "findCategory",allEntries = true)
+    })
     public Category createCategory(Category category) {
         return categoryRepo.save(category);
     }
 
     @Override
-    @CacheEvict(value = "categories" , key = "#id")
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "categories", allEntries = true),
+                    @CacheEvict(value = "categoryById", key = "#id"),
+                    @CacheEvict(value = "mainCategories", allEntries = true),
+                    @CacheEvict(value = "categoryTree", allEntries = true),
+                    @CacheEvict(value = "subCategories", allEntries = true),
+                    @CacheEvict(value = "findCategory", key = "#id")
+            }
+    )
+
     public void deleteCategory(int id) {
         if (!categoryRepo.existsById(id)) {
             throw new ResourceNotFoundException("Category not found with id: " + id);
@@ -48,7 +78,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Cacheable(value = "categories")
+    @Cacheable(value = "mainCategories")
     public List<CategoryDto> getAllMainCategories() {
         List<Category> categories = categoryRepo.getAllMainCategories();
         List<CategoryDto> categoryDto = new ArrayList<>();
@@ -60,6 +90,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(value = "subCategories")
     public List<CategoryDto> getCategoryChildren(int categoryId) {
         Category category = categoryRepo.findById(categoryId).orElse(null);
         if (category ==null){
@@ -77,8 +108,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Cacheable(value = "categories")
-
+    @Cacheable(value = "categoryTree")
     public List<CategoryModelDto> getCategoriesTree() {
         List<Category> categoriesList = categoryRepo.findAll();
         Map<Integer, CategoryModel> categoryModelMap = new HashMap<>();
