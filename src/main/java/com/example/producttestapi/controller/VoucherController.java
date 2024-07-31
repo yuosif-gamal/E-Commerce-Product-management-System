@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/voucher")
+@RequestMapping("/vouchers")
 public class VoucherController {
 
     private final VoucherService voucherService;
@@ -20,7 +20,7 @@ public class VoucherController {
         this.voucherService = voucherService;
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<SuccessResponse> create(@RequestBody Voucher voucher) {
         Voucher createdVoucher = voucherService.createVoucher(voucher);
         SuccessResponse response = new SuccessResponse("Voucher created successfully", true, createdVoucher, HttpStatus.CREATED.value());

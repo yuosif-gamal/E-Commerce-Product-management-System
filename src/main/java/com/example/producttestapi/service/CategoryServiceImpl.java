@@ -131,7 +131,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
         List<CategoryModelDto> finalResult = new ArrayList<>();
         for (CategoryModel categoryModel : result) {
-            CategoryModelDto c = CategoryMapper.convertToDTO(categoryModel);
+                CategoryModelDto c = CategoryMapper.convertToModelDTO(categoryModel);
             finalResult.add(c);
         }
 

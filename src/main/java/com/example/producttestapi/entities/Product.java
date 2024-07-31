@@ -28,6 +28,4 @@ public class Product {
     @JoinColumn(name = "voucher_code")
     private Voucher voucherCode;
 
-
-
 }

@@ -15,10 +15,10 @@ public class CategoryMapper {
         return categoryDto;
     }
 
-    public static CategoryModelDto convertToDTO(CategoryModel categoryModel) {
+    public static CategoryModelDto convertToModelDTO(CategoryModel categoryModel) {
         List<CategoryModelDto> subCategoriesDTO = new ArrayList<>();
         for (CategoryModel subCategory : categoryModel.getCategoriesModelList()) {
-            subCategoriesDTO.add(convertToDTO(subCategory));
+            subCategoriesDTO.add(convertToModelDTO(subCategory));
         }
         return new CategoryModelDto(categoryModel.getName(), subCategoriesDTO);
     }
