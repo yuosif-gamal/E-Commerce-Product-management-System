@@ -26,7 +26,8 @@ public class User {
         private String password;
 
         private String email;
-
+        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+        private Cart cart;
 
     public User(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
