@@ -6,6 +6,7 @@ import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.repos.CartRepo;
 import com.example.producttestapi.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -30,11 +31,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    @Cacheable(value = "cart")
     public Cart getCart() {
         User user = getCurrentUser();
         Cart cart = cartRepo.findByUser(user);
         if (cart == null) {
-            throw new ResourceNotFoundException("Cart not found for user with id: " + user.getFirstName());
+            throw new ResourceNotFoundException("Cart not found for user with name: " + user.getFirstName());
         }
         return cart;
     }
