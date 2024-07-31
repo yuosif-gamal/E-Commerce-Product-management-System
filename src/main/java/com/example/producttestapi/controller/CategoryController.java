@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -24,13 +24,13 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/find-all-main")
+    @GetMapping("/main")
     public ResponseEntity<SuccessResponse> getAllMainCategories() {
         List<CategoryDto> categories = categoryService.getAllMainCategories();
         return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
 
-    @GetMapping("/find-all")
+    @GetMapping("")
     public ResponseEntity<SuccessResponse> getAllCategories() {
         List<CategoryDto> categories = categoryService.getAllCategory();
         return ResponseEntity.ok(new SuccessResponse("ALL Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
@@ -48,7 +48,6 @@ public class CategoryController {
         return ResponseEntity.ok(new SuccessResponse("children Categories retrieved successfully",true , categories,HttpStatus.OK.value()));
     }
 
-    @Cacheable(value = "categories", key = "#id")
     @GetMapping("/{id}")
     public ResponseEntity<SuccessResponse> getCategory(@PathVariable("id") int id) {
         Category category = categoryService.getCategory(id);
