@@ -6,6 +6,9 @@ import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.UserMapper;
 import com.example.producttestapi.entities.User;
 import com.example.producttestapi.repos.UserRepo;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +72,17 @@ public class    UserServiceImpl implements UserService{
         createUser(request);
     }
 
+    @Override
+    @Cacheable(value = "user")
+    public User currentUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null) {
+            throw new ResourceNotFoundException("User not authenticated");
+        }
+        String email = ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername();
+        User user = userRepo.findByEmail(email);
+        return user;
+    }
     @Override
     public User findUserByEmail(String email) {
         return userRepo.findAllByEmail(email);

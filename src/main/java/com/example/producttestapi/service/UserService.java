@@ -15,5 +15,8 @@ public interface UserService {
     UserDto getUserById(int userId);
 
     UserDto deleteUserById(int userId);
+
+    User currentUser();
+
     User findUserByEmail(String email);
 }
