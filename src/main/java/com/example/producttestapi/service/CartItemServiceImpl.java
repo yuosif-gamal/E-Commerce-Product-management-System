@@ -105,4 +105,44 @@ public class CartItemServiceImpl implements CartItemService{
         cart.setTotalPrice(totalPrice);
         cartRepo.save(cart);
     }
+
+    @Override
+    @Transactional
+    public CartItem decreaseOneFromItem(int itemID){
+        CartItem item = cartItemRepo.findById(itemID).orElse(null);
+        if (item.getQuantityToTake() == 1){
+            cartItemRepo.delete(item);
+        }
+        else {
+            item.setQuantityToTake(item.getQuantityToTake() - 1);
+            cartItemRepo.save(item);
+        }
+        Product product = productRepo.findById(item.getProduct().getId()).orElse(null);
+        product.setQuantity(product.getQuantity() - 1);
+        return item;
+    }
+
+    @Override
+    @Transactional
+
+    public CartItem increaseOneFromItem(int itemID){
+        CartItem item = cartItemRepo.findById(itemID).orElse(null);
+        item.setQuantityToTake(item.getQuantityToTake() + 1);
+        cartItemRepo.save(item);
+        Product product = productRepo.findById(item.getProduct().getId()).orElse(null);
+        product.setQuantity(product.getQuantity() + 1);
+        return item;
+    }
+
+    @Override
+    @Transactional
+    public CartItem deleteItem(int id) {
+        CartItem item = cartItemRepo.findById(id).orElse(null);
+        cartItemRepo.delete(item);
+        Product product = productRepo.findById(item.getProduct().getId()).orElse(null);
+        product.setQuantity(product.getQuantity() - item.getQuantityToTake());
+        return item;
+    }
+
+
 }
