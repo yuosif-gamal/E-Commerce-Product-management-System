@@ -20,8 +20,8 @@ public class CartItem {
     @JoinColumn(name = "product_id", nullable = false)
     @JsonBackReference
     private Product product;
-    private int quantity_to_take;
-    private int price_per_one;
+    private int quantityToTake;
+    private int pricePerItem;
 
     @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)

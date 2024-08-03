@@ -22,7 +22,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    @Cacheable(value = "cart")
     public Cart getCart() {
         User user = userService.currentUser();
         Cart cart = cartRepo.findByUser(user);
