@@ -29,8 +29,13 @@ public class    UserServiceImpl implements UserService{
     }
 
     @Override
-    public void createUser(UserDto userDto) {
-        User user = UserMapper.convertDtoToEntity(userDto);
+    public void register(UserDto request) {
+        User existingUser = userRepo.findByEmail(request.getEmail());
+        if (existingUser != null) {
+            throw new DuplicateResourceException("Email is connected to another account.");
+        }
+        request.setPassword(passwordEncoder.encode(request.getPassword()));
+        User user = UserMapper.convertDtoToEntity(request);
         userRepo.save(user);
     }
 
@@ -62,15 +67,7 @@ public class    UserServiceImpl implements UserService{
     }
 
 
-    @Override
-    public void register(UserDto request) {
-        User u = userRepo.findByEmail(request.getEmail());
-        if(u != null){
-            throw new DuplicateResourceException("Email is connected to another account.");
-        }
-        request.setPassword(passwordEncoder.encode(request.getPassword()));
-        createUser(request);
-    }
+
 
     @Override
     @Cacheable(value = "user")
@@ -83,8 +80,5 @@ public class    UserServiceImpl implements UserService{
         User user = userRepo.findByEmail(email);
         return user;
     }
-    @Override
-    public User findUserByEmail(String email) {
-        return userRepo.findAllByEmail(email);
-    }
+
 }

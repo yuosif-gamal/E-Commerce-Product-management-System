@@ -21,9 +21,10 @@ public class Cart {
     @JsonIgnore
 
     private User user;
-    private double total_price;
+    private double totalPrice;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items;
+
 
 }
