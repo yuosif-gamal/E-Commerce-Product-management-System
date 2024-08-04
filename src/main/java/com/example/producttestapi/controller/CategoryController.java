@@ -30,7 +30,7 @@ public class CategoryController {
         return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<SuccessResponse> getAllCategories() {
         List<CategoryDto> categories = categoryService.getAllCategory();
         return ResponseEntity.ok(new SuccessResponse("ALL Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
@@ -54,7 +54,7 @@ public class CategoryController {
         return ResponseEntity.ok(new SuccessResponse("Category retrieved successfully", true, category, HttpStatus.OK.value()));
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<SuccessResponse> createCategory(@RequestBody Category category) {
         Category createdCategory = categoryService.createCategory(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Category created successfully", true, createdCategory, HttpStatus.CREATED.value()));

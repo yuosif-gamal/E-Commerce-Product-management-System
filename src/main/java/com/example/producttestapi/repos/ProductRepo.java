@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface ProductRepo extends JpaRepository<Product,Integer> {
+
+    // should ues built-in , but for trying ..
     @Query(value = "SELECT * FROM Product p WHERE p.category_id = :categoryID", nativeQuery = true)
     List<Product> findAllByCategoryID(@Param("categoryID") int categoryID);
 

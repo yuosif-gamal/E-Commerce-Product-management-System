@@ -108,39 +108,48 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     @Transactional
-    public CartItem decreaseOneFromItem(int itemID){
-        CartItem item = cartItemRepo.findById(itemID).orElse(null);
-        if (item.getQuantityToTake() == 1){
+    public CartItem decreaseOneFromItem(int itemID) {
+        CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
+        Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+
+        if (item.getQuantityToTake() == 1) {
             cartItemRepo.delete(item);
-        }
-        else {
+        } else {
             item.setQuantityToTake(item.getQuantityToTake() - 1);
             cartItemRepo.save(item);
         }
-        Product product = productRepo.findById(item.getProduct().getId()).orElse(null);
-        product.setQuantity(product.getQuantity() - 1);
+
+        product.setQuantity(product.getQuantity() + 1);
+        productRepo.save(product);
+
         return item;
     }
 
     @Override
     @Transactional
+    public CartItem increaseOneFromItem(int itemID) {
+        CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
+        Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
-    public CartItem increaseOneFromItem(int itemID){
-        CartItem item = cartItemRepo.findById(itemID).orElse(null);
         item.setQuantityToTake(item.getQuantityToTake() + 1);
+        product.setQuantity(product.getQuantity() - 1);
+
         cartItemRepo.save(item);
-        Product product = productRepo.findById(item.getProduct().getId()).orElse(null);
-        product.setQuantity(product.getQuantity() + 1);
+        productRepo.save(product);
+
         return item;
     }
 
     @Override
     @Transactional
     public CartItem deleteItem(int id) {
-        CartItem item = cartItemRepo.findById(id).orElse(null);
+        CartItem item = cartItemRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
+        Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+
+        product.setQuantity(product.getQuantity() + item.getQuantityToTake());
         cartItemRepo.delete(item);
-        Product product = productRepo.findById(item.getProduct().getId()).orElse(null);
-        product.setQuantity(product.getQuantity() - item.getQuantityToTake());
+        productRepo.save(product);
+
         return item;
     }
 
