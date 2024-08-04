@@ -32,7 +32,7 @@ public class Product {
     private Voucher voucherCode;
 
     private int quantity;
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product")
     @JsonIgnore
     private List<CartItem> cartItems;
 

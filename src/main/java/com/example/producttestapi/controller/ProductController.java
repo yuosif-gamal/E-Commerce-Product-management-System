@@ -27,7 +27,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<SuccessResponse> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
@@ -47,13 +47,13 @@ public class ProductController {
 
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<SuccessResponse> createProduct(@RequestBody Product product) {
         Product createdProduct = productService.createProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Product created successfully", true, createdProduct, HttpStatus.CREATED.value()));
     }
 
-    @PutMapping()
+    @PutMapping
     public ResponseEntity<SuccessResponse> updateProduct(@RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(product);
         return ResponseEntity.ok(new SuccessResponse("Product updated successfully", true, updatedProduct, HttpStatus.OK.value()));

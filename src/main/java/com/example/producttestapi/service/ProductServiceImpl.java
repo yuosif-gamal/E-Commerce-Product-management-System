@@ -35,11 +35,8 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProducts() {
         List<Product> products = productRepo.findAll();
 
-        for (Product product : products) {
-            voucherService.applyVoucherDiscount(product);
-        }
+        return applyVoucher(products);
 
-        return products;
     }
 
     @Override
@@ -57,10 +54,7 @@ public class ProductServiceImpl implements ProductService {
     @Cacheable(value = "Products", key = "#product.category.id")
     public List<Product> getProductsByCategoryID(int categoryID) {
         List<Product> products = productRepo.findAllByCategoryID(categoryID);
-        for (Product product : products) {
-            voucherService.applyVoucherDiscount(product);
-        }
-        return products;
+        return applyVoucher(products);
     }
 
     @Override
@@ -88,6 +82,11 @@ public class ProductServiceImpl implements ProductService {
             throw new ResourceNotFoundException("Product not found with id: " + id);
         }
         productRepo.deleteById(id);
+    }
+
+    private List<Product> applyVoucher(List<Product> products){
+        products.forEach(voucherService::applyVoucherDiscount);
+        return products;
     }
 
 }

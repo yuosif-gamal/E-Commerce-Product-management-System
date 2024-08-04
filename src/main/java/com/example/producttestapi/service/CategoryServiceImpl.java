@@ -15,6 +15,7 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -29,11 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryDto> getAllCategory() {
         List<Category> categories = categoryRepo.findAll();
-        List<CategoryDto> categoryDto = new ArrayList<>();
-        for (Category category1 : categories ){
-            CategoryDto c = CategoryMapper.convertEntityToDto(category1);
-            categoryDto.add(c);
-        }
+        List<CategoryDto> categoryDto = convertToDto(categories);
         return categoryDto;
     }
 
@@ -65,11 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Cacheable(value = "categories" ,key = "'main")
     public List<CategoryDto> getAllMainCategories() {
         List<Category> categories = categoryRepo.getAllMainCategories();
-        List<CategoryDto> categoryDto = new ArrayList<>();
-        for (Category category1 : categories ){
-            CategoryDto c = CategoryMapper.convertEntityToDto(category1);
-            categoryDto.add(c);
-        }
+        List<CategoryDto> categoryDto = convertToDto(categories);
         return categoryDto;
     }
 
@@ -82,15 +75,17 @@ public class CategoryServiceImpl implements CategoryService {
         }
         else {
             List<Category> categories = categoryRepo.getCategoryChildren(categoryId);
-            List<CategoryDto> categoryDto = new ArrayList<>();
-            for (Category category1 : categories ){
-                CategoryDto c = CategoryMapper.convertEntityToDto(category1);
-                categoryDto.add(c);
-            }
+            List<CategoryDto> categoryDto = convertToDto(categories);
             return categoryDto;
         }
     }
 
+    private List<CategoryDto> convertToDto(List<Category> categories){
+        List<CategoryDto> categoryDtos = categories.stream()
+                .map(CategoryMapper::convertEntityToDto)
+                .collect(Collectors.toList());
+        return categoryDtos;
+    }
     @Override
     @Cacheable(value = "categories", key = "'tree'")
     public List<CategoryModelDto> getCategoriesTree() {

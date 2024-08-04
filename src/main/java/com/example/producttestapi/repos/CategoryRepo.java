@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface CategoryRepo extends JpaRepository<Category, Integer> {
-
+    // should ues built-in , but for trying ..
     @Query("SELECT c FROM Category c WHERE c.parentCategory IS null ")
     List<Category> getAllMainCategories();
     @Query("SELECT c FROM Category c WHERE c.parentCategory.id = :categoryId")
