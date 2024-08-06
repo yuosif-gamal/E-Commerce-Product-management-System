@@ -1,5 +1,6 @@
 package com.example.producttestapi.controller;
 
+import com.example.producttestapi.dto.ProductDto;
 import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.service.ProductService;
@@ -29,20 +30,20 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<SuccessResponse> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
+        List<ProductDto> products = productService.getAllProducts();
         return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
     }
 
     @GetMapping("/category/{id}")
-    public ResponseEntity<SuccessResponse> getProductsByCategoryID(@PathVariable int id){
-        List<Product> products = productService.getProductsByCategoryID(id);
+    public ResponseEntity<SuccessResponse> getProductsByCategoryID(@PathVariable("id") int id){
+        List<ProductDto> products = productService.getProductsByCategoryID(id);
         return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
 
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<SuccessResponse> getProduct(@PathVariable("id") int id) {
-        Product product =  productService.findProductById(id);
+        ProductDto product =  productService.findProductById(id);
         return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, product, HttpStatus.OK.value()));
 
     }

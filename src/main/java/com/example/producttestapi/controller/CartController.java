@@ -1,5 +1,6 @@
 package com.example.producttestapi.controller;
 
+import com.example.producttestapi.dto.CartDto;
 import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.Cart;
 import com.example.producttestapi.entities.CartItem;
@@ -20,7 +21,7 @@ public class CartController {
     }
     @GetMapping
     public ResponseEntity<SuccessResponse> getCart(){
-        Cart cart = cartService.getCart();
+        CartDto cart = cartService.getCart();
         return  ResponseEntity.ok(new SuccessResponse("cart retrieved successfully", true, cart, HttpStatus.OK.value()));
     }
     @DeleteMapping("/{id}")

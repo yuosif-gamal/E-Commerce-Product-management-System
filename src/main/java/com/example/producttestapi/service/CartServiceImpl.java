@@ -1,10 +1,12 @@
 package com.example.producttestapi.service;
 
+import com.example.producttestapi.dto.CartDto;
 import com.example.producttestapi.entities.Cart;
 import com.example.producttestapi.entities.CartItem;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.User;
 import com.example.producttestapi.exception.ResourceNotFoundException;
+import com.example.producttestapi.mapper.CartMapper;
 import com.example.producttestapi.repos.CartItemRepo;
 import com.example.producttestapi.repos.CartRepo;
 import com.example.producttestapi.repos.ProductRepo;
@@ -34,15 +36,15 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart getCart() {
+    public CartDto getCart() {
         User user = userService.currentUser();
         Cart cart = cartRepo.findByUser(user);
         if (cart == null) {
             throw new ResourceNotFoundException("Cart not found for user with name: " + user.getFirstName());
         }
         updateCartItemsAndTotalPrice(cart);
-
-        return cart;
+        CartDto cartDto = CartMapper.convertEntityToDto(cart);
+        return cartDto;
     }
 
     private void updateCartItemsAndTotalPrice(Cart cart) {

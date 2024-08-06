@@ -1,10 +1,12 @@
 package com.example.producttestapi.service;
 
+import com.example.producttestapi.dto.CartItemDto;
 import com.example.producttestapi.entities.Cart;
 import com.example.producttestapi.entities.CartItem;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.User;
 import com.example.producttestapi.exception.ResourceNotFoundException;
+import com.example.producttestapi.mapper.CartItemsMapper;
 import com.example.producttestapi.repos.CartItemRepo;
 import com.example.producttestapi.repos.CartRepo;
 import com.example.producttestapi.repos.ProductRepo;
@@ -108,7 +110,7 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     @Transactional
-    public CartItem decreaseOneFromItem(int itemID) {
+    public CartItemDto decreaseOneFromItem(int itemID) {
         CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
@@ -121,13 +123,14 @@ public class CartItemServiceImpl implements CartItemService{
 
         product.setQuantity(product.getQuantity() + 1);
         productRepo.save(product);
+        CartItemDto cartItemDto  =  CartItemsMapper.convertToDTO(item);
 
-        return item;
+        return cartItemDto;
     }
 
     @Override
     @Transactional
-    public CartItem increaseOneFromItem(int itemID) {
+    public CartItemDto increaseOneFromItem(int itemID) {
         CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
@@ -136,21 +139,23 @@ public class CartItemServiceImpl implements CartItemService{
 
         cartItemRepo.save(item);
         productRepo.save(product);
+        CartItemDto cartItemDto  =  CartItemsMapper.convertToDTO(item);
 
-        return item;
+        return cartItemDto;
     }
 
     @Override
     @Transactional
-    public CartItem deleteItem(int id) {
+    public CartItemDto deleteItem(int id) {
         CartItem item = cartItemRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         product.setQuantity(product.getQuantity() + item.getQuantityToTake());
         cartItemRepo.delete(item);
         productRepo.save(product);
+        CartItemDto cartItemDto  =  CartItemsMapper.convertToDTO(item);
 
-        return item;
+        return cartItemDto;
     }
 
 

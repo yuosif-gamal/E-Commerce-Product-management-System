@@ -1,5 +1,6 @@
 package com.example.producttestapi.service;
 
+import com.example.producttestapi.dto.ProductDto;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.Voucher;
 import com.example.producttestapi.exception.ResourceNotFoundException;
@@ -65,6 +66,8 @@ public class VoucherServiceImpl implements VoucherService {
         }
         voucherRepo.deleteById(id);
     }
+
+
     public void applyVoucherDiscount(Product product) {
         if (product.getVoucherCode() != null) {
             Voucher voucher = product.getVoucherCode();
@@ -83,7 +86,6 @@ public class VoucherServiceImpl implements VoucherService {
                     int id = voucher.getId();
                     deleteVoucher(id);
                     product.setPrice(product.getPrice());
-
                 }
 
             }
