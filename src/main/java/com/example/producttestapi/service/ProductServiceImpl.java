@@ -1,9 +1,13 @@
 package com.example.producttestapi.service;
 
+import com.example.producttestapi.dto.CategoryDto;
+import com.example.producttestapi.dto.ProductDto;
 import com.example.producttestapi.entities.Category;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.entities.Voucher;
 import com.example.producttestapi.exception.ResourceNotFoundException;
+import com.example.producttestapi.mapper.CategoryMapper;
+import com.example.producttestapi.mapper.ProductMapper;
 import com.example.producttestapi.repos.CategoryRepo;
 import com.example.producttestapi.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -32,29 +37,32 @@ public class ProductServiceImpl implements ProductService {
     }
     @Override
     @Cacheable(value = "Products" , key = "'all'")
-    public List<Product> getAllProducts() {
+    public List<ProductDto> getAllProducts() {
         List<Product> products = productRepo.findAll();
-
-        return applyVoucher(products);
+        applyVoucher(products);
+        List<ProductDto> productDto = convertToDto(products);
+        return productDto;
 
     }
 
     @Override
     @Cacheable(value = "Products" , key = "#id")
-    public Product findProductById(int id) {
+    public ProductDto findProductById(int id) {
         Product product = productRepo.findById(id).orElse(null);
         if (product == null) {
             throw new ResourceNotFoundException("Product not found with id: " + id);
         }
         voucherService.applyVoucherDiscount(product);
-        return product;
+        ProductDto productDto = ProductMapper.ProductEntityToDto(product);
+        return productDto;
     }
 
     @Override
-    @Cacheable(value = "Products", key = "#product.category.id")
-    public List<Product> getProductsByCategoryID(int categoryID) {
+    @Cacheable(value = "Products", key = "#categoryID")
+    public List<ProductDto> getProductsByCategoryID(int categoryID) {
         List<Product> products = productRepo.findAllByCategoryID(categoryID);
-        return applyVoucher(products);
+        applyVoucher(products);
+        return convertToDto(products);
     }
 
     @Override
@@ -75,7 +83,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-
     @CacheEvict(value = "Products", allEntries = true)
     public void deleteProduct(int id) {
         if (!productRepo.existsById(id)) {
@@ -84,9 +91,16 @@ public class ProductServiceImpl implements ProductService {
         productRepo.deleteById(id);
     }
 
-    private List<Product> applyVoucher(List<Product> products){
-        products.forEach(voucherService::applyVoucherDiscount);
-        return products;
+    private List<Product> applyVoucher(List<Product> product){
+        product.forEach(voucherService::applyVoucherDiscount);
+        return product;
+    }
+
+    private List<ProductDto> convertToDto(List<Product> products){
+        List<ProductDto> productDtos = products.stream()
+                .map(ProductMapper::ProductEntityToDto)
+                .collect(Collectors.toList());
+        return productDtos;
     }
 
 }

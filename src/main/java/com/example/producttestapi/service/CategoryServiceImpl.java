@@ -59,33 +59,30 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Cacheable(value = "categories" ,key = "'main")
+    @Cacheable(value = "categories", key = "'main'")
     public List<CategoryDto> getAllMainCategories() {
         List<Category> categories = categoryRepo.getAllMainCategories();
-        List<CategoryDto> categoryDto = convertToDto(categories);
-        return categoryDto;
+        return convertToDto(categories);
     }
+
 
     @Override
-    @Cacheable(value = "categories", key = "'sub'")
+    @Cacheable(value = "categories", key = "'sub_' + #categoryId")
     public List<CategoryDto> getCategoryChildren(int categoryId) {
-        Category category = categoryRepo.findById(categoryId).orElse(null);
-        if (category ==null){
-            throw new ResourceNotFoundException("no category with this ID : " + categoryId);
-        }
-        else {
-            List<Category> categories = categoryRepo.getCategoryChildren(categoryId);
-            List<CategoryDto> categoryDto = convertToDto(categories);
-            return categoryDto;
-        }
+        Category category = categoryRepo.findById(categoryId).orElseThrow(() ->
+                new ResourceNotFoundException("No category with this ID: " + categoryId)
+        );
+
+        List<Category> categories = categoryRepo.getCategoryChildren(categoryId);
+        return convertToDto(categories);
     }
 
-    private List<CategoryDto> convertToDto(List<Category> categories){
-        List<CategoryDto> categoryDtos = categories.stream()
+    private List<CategoryDto> convertToDto(List<Category> categories) {
+        return categories.stream()
                 .map(CategoryMapper::convertEntityToDto)
                 .collect(Collectors.toList());
-        return categoryDtos;
     }
+
     @Override
     @Cacheable(value = "categories", key = "'tree'")
     public List<CategoryModelDto> getCategoriesTree() {
@@ -110,8 +107,8 @@ public class CategoryServiceImpl implements CategoryService {
         }
         List<CategoryModelDto> finalResult = new ArrayList<>();
         for (CategoryModel categoryModel : result) {
-                CategoryModelDto c = CategoryMapper.convertToModelDTO(categoryModel);
-            finalResult.add(c);
+                CategoryModelDto categoryModelDto = CategoryMapper.convertToModelDTO(categoryModel);
+            finalResult.add(categoryModelDto);
         }
 
         return finalResult;

@@ -27,14 +27,14 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerNewUser(@RequestBody UserDto request){
+    public ResponseEntity<SuccessResponse> registerNewUser(@RequestBody UserDto request){
         userService.register(request);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @GetMapping("/user/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable("id") int userId) {
+    public ResponseEntity<SuccessResponse> getUserById(@PathVariable("id") int userId) {
         UserDto savedUser = userService.getUserById(userId);
-        return ResponseEntity.ok(savedUser);
+        return ResponseEntity.ok(new SuccessResponse("User saved successfully", true, savedUser, HttpStatus.OK.value()));
     }
 
     @DeleteMapping("/user/{id}")

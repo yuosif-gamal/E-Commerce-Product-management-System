@@ -27,7 +27,7 @@ public class CategoryController {
     @GetMapping("/main")
     public ResponseEntity<SuccessResponse> getAllMainCategories() {
         List<CategoryDto> categories = categoryService.getAllMainCategories();
-        return ResponseEntity.ok(new SuccessResponse("main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
     }
 
     @GetMapping

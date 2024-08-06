@@ -1,5 +1,6 @@
 package com.example.producttestapi.controller;
 
+import com.example.producttestapi.dto.CartItemDto;
 import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.CartItem;
 import com.example.producttestapi.entities.Category;
@@ -25,17 +26,17 @@ public class CartItemController {
     }
     @PutMapping("/add-one/{id}")
     public ResponseEntity<SuccessResponse> increaseOneFromItem(@PathVariable("id") int id) {
-        CartItem item = cartItemService.increaseOneFromItem(id);
+        CartItemDto item = cartItemService.increaseOneFromItem(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item increased successfully", true, item, HttpStatus.CREATED.value()));
     }
     @PutMapping("/remove-one/{id}")
     public ResponseEntity<SuccessResponse> decreaseOneFromItem(@PathVariable("id") int  id) {
-        CartItem item = cartItemService.decreaseOneFromItem(id);
+        CartItemDto item = cartItemService.decreaseOneFromItem(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item decreased successfully", true, item, HttpStatus.CREATED.value()));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<SuccessResponse> deleteItem(@PathVariable("id") int  id) {
-        CartItem item = cartItemService.deleteItem(id);
+        CartItemDto item = cartItemService.deleteItem(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item deleted successfully", true, item, HttpStatus.CREATED.value()));
     }
 }
