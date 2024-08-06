@@ -2,6 +2,7 @@ package com.example.producttestapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.web.util.pattern.PathPattern;
 
@@ -19,6 +20,8 @@ public class Category {
     @Column(name = "categoryID")
 
     private int id ;
+
+    @NotBlank(message = "Name of category is require")
     private String name;
     @OneToMany(mappedBy = "categoryID")
     @JsonIgnore

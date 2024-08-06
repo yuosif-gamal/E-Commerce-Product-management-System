@@ -4,14 +4,16 @@ import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.dto.UserDto;
 import com.example.producttestapi.service.AuthenticationService;
 import com.example.producttestapi.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Validated
 @RestController
 public class UserController {
     private UserService userService;
@@ -27,9 +29,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<SuccessResponse> registerNewUser(@RequestBody UserDto request){
+    public ResponseEntity<SuccessResponse> registerNewUser(@Valid  @RequestBody UserDto request){
         userService.register(request);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return  ResponseEntity.ok(new SuccessResponse("User created .. " , true , request ,  HttpStatus.OK.value()));
     }
     @GetMapping("/user/{id}")
     public ResponseEntity<SuccessResponse> getUserById(@PathVariable("id") int userId) {

@@ -6,7 +6,6 @@ import com.example.producttestapi.entities.User;
 public class UserMapper {
     public static UserDto convertEntityToDto(User user) {
         UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
         userDto.setFirstName(user.getFirstName());
         userDto.setLastName(user.getLastName());
         userDto.setEmail(user.getEmail());

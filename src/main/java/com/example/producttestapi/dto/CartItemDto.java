@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class CartItemDto {
     private int quantityToTake;
-    private int pricePerItem;
+    private Double pricePerItem;
 }
