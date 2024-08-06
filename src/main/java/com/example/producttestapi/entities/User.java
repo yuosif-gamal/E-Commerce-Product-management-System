@@ -1,6 +1,9 @@
 package com.example.producttestapi.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.HashSet;
@@ -18,13 +21,9 @@ public class User {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
-
         private String firstName;
-
         private String lastName;
-
         private String password;
-
         private String email;
         @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private Cart cart;

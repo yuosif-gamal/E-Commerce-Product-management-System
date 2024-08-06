@@ -4,13 +4,16 @@ import com.example.producttestapi.entities.Voucher;
 import com.example.producttestapi.service.VoucherService;
 import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.exception.ResourceNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/vouchers")
+@Validated
 public class VoucherController {
 
     private final VoucherService voucherService;
@@ -20,8 +23,8 @@ public class VoucherController {
         this.voucherService = voucherService;
     }
 
-    @PostMapping("")
-    public ResponseEntity<SuccessResponse> create(@RequestBody Voucher voucher) {
+    @PostMapping
+    public ResponseEntity<SuccessResponse> create(@Valid @RequestBody Voucher voucher) {
         Voucher createdVoucher = voucherService.createVoucher(voucher);
         SuccessResponse response = new SuccessResponse("Voucher created successfully", true, createdVoucher, HttpStatus.CREATED.value());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

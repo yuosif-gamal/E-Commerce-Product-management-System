@@ -48,7 +48,7 @@ public class CartItemServiceImpl implements CartItemService{
 
         voucherService.applyVoucherDiscount(product);
 
-        cartItem.setPricePerItem((int) product.getPrice());
+        cartItem.setPricePerItem( product.getPrice());
         product.setPrice(priceBeforeVoucher);
 
         updateProductQuantity(product, quantityToTake);

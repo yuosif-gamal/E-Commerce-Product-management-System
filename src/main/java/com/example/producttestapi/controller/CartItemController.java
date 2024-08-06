@@ -5,6 +5,7 @@ import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.CartItem;
 import com.example.producttestapi.entities.Category;
 import com.example.producttestapi.service.CartItemService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,17 +21,17 @@ public class CartItemController {
     }
 
     @PostMapping
-    public ResponseEntity<SuccessResponse> addCartItemToCart(@RequestBody CartItem  cartItem) {
+    public ResponseEntity<SuccessResponse> addCartItemToCart(@Valid @RequestBody CartItem  cartItem) {
         CartItem createItem = cartItemService.addCartItem(cartItem);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item created successfully", true, createItem, HttpStatus.CREATED.value()));
     }
     @PutMapping("/add-one/{id}")
-    public ResponseEntity<SuccessResponse> increaseOneFromItem(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> increaseOneFromItem( @PathVariable("id") int id) {
         CartItemDto item = cartItemService.increaseOneFromItem(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item increased successfully", true, item, HttpStatus.CREATED.value()));
     }
     @PutMapping("/remove-one/{id}")
-    public ResponseEntity<SuccessResponse> decreaseOneFromItem(@PathVariable("id") int  id) {
+    public ResponseEntity<SuccessResponse> decreaseOneFromItem( @PathVariable("id") int  id) {
         CartItemDto item = cartItemService.decreaseOneFromItem(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item decreased successfully", true, item, HttpStatus.CREATED.value()));
     }

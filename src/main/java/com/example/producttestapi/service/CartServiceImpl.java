@@ -55,7 +55,7 @@ public class CartServiceImpl implements CartService {
                     Product product = cartItem.getProduct();
                     double currentProductPrice = product.getPrice();
                     if (cartItem.getPricePerItem() != currentProductPrice) {
-                        cartItem.setPricePerItem((int) currentProductPrice);
+                        cartItem.setPricePerItem( currentProductPrice);
                         cartItemRepo.save(cartItem);
                     }
                     return cartItem.getQuantityToTake() * currentProductPrice;

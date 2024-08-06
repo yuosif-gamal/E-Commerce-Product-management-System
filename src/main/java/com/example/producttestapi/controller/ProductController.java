@@ -4,9 +4,11 @@ import com.example.producttestapi.dto.ProductDto;
 import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.Product;
 import com.example.producttestapi.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
+@Validated
 public class ProductController {
     private final ProductService productService;
 
@@ -49,13 +52,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<SuccessResponse> createProduct(@RequestBody Product product) {
+    public ResponseEntity<SuccessResponse> createProduct(@Valid @RequestBody Product product) {
         Product createdProduct = productService.createProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Product created successfully", true, createdProduct, HttpStatus.CREATED.value()));
     }
 
     @PutMapping
-    public ResponseEntity<SuccessResponse> updateProduct(@RequestBody Product product) {
+    public ResponseEntity<SuccessResponse> updateProduct(@Valid @RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(product);
         return ResponseEntity.ok(new SuccessResponse("Product updated successfully", true, updatedProduct, HttpStatus.OK.value()));
     }

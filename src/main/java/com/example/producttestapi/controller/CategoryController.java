@@ -5,16 +5,19 @@ import com.example.producttestapi.dto.SuccessResponse;
 import com.example.producttestapi.entities.Category;
 import com.example.producttestapi.dto.CategoryModelDto;
 import com.example.producttestapi.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
+@Validated
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -55,7 +58,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<SuccessResponse> createCategory(@RequestBody Category category) {
+    public ResponseEntity<SuccessResponse> createCategory(@Valid @RequestBody Category category) {
         Category createdCategory = categoryService.createCategory(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Category created successfully", true, createdCategory, HttpStatus.CREATED.value()));
     }
