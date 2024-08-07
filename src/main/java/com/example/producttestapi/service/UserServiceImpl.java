@@ -1,6 +1,7 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.UserDto;
+import com.example.producttestapi.entities.Role;
 import com.example.producttestapi.exception.DuplicateResourceException;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.UserMapper;
@@ -79,6 +80,17 @@ public class    UserServiceImpl implements UserService{
         String email = ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername();
         User user = userRepo.findByEmail(email);
         return user;
+    }
+
+    @Override
+    public UserDto changeRole(int id, String myRole) {
+        User user = userRepo.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("No user found with id: " + id));
+        Role role = roleService.findRoleByName(myRole);
+        user.getRoles().clear();
+        user.addRole(role);
+        userRepo.save(user);
+        return UserMapper.convertEntityToDto(user);
     }
 
 }

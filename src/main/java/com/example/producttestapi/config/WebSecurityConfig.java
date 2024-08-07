@@ -28,6 +28,7 @@ public class WebSecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/register").permitAll()
                     .requestMatchers(HttpMethod.POST, "/**").hasAnyAuthority("ADMIN","MANAGER")
                     .requestMatchers(HttpMethod.DELETE, "/**").hasAnyAuthority("MANAGER")
+                    .requestMatchers(HttpMethod.PUT, "/user").hasAnyAuthority("MANAGER")
                     .anyRequest().authenticated();
         });
 

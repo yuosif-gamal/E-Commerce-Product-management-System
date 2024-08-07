@@ -38,10 +38,22 @@ public class UserController {
         UserDto savedUser = userService.getUserById(userId);
         return ResponseEntity.ok(new SuccessResponse("User saved successfully", true, savedUser, HttpStatus.OK.value()));
     }
+    @PutMapping("/user/make-admin/{id}")
+    public ResponseEntity<SuccessResponse> changeToAdmin(@PathVariable("id") int id) {
 
-    @DeleteMapping("/user/{id}")
-    public ResponseEntity<SuccessResponse> deleteUserById(@PathVariable("id") int userId) {
-        UserDto deletedUser = userService.deleteUserById(userId);
-        return ResponseEntity.ok(new SuccessResponse("User deleted successfully", true, deletedUser, HttpStatus.OK.value()));
+        UserDto user = userService.changeRole( id , "ADMIN");
+        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + "become Admin successfully", true, user, HttpStatus.OK.value()));
+    }
+    @PutMapping("/user/make-manager/{id}")
+    public ResponseEntity<SuccessResponse> changeToManager(@PathVariable("id") int id) {
+
+        UserDto user = userService.changeRole( id,"MANAGER");
+        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + "become Manager successfully", true, user, HttpStatus.OK.value()));
+    }
+    @PutMapping("/user/make-user/{id}")
+    public ResponseEntity<SuccessResponse> changeToUser(@PathVariable("id") int id) {
+
+        UserDto user = userService.changeRole( id,"USER");
+        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + "become User successfully", true, user, HttpStatus.OK.value()));
     }
 }
