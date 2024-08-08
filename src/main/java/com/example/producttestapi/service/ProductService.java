@@ -1,10 +1,9 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.ProductDto;
-import com.example.producttestapi.entities.Product;
+import com.example.producttestapi.entity.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductService {
     List<ProductDto> getAllProducts();

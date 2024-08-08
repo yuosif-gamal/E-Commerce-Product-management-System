@@ -1,9 +1,10 @@
 package com.example.producttestapi;
 
-import com.example.producttestapi.entities.Role;
-import com.example.producttestapi.entities.User;
-import com.example.producttestapi.repos.RoleRepo;
-import com.example.producttestapi.repos.UserRepo;
+import com.example.producttestapi.entity.Role;
+import com.example.producttestapi.entity.User;
+import com.example.producttestapi.repository.RoleRepo;
+import com.example.producttestapi.repository.UserRepo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +15,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @EnableCaching
 public class ProductTestApiApplication {
+    @Value("${user.default.email}")
+    private String defaultEmail;
+
+    @Value("${user.default.password}")
+    private String defaultPassword;
+
+    @Value("${user.default.firstName}")
+    private String defaultFirstName;
+
+    @Value("${user.default.lastName}")
+    private String defaultLastName;
 
     public static void main(String[] args) {
         SpringApplication.run(ProductTestApiApplication.class, args);
@@ -39,9 +51,9 @@ public class ProductTestApiApplication {
                 Role role = new Role("USER");
                 roleRepo.save(role);
             }
-            if (userRepo.findAllByEmail("yousif@gmail.com") == null){
-                String pass = passwordEncoder.encode("1234567");
-                User user = new User("yousif" , "gamal",pass,"yousif@gmail.com");
+            if (userRepo.findAllByEmail(defaultEmail) == null) {
+                String encodedPassword = passwordEncoder.encode(defaultPassword);
+                User user = new User(defaultFirstName, defaultLastName, encodedPassword, defaultEmail);
                 Role role = new Role("MANAGER");
                 roleRepo.save(role);
                 user.addRole(role);

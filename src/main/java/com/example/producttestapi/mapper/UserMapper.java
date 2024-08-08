@@ -1,7 +1,7 @@
 package com.example.producttestapi.mapper;
 
 import com.example.producttestapi.dto.UserDto;
-import com.example.producttestapi.entities.User;
+import com.example.producttestapi.entity.User;
 
 public class UserMapper {
     public static UserDto convertEntityToDto(User user) {

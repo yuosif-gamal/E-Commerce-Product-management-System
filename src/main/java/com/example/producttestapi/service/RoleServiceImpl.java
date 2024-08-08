@@ -1,7 +1,7 @@
 package com.example.producttestapi.service;
 
-import com.example.producttestapi.entities.Role;
-import com.example.producttestapi.repos.RoleRepo;
+import com.example.producttestapi.entity.Role;
+import com.example.producttestapi.repository.RoleRepo;
 import org.springframework.stereotype.Service;
 
 @Service

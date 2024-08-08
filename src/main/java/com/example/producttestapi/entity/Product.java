@@ -1,12 +1,10 @@
-package com.example.producttestapi.entities;
+package com.example.producttestapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -22,13 +20,14 @@ public class Product {
     private int id ;
     @NotBlank(message = "Product name is required")
     private String name;
-    @NotBlank(message = "Product name is required")
+    @NotBlank(message = "description name is required")
 
     private String description;
     @NotNull(message = "Price is required")
-    @DecimalMin(value = "0.0" ,message = "should be non-negative or zero")
+    @DecimalMin(value = "1" ,message = "should be non-negative or zero")
 
     private double price;
+    @NotNull(message = "category id is required")
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category categoryID ;

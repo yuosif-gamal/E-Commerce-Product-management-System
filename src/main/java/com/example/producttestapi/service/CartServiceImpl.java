@@ -1,16 +1,16 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.CartDto;
-import com.example.producttestapi.entities.Cart;
-import com.example.producttestapi.entities.CartItem;
-import com.example.producttestapi.entities.Product;
-import com.example.producttestapi.entities.User;
+import com.example.producttestapi.entity.Cart;
+import com.example.producttestapi.entity.CartItem;
+import com.example.producttestapi.entity.Product;
+import com.example.producttestapi.entity.User;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.CartMapper;
-import com.example.producttestapi.repos.CartItemRepo;
-import com.example.producttestapi.repos.CartRepo;
-import com.example.producttestapi.repos.ProductRepo;
-import com.example.producttestapi.repos.UserRepo;
+import com.example.producttestapi.repository.CartItemRepo;
+import com.example.producttestapi.repository.CartRepo;
+import com.example.producttestapi.repository.ProductRepo;
+import com.example.producttestapi.repository.UserRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,6 @@ public class CartServiceImpl implements CartService {
     private final UserService userService;
     private final CartItemService cartItemService;
     private final ProductRepo productRepo;
-    @Autowired
     public CartServiceImpl(CartRepo cartRepo, UserRepo userRepoRepo, CartItemRepo cartItemRepo, UserService userRepService, CartItemService cartItemService, ProductRepo productRepo){
         this.cartRepo = cartRepo;
         this.userRepo = userRepoRepo;

@@ -1,7 +1,7 @@
 package com.example.producttestapi.mapper;
 
 import com.example.producttestapi.dto.CategoryDto;
-import com.example.producttestapi.entities.Category;
+import com.example.producttestapi.entity.Category;
 import com.example.producttestapi.model.CategoryModel;
 import com.example.producttestapi.dto.CategoryModelDto;
 

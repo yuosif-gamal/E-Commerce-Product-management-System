@@ -1,8 +1,6 @@
 package com.example.producttestapi.repository;
 
-import com.example.producttestapi.entities.Category;
-import com.example.producttestapi.repos.CategoryRepo;
-import jakarta.persistence.Table;
+import com.example.producttestapi.entity.Category;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @DataJpaTest

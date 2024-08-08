@@ -1,9 +1,12 @@
 package com.example.producttestapi.controller;
 
-import com.example.producttestapi.entities.Voucher;
+import com.example.producttestapi.entity.Voucher;
 import com.example.producttestapi.service.VoucherService;
 import com.example.producttestapi.dto.SuccessResponse;
-import com.example.producttestapi.exception.ResourceNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,24 +27,41 @@ public class VoucherController {
     }
 
     @PostMapping
-    public ResponseEntity<SuccessResponse> create(@Valid @RequestBody Voucher voucher) {
+    @Operation(summary = "Create a new voucher", description = "Creates a new voucher with the provided details.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Voucher created successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid input data")
+    })
+    public ResponseEntity<SuccessResponse> create(
+            @Valid @RequestBody  Voucher voucher) {
         Voucher createdVoucher = voucherService.createVoucher(voucher);
         SuccessResponse response = new SuccessResponse("Voucher created successfully", true, createdVoucher, HttpStatus.CREATED.value());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<SuccessResponse> getVoucher(@PathVariable("code") String code) {
+    @Operation(summary = "Retrieve a voucher by code", description = "Fetches the details of a voucher using its code.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Voucher retrieved successfully"),
+            @ApiResponse(responseCode = "404", description = "Voucher not found")
+    })
+    public ResponseEntity<SuccessResponse> getVoucher(
+            @PathVariable("code") String code) {
         Voucher voucher = voucherService.findVoucherByCode(code);
         SuccessResponse response = new SuccessResponse("Voucher retrieved successfully", true, voucher, HttpStatus.OK.value());
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<SuccessResponse> deleteVoucher(@PathVariable int id) {
+    @Operation(summary = "Delete a voucher by ID", description = "Deletes a voucher based on its ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Voucher deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Voucher not found")
+    })
+    public ResponseEntity<SuccessResponse> deleteVoucher(
+            @PathVariable("id") int id) {
         voucherService.deleteVoucher(id);
         SuccessResponse response = new SuccessResponse("Voucher deleted successfully", true, null, HttpStatus.NO_CONTENT.value());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
     }
-
 }

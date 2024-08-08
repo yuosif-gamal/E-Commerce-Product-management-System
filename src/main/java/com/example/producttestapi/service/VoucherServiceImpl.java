@@ -1,28 +1,22 @@
 package com.example.producttestapi.service;
 
-import com.example.producttestapi.dto.ProductDto;
-import com.example.producttestapi.entities.Product;
-import com.example.producttestapi.entities.Voucher;
+import com.example.producttestapi.entity.Product;
+import com.example.producttestapi.entity.Voucher;
 import com.example.producttestapi.exception.ResourceNotFoundException;
-import com.example.producttestapi.repos.ProductRepo;
-import com.example.producttestapi.repos.VoucherRepo;
+import com.example.producttestapi.repository.ProductRepo;
+import com.example.producttestapi.repository.VoucherRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VoucherServiceImpl implements VoucherService {
     private final VoucherRepo voucherRepo;
     private final ProductRepo productRepo;
 
-
-
-    @Autowired
     public VoucherServiceImpl(VoucherRepo voucherRepo ,ProductRepo productRepo) {
         this.voucherRepo = voucherRepo;
         this.productRepo = productRepo;

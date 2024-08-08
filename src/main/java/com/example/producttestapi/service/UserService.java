@@ -1,7 +1,7 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.UserDto;
-import com.example.producttestapi.entities.User;
+import com.example.producttestapi.entity.User;
 
 import java.util.List;
 

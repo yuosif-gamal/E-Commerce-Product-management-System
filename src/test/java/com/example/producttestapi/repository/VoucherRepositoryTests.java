@@ -1,15 +1,12 @@
 package com.example.producttestapi.repository;
 
-import com.example.producttestapi.entities.Category;
-import com.example.producttestapi.entities.Voucher;
-import com.example.producttestapi.repos.VoucherRepo;
+import com.example.producttestapi.entity.Voucher;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 

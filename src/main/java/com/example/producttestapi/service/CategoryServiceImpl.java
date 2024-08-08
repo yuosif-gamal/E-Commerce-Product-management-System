@@ -1,17 +1,15 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.CategoryDto;
-import com.example.producttestapi.entities.Category;
+import com.example.producttestapi.entity.Category;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.CategoryMapper;
 import com.example.producttestapi.model.CategoryModel;
 import com.example.producttestapi.dto.CategoryModelDto;
-import com.example.producttestapi.repos.CategoryRepo;
+import com.example.producttestapi.repository.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -21,7 +19,6 @@ import java.util.stream.Collectors;
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepo categoryRepo;
-    @Autowired
     public CategoryServiceImpl(CategoryRepo categoryRepo) {
         this.categoryRepo = categoryRepo;
     }

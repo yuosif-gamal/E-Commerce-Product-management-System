@@ -1,10 +1,7 @@
 package com.example.producttestapi.mapper;
 
-import com.example.producttestapi.dto.CartDto;
 import com.example.producttestapi.dto.CartItemDto;
-import com.example.producttestapi.entities.CartItem;
-
-import java.util.List;
+import com.example.producttestapi.entity.CartItem;
 
 public class CartItemsMapper {
     public  static CartItemDto convertToDTO(CartItem item){

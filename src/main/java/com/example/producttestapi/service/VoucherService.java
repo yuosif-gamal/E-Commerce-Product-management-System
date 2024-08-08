@@ -1,10 +1,7 @@
 package com.example.producttestapi.service;
 
-import com.example.producttestapi.dto.ProductDto;
-import com.example.producttestapi.entities.Product;
-import com.example.producttestapi.entities.Voucher;
-
-import java.util.Optional;
+import com.example.producttestapi.entity.Product;
+import com.example.producttestapi.entity.Voucher;
 
 public interface VoucherService {
     Voucher createVoucher(Voucher voucher);

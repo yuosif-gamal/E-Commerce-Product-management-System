@@ -1,28 +1,17 @@
 package com.example.producttestapi.service;
 
-import com.example.producttestapi.dto.CategoryDto;
 import com.example.producttestapi.dto.ProductDto;
-import com.example.producttestapi.entities.Category;
-import com.example.producttestapi.entities.Product;
-import com.example.producttestapi.entities.Voucher;
+import com.example.producttestapi.entity.Product;
 import com.example.producttestapi.exception.ResourceNotFoundException;
-import com.example.producttestapi.mapper.CategoryMapper;
 import com.example.producttestapi.mapper.ProductMapper;
-import com.example.producttestapi.repos.CategoryRepo;
-import com.example.producttestapi.repos.ProductRepo;
+import com.example.producttestapi.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,7 +19,6 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final VoucherService voucherService;
 
-    @Autowired
     public ProductServiceImpl(ProductRepo productRepo, VoucherService voucherService ) {
         this.productRepo = productRepo;
         this.voucherService = voucherService;

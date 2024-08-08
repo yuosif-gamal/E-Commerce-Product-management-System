@@ -1,4 +1,4 @@
-package com.example.producttestapi.entities;
+package com.example.producttestapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -8,7 +8,6 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,6 +26,9 @@ public class Voucher {
     @NotNull(message = "discount is required")
     @Min(value = 1, message = "Discount must be a non-negative number")
     private BigDecimal discount;
+
+    @NotNull(message = "expire date is required")
+
     private Date expireDate;
     @OneToMany(mappedBy = "voucherCode")
     @JsonIgnore

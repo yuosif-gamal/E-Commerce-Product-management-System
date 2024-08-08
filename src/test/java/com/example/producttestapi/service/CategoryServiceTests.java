@@ -1,9 +1,9 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.CategoryDto;
-import com.example.producttestapi.entities.Category;
+import com.example.producttestapi.entity.Category;
 import com.example.producttestapi.exception.ResourceNotFoundException;
-import com.example.producttestapi.repos.CategoryRepo;
+import com.example.producttestapi.repository.CategoryRepo;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
