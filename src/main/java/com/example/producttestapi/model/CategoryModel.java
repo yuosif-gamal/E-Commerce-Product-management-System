@@ -12,7 +12,8 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-public class CategoryModel {    private int id;
+public class CategoryModel {
+    private Long id;
 
     private String name;
     private List<CategoryModel> categoriesModelList;

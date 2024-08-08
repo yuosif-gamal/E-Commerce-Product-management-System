@@ -10,13 +10,13 @@ public interface UserService {
 
     List<UserDto> getAllUsers();
 
-    UserDto getUserById(int userId);
+    UserDto getUserById(Long userId);
 
-    UserDto deleteUserById(int userId);
+    UserDto deleteUserById(Long userId);
 
     User currentUser();
 
 
 
-    UserDto changeRole(int id, String myRole);
+    UserDto changeRole(Long id, String myRole);
 }

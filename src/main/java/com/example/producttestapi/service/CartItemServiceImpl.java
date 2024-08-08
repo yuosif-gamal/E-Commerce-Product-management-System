@@ -12,10 +12,13 @@ import com.example.producttestapi.repository.CartRepo;
 import com.example.producttestapi.repository.ProductRepo;
 import com.example.producttestapi.repository.UserRepo;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
+
 public class CartItemServiceImpl implements CartItemService{
     private final CartItemRepo cartItemRepo;
     private final CartRepo cartRepo;
@@ -23,15 +26,6 @@ public class CartItemServiceImpl implements CartItemService{
     private final UserService userService;
     private final VoucherService voucherService;
     private final ProductRepo productRepo ;
-
-    public CartItemServiceImpl(CartItemRepo cartItemRepo, CartRepo cartRepo, UserRepo userRepo, UserService userService, VoucherService voucherService, ProductRepo productRepo) {
-        this.cartItemRepo = cartItemRepo;
-        this.cartRepo = cartRepo;
-        this.userRepo = userRepo;
-        this.userService = userService;
-        this.voucherService = voucherService;
-        this.productRepo = productRepo;
-    }
 
     @Override
     @Transactional
@@ -109,7 +103,7 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     @Transactional
-    public CartItemDto decreaseOneFromItem(int itemID) {
+    public CartItemDto decreaseOneFromItem(Long itemID) {
         CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
@@ -129,7 +123,7 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     @Transactional
-    public CartItemDto increaseOneFromItem(int itemID) {
+    public CartItemDto increaseOneFromItem(Long itemID) {
         CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
@@ -145,7 +139,7 @@ public class CartItemServiceImpl implements CartItemService{
 
     @Override
     @Transactional
-    public CartItemDto deleteItem(int id) {
+    public CartItemDto deleteItem(Long id) {
         CartItem item = cartItemRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 

@@ -13,7 +13,7 @@ import java.util.Set;
 public class Role implements GrantedAuthority{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
 
     public Role() {

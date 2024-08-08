@@ -7,12 +7,12 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ProductRepo extends JpaRepository<Product,Integer> {
+public interface ProductRepo extends JpaRepository<Product,Long> {
 
     // should ues built-in , but for trying ..
     @Query(value = "SELECT * FROM Product p WHERE p.category_id = :categoryID", nativeQuery = true)
-    List<Product> findAllByCategoryID(@Param("categoryID") int categoryID);
+    List<Product> findAllByCategoryID(@Param("categoryID") Long categoryID);
 
     @Query("SELECT p FROM Product p JOIN p.voucherCode v WHERE v.id = :voucherId")
-    List<Product> findAllByVoucherID(int voucherId);
+    List<Product> findAllByVoucherID(Long voucherId);
 }

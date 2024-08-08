@@ -34,7 +34,7 @@ public class ProductController {
             @ApiResponse(responseCode = "200", description = "Hello message returned successfully")
     })
     public ResponseEntity<SuccessResponse> hello() {
-        return ResponseEntity.ok(new SuccessResponse("Hello", true, null, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Hello", null, HttpStatus.OK.value()));
     }
 
     @GetMapping
@@ -45,7 +45,7 @@ public class ProductController {
     })
     public ResponseEntity<SuccessResponse> getAllProducts() {
         List<ProductDto> products = productService.getAllProducts();
-        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", products, HttpStatus.OK.value()));
     }
 
     @GetMapping("/category/{id}")
@@ -55,9 +55,9 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "Category not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> getProductsByCategoryID(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> getProductsByCategoryID(@PathVariable("id") Long id) {
         List<ProductDto> products = productService.getProductsByCategoryID(id);
-        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", true, products, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", products, HttpStatus.OK.value()));
     }
 
     @GetMapping("/{id}")
@@ -67,9 +67,9 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "Product not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> getProduct(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> getProduct(@PathVariable("id") Long id) {
         ProductDto product = productService.findProductById(id);
-        return ResponseEntity.ok(new SuccessResponse("Product retrieved successfully", true, product, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Product retrieved successfully", product, HttpStatus.OK.value()));
     }
 
     @PostMapping
@@ -81,7 +81,7 @@ public class ProductController {
     })
     public ResponseEntity<SuccessResponse> createProduct(@Valid @RequestBody Product product) {
         Product createdProduct = productService.createProduct(product);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Product created successfully", true, createdProduct, HttpStatus.CREATED.value()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Product created successfully", createdProduct, HttpStatus.CREATED.value()));
     }
 
     @PutMapping
@@ -94,7 +94,7 @@ public class ProductController {
     })
     public ResponseEntity<SuccessResponse> updateProduct(@Valid @RequestBody Product product) {
         Product updatedProduct = productService.updateProduct(product);
-        return ResponseEntity.ok(new SuccessResponse("Product updated successfully", true, updatedProduct, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Product updated successfully", updatedProduct, HttpStatus.OK.value()));
     }
 
     @DeleteMapping("/{id}")
@@ -104,8 +104,8 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "Product not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> deleteProduct(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProduct(id);
-        return ResponseEntity.ok(new SuccessResponse("Product deleted successfully", true, null, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Product deleted successfully", null, HttpStatus.OK.value()));
     }
 }

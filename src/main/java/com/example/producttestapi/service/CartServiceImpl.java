@@ -12,27 +12,21 @@ import com.example.producttestapi.repository.CartRepo;
 import com.example.producttestapi.repository.ProductRepo;
 import com.example.producttestapi.repository.UserRepo;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+
 public class CartServiceImpl implements CartService {
     private final CartRepo cartRepo;
-    private final UserRepo userRepo;
     private final CartItemRepo cartItemRepo;
     private final UserService userService;
-    private final CartItemService cartItemService;
     private final ProductRepo productRepo;
-    public CartServiceImpl(CartRepo cartRepo, UserRepo userRepoRepo, CartItemRepo cartItemRepo, UserService userRepService, CartItemService cartItemService, ProductRepo productRepo){
-        this.cartRepo = cartRepo;
-        this.userRepo = userRepoRepo;
-        this.cartItemRepo = cartItemRepo;
-        this.userService = userRepService;
-        this.cartItemService = cartItemService;
-        this.productRepo = productRepo;
-    }
+
 
     @Override
     public CartDto getCart() {
@@ -68,9 +62,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public void deleteCart(int id) {
-        Cart cart = cartRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No cart found with id " + id));
+    public void deleteCart(Long id) {
+        Cart cart = cartRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("No cart found with id " + id));
 
         for (CartItem item : cart.getItems()) {
             Product product = item.getProduct();

@@ -30,7 +30,7 @@ public class CartItemController {
     })
     public ResponseEntity<SuccessResponse> addCartItemToCart(@Valid @RequestBody CartItem cartItem) {
         CartItem createItem = cartItemService.addCartItem(cartItem);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item created successfully", true, createItem, HttpStatus.CREATED.value()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item created successfully", createItem, HttpStatus.CREATED.value()));
     }
 
     @PutMapping("/add-one/{id}")
@@ -39,9 +39,9 @@ public class CartItemController {
             @ApiResponse(responseCode = "200", description = "Item quantity increased successfully"),
             @ApiResponse(responseCode = "404", description = "Item not found")
     })
-    public ResponseEntity<SuccessResponse> increaseOneFromItem(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> increaseOneFromItem(@PathVariable("id") Long id) {
         CartItemDto item = cartItemService.increaseOneFromItem(id);
-        return ResponseEntity.ok(new SuccessResponse("Item increased successfully", true, item, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Item increased successfully", item, HttpStatus.OK.value()));
     }
 
     @PutMapping("/remove-one/{id}")
@@ -50,9 +50,9 @@ public class CartItemController {
             @ApiResponse(responseCode = "200", description = "Item quantity decreased successfully"),
             @ApiResponse(responseCode = "404", description = "Item not found")
     })
-    public ResponseEntity<SuccessResponse> decreaseOneFromItem(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> decreaseOneFromItem(@PathVariable("id") Long id) {
         CartItemDto item = cartItemService.decreaseOneFromItem(id);
-        return ResponseEntity.ok(new SuccessResponse("Item decreased successfully", true, item, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Item decreased successfully", item, HttpStatus.OK.value()));
     }
 
     @DeleteMapping("/{id}")
@@ -61,8 +61,8 @@ public class CartItemController {
             @ApiResponse(responseCode = "200", description = "Item deleted successfully"),
             @ApiResponse(responseCode = "404", description = "Item not found")
     })
-    public ResponseEntity<SuccessResponse> deleteItem(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> deleteItem(@PathVariable("id") Long id) {
         CartItemDto item = cartItemService.deleteItem(id);
-        return ResponseEntity.ok(new SuccessResponse("Item deleted successfully", true, item, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Item deleted successfully", item, HttpStatus.OK.value()));
     }
 }

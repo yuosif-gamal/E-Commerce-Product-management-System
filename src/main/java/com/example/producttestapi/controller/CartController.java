@@ -30,7 +30,7 @@ public class CartController {
     @GetMapping
     public ResponseEntity<SuccessResponse> getCart() {
         CartDto cart = cartService.getCart();
-        return ResponseEntity.ok(new SuccessResponse("Cart retrieved successfully", true, cart, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Cart retrieved successfully", cart, HttpStatus.OK.value()));
     }
 
     @Operation(
@@ -43,8 +43,8 @@ public class CartController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<SuccessResponse> deleteItem(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> deleteCart(@PathVariable("id") Long id) {
         cartService.deleteCart(id);
-        return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse("Cart item deleted successfully", true, null, HttpStatus.OK.value()));
+        return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse("Cart item deleted successfully", null, HttpStatus.OK.value()));
     }
 }
