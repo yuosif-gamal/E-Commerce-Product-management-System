@@ -1,10 +1,9 @@
-package com.example.producttestapi.entities;
+package com.example.producttestapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.springframework.web.util.pattern.PathPattern;
 
 import java.util.List;
 

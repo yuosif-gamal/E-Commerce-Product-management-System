@@ -1,13 +1,12 @@
 package com.example.producttestapi.security;
 
-import com.example.producttestapi.entities.User;
-import com.example.producttestapi.repos.UserRepo;
+import com.example.producttestapi.entity.User;
+import com.example.producttestapi.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Service
 public class UserDetailsServices implements UserDetailsService {

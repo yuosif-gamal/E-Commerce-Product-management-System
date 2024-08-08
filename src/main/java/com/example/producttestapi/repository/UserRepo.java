@@ -1,6 +1,6 @@
-package com.example.producttestapi.repos;
+package com.example.producttestapi.repository;
 
-import com.example.producttestapi.entities.User;
+import com.example.producttestapi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
     public interface UserRepo extends JpaRepository<User, Integer> {

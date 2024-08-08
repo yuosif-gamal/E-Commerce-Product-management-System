@@ -1,11 +1,9 @@
-package com.example.producttestapi.repos;
+package com.example.producttestapi.repository;
 
-import com.example.producttestapi.entities.Category;
-import com.example.producttestapi.entities.Product;
+import com.example.producttestapi.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

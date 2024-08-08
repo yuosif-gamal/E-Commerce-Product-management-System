@@ -1,11 +1,8 @@
 package com.example.producttestapi.repository;
 
-import com.example.producttestapi.entities.Category;
-import com.example.producttestapi.entities.Product;
-import com.example.producttestapi.entities.Voucher;
-import com.example.producttestapi.repos.CategoryRepo;
-import com.example.producttestapi.repos.ProductRepo;
-import com.example.producttestapi.repos.VoucherRepo;
+import com.example.producttestapi.entity.Category;
+import com.example.producttestapi.entity.Product;
+import com.example.producttestapi.entity.Voucher;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

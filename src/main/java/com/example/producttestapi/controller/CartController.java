@@ -2,13 +2,12 @@ package com.example.producttestapi.controller;
 
 import com.example.producttestapi.dto.CartDto;
 import com.example.producttestapi.dto.SuccessResponse;
-import com.example.producttestapi.entities.Cart;
-import com.example.producttestapi.entities.CartItem;
 import com.example.producttestapi.service.CartService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,14 +18,33 @@ public class CartController {
     public CartController(CartService cartService) {
         this.cartService = cartService;
     }
+
+    @Operation(
+            summary = "Get Cart",
+            description = "Retrieves the current cart information."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cart retrieved successfully"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @GetMapping
-    public ResponseEntity<SuccessResponse> getCart(){
+    public ResponseEntity<SuccessResponse> getCart() {
         CartDto cart = cartService.getCart();
-        return  ResponseEntity.ok(new SuccessResponse("cart retrieved successfully", true, cart, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Cart retrieved successfully", true, cart, HttpStatus.OK.value()));
     }
+
+    @Operation(
+            summary = "Delete Cart Item",
+            description = "Deletes an item from the cart based on the provided item ID."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Cart item deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Item not found"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
     @DeleteMapping("/{id}")
-    public ResponseEntity<SuccessResponse> deleteItem(@PathVariable("id") int  id) {
+    public ResponseEntity<SuccessResponse> deleteItem(@PathVariable("id") int id) {
         cartService.deleteCart(id);
-        return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse("Cart deleted successfully", true, null, HttpStatus.OK.value()));
+        return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse("Cart item deleted successfully", true, null, HttpStatus.OK.value()));
     }
 }

@@ -1,12 +1,12 @@
 package com.example.producttestapi.service;
 
 import com.example.producttestapi.dto.UserDto;
-import com.example.producttestapi.entities.Role;
+import com.example.producttestapi.entity.Role;
 import com.example.producttestapi.exception.DuplicateResourceException;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.UserMapper;
-import com.example.producttestapi.entities.User;
-import com.example.producttestapi.repos.UserRepo;
+import com.example.producttestapi.entity.User;
+import com.example.producttestapi.repository.UserRepo;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
