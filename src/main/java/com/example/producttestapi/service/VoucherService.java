@@ -6,6 +6,6 @@ import com.example.producttestapi.entity.Voucher;
 public interface VoucherService {
     Voucher createVoucher(Voucher voucher);
     Voucher findVoucherByCode(String code);
-    void deleteVoucher(int id);
+    void deleteVoucher(Long id);
     void applyVoucherDiscount(Product product);
 }

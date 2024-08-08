@@ -64,9 +64,9 @@ public class CategoryServiceTests {
 
     @Test
     public void CategoryService_GetSubCategories_ReturnSubCategories(){
-        Category category1 = Category.builder().name("TVs").id(1).build();
-        Category category3 = Category.builder().name("phones1").id(2).parentCategory(category1).build();
-        Category category4 = Category.builder().name("phones2").id(3).parentCategory(category1).build();
+        Category category1 = Category.builder().name("TVs").id(1L).build();
+        Category category3 = Category.builder().name("phones1").id(2L).parentCategory(category1).build();
+        Category category4 = Category.builder().name("phones2").id(3L).parentCategory(category1).build();
 
         when(categoryRepo.findById(category1.getId())).thenReturn(Optional.of(category1));
         when(categoryRepo.getCategoryChildren(category1.getId())).thenReturn(List.of(category3, category4));
@@ -81,7 +81,7 @@ public class CategoryServiceTests {
 
     @Test
     public void CategoryService_GetSubCategories_ThrowsExceptionWhenCategoryNotFound(){
-        int nonExistentCategoryId = 1;
+        Long nonExistentCategoryId = 1;
 
         lenient().when(categoryRepo.existsById(nonExistentCategoryId)).thenReturn(false);
 
@@ -91,7 +91,7 @@ public class CategoryServiceTests {
     }
     @Test
     public void CategoryService_DeleteCategoryById_ReturnVoid() {
-        int categoryId = 1;
+        Long categoryId = 1;
         when(categoryRepo.existsById(categoryId)).thenReturn(true);
         doNothing().when(categoryRepo).deleteById(categoryId);
 
@@ -104,7 +104,7 @@ public class CategoryServiceTests {
     @Test
     public void CategoryService_DeleteCategoryById_ThrowsExceptionWhenCategoryNotFound() {
 
-        int categoryId = 1;
+        Long categoryId = 1;
         when(categoryRepo.existsById(categoryId)).thenReturn(false);
 
         Assertions.assertThatThrownBy(() -> categoryService.deleteCategory(categoryId))

@@ -6,9 +6,9 @@ import com.example.producttestapi.entity.CartItem;
 public interface CartItemService {
     CartItem addCartItem(CartItem cartItem);
 
-    CartItemDto decreaseOneFromItem(int itemID);
+    CartItemDto decreaseOneFromItem(Long itemID);
 
-    CartItemDto increaseOneFromItem(int itemID);
+    CartItemDto increaseOneFromItem(Long itemID);
 
-    CartItemDto deleteItem(int id);
+    CartItemDto deleteItem(Long id);
 }

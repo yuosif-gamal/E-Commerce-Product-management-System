@@ -5,6 +5,7 @@ import com.example.producttestapi.entity.Voucher;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.repository.ProductRepo;
 import com.example.producttestapi.repository.VoucherRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +14,12 @@ import java.time.*;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+
 public class VoucherServiceImpl implements VoucherService {
     private final VoucherRepo voucherRepo;
     private final ProductRepo productRepo;
 
-    public VoucherServiceImpl(VoucherRepo voucherRepo ,ProductRepo productRepo) {
-        this.voucherRepo = voucherRepo;
-        this.productRepo = productRepo;
-
-    }
 
     @Override
     public Voucher createVoucher(Voucher voucher) {
@@ -48,7 +46,7 @@ public class VoucherServiceImpl implements VoucherService {
     }
 
     @Override
-    public void deleteVoucher(int id) {
+    public void deleteVoucher(Long id) {
         List<Product> products = productRepo.findAllByVoucherID(id);
 
         for (Product product : products) {
@@ -77,7 +75,7 @@ public class VoucherServiceImpl implements VoucherService {
                     product.setPrice(discountedPrice.doubleValue());
                 }
                 else {
-                    int id = voucher.getId();
+                    Long id = voucher.getId();
                     deleteVoucher(id);
                     product.setPrice(product.getPrice());
                 }

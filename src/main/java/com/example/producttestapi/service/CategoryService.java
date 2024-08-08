@@ -9,12 +9,12 @@ import java.util.List;
 public interface CategoryService {
     List<CategoryDto> getAllCategory();
 
-    Category getCategory(int parent_id);
+    Category getCategory(Long parent_id);
     Category createCategory(Category category);
-    void deleteCategory(int id);
+    void deleteCategory(Long id);
     List<CategoryDto> getAllMainCategories();
 
-    List<CategoryDto> getCategoryChildren(int categoryId);
+    List<CategoryDto> getCategoryChildren(Long categoryId);
 
 
     List<CategoryModelDto> getCategoriesTree();

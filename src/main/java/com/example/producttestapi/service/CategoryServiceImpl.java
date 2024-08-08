@@ -7,6 +7,7 @@ import com.example.producttestapi.mapper.CategoryMapper;
 import com.example.producttestapi.model.CategoryModel;
 import com.example.producttestapi.dto.CategoryModelDto;
 import com.example.producttestapi.repository.CategoryRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,12 +17,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
+
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepo categoryRepo;
-    public CategoryServiceImpl(CategoryRepo categoryRepo) {
-        this.categoryRepo = categoryRepo;
-    }
 
     @Cacheable(value = "categories", key = "'all'")
     @Override
@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Cacheable(value = "categories",key = "#id")
-    public Category getCategory(int id) {
+    public Category getCategory(Long id) {
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
             throw new ResourceNotFoundException("Category not found with id: " + id);
@@ -48,7 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @CacheEvict(value = "categories", allEntries = true)
-    public void deleteCategory(int id) {
+    public void deleteCategory(Long id) {
         if (!categoryRepo.existsById(id)) {
             throw new ResourceNotFoundException("Category not found with id: " + id);
         }
@@ -65,7 +65,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Cacheable(value = "categories", key = "'sub_' + #categoryId")
-    public List<CategoryDto> getCategoryChildren(int categoryId) {
+    public List<CategoryDto> getCategoryChildren(Long categoryId) {
         Category category = categoryRepo.findById(categoryId).orElseThrow(() ->
                 new ResourceNotFoundException("No category with this ID: " + categoryId)
         );
@@ -84,7 +84,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Cacheable(value = "categories", key = "'tree'")
     public List<CategoryModelDto> getCategoriesTree() {
         List<Category> categoriesList = categoryRepo.findAll();
-        Map<Integer, CategoryModel> categoryModelMap = new HashMap<>();
+        Map<Long, CategoryModel> categoryModelMap = new HashMap<>();
         List<CategoryModel> result = new ArrayList<>();
 
         for (Category cat : categoriesList) {

@@ -5,7 +5,7 @@ import com.example.producttestapi.entity.Product;
 import com.example.producttestapi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CartItemRepo extends JpaRepository<CartItem , Integer> {
+public interface CartItemRepo extends JpaRepository<CartItem , Long> {
 
     CartItem findByProductAndCart_User(Product product, User user);
 }

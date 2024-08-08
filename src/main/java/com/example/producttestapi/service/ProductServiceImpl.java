@@ -5,6 +5,7 @@ import com.example.producttestapi.entity.Product;
 import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.ProductMapper;
 import com.example.producttestapi.repository.ProductRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -15,14 +16,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
+
 public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final VoucherService voucherService;
 
-    public ProductServiceImpl(ProductRepo productRepo, VoucherService voucherService ) {
-        this.productRepo = productRepo;
-        this.voucherService = voucherService;
-    }
     @Override
     @Cacheable(value = "Products" , key = "'all'")
     public List<ProductDto> getAllProducts() {
@@ -35,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Cacheable(value = "Products" , key = "#id")
-    public ProductDto findProductById(int id) {
+    public ProductDto findProductById(Long id) {
         Product product = productRepo.findById(id).orElse(null);
         if (product == null) {
             throw new ResourceNotFoundException("Product not found with id: " + id);
@@ -47,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Cacheable(value = "Products", key = "#categoryID")
-    public List<ProductDto> getProductsByCategoryID(int categoryID) {
+    public List<ProductDto> getProductsByCategoryID(Long categoryID) {
         List<Product> products = productRepo.findAllByCategoryID(categoryID);
         applyVoucher(products);
         return convertToDto(products);
@@ -72,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @CacheEvict(value = "Products", allEntries = true)
-    public void deleteProduct(int id) {
+    public void deleteProduct(Long id) {
         if (!productRepo.existsById(id)) {
             throw new ResourceNotFoundException("Product not found with id: " + id);
         }

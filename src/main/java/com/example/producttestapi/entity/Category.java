@@ -18,11 +18,11 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "categoryID")
 
-    private int id ;
+    private Long id ;
 
     @NotBlank(message = "Name of category is require")
     private String name;
-    @OneToMany(mappedBy = "categoryID")
+    @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<Product> products;
 

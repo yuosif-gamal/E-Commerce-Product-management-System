@@ -44,42 +44,42 @@ public class UserController {
     })
     public ResponseEntity<SuccessResponse> registerNewUser(@Valid @RequestBody UserDto request) {
         userService.register(request);
-        return ResponseEntity.ok(new SuccessResponse("User created .. ", true, request, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("User created .. ", request, HttpStatus.OK.value()));
     }
 
     @GetMapping("/{id}")
     @Operation(summary = "Get User By ID", description = "Retrieve a user by their ID")
     @ApiResponse(responseCode = "200", description = "User retrieved successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
-    public ResponseEntity<SuccessResponse> getUserById(@PathVariable("id") int userId) {
+    public ResponseEntity<SuccessResponse> getUserById(@PathVariable("id") Long userId) {
         UserDto savedUser = userService.getUserById(userId);
-        return ResponseEntity.ok(new SuccessResponse("User saved successfully", true, savedUser, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("User saved successfully", savedUser, HttpStatus.OK.value()));
     }
 
     @PutMapping("/make-admin/{id}")
     @Operation(summary = "Change User Role to Admin", description = "Change the role of a user to Admin")
     @ApiResponse(responseCode = "200", description = "User role changed to Admin successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
-    public ResponseEntity<SuccessResponse> changeToAdmin(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> changeToAdmin(@PathVariable("id") Long id) {
         UserDto user = userService.changeRole(id, "ADMIN");
-        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + " became Admin successfully", true, user, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + " became Admin successfully", user, HttpStatus.OK.value()));
     }
 
     @PutMapping("/make-manager/{id}")
     @Operation(summary = "Change User Role to Manager", description = "Change the role of a user to Manager")
     @ApiResponse(responseCode = "200", description = "User role changed to Manager successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
-    public ResponseEntity<SuccessResponse> changeToManager(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> changeToManager(@PathVariable("id") Long id) {
         UserDto user = userService.changeRole(id, "MANAGER");
-        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + " became Manager successfully", true, user, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + " became Manager successfully", user, HttpStatus.OK.value()));
     }
 
     @PutMapping("/make-user/{id}")
     @Operation(summary = "Change User Role to User", description = "Change the role of a user to User")
     @ApiResponse(responseCode = "200", description = "User role changed to User successfully")
     @ApiResponse(responseCode = "404", description = "User not found")
-    public ResponseEntity<SuccessResponse> changeToUser(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> changeToUser(@PathVariable("id") Long id) {
         UserDto user = userService.changeRole(id, "USER");
-        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + " became User successfully", true, user, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + " became User successfully", user, HttpStatus.OK.value()));
     }
 }

@@ -13,7 +13,6 @@ import java.util.List;
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class CategoryRepositoryTests {
-    @Autowired
     private CategoryRepo categoryRepo;
     @Test
     public void CategoryRepo_SaveCategory_ReturnSavedCategory(){
@@ -48,7 +47,7 @@ public class CategoryRepositoryTests {
 
         categoryRepo.save(category1);
         categoryRepo.save(category2);
-        int id = category1.getId();
+        Long id = category1.getId();
 
         Category category = categoryRepo.findById(id).get();
 
@@ -64,7 +63,7 @@ public class CategoryRepositoryTests {
 
         categoryRepo.save(category1);
         categoryRepo.save(category2);
-        int id = category1.getId();
+        Long id = category1.getId();
         categoryRepo.deleteById(id);
 
         Category category = categoryRepo.findById(id).orElse(null);

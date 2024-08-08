@@ -35,7 +35,7 @@ public class VoucherController {
     public ResponseEntity<SuccessResponse> create(
             @Valid @RequestBody  Voucher voucher) {
         Voucher createdVoucher = voucherService.createVoucher(voucher);
-        SuccessResponse response = new SuccessResponse("Voucher created successfully", true, createdVoucher, HttpStatus.CREATED.value());
+        SuccessResponse response = new SuccessResponse("Voucher created successfully", createdVoucher, HttpStatus.CREATED.value());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -48,7 +48,7 @@ public class VoucherController {
     public ResponseEntity<SuccessResponse> getVoucher(
             @PathVariable("code") String code) {
         Voucher voucher = voucherService.findVoucherByCode(code);
-        SuccessResponse response = new SuccessResponse("Voucher retrieved successfully", true, voucher, HttpStatus.OK.value());
+        SuccessResponse response = new SuccessResponse("Voucher retrieved successfully", voucher, HttpStatus.OK.value());
         return ResponseEntity.ok(response);
     }
 
@@ -59,9 +59,9 @@ public class VoucherController {
             @ApiResponse(responseCode = "404", description = "Voucher not found")
     })
     public ResponseEntity<SuccessResponse> deleteVoucher(
-            @PathVariable("id") int id) {
+            @PathVariable("id") Long id) {
         voucherService.deleteVoucher(id);
-        SuccessResponse response = new SuccessResponse("Voucher deleted successfully", true, null, HttpStatus.NO_CONTENT.value());
+        SuccessResponse response = new SuccessResponse("Voucher deleted successfully", null, HttpStatus.NO_CONTENT.value());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
     }
 }

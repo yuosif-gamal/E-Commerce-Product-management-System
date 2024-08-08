@@ -7,6 +7,7 @@ import com.example.producttestapi.exception.ResourceNotFoundException;
 import com.example.producttestapi.mapper.UserMapper;
 import com.example.producttestapi.entity.User;
 import com.example.producttestapi.repository.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,17 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+
 public class    UserServiceImpl implements UserService{
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
 
     private final RoleService roleService;
-
-    public UserServiceImpl(UserRepo userRepo, RoleService roleService, PasswordEncoder passwordEncoder ) {
-        this.userRepo = userRepo;
-        this.roleService = roleService;
-        this.passwordEncoder= passwordEncoder;
-    }
 
     @Override
     public void register(UserDto request) {
@@ -56,13 +53,13 @@ public class    UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto getUserById(int userId) {
+    public UserDto getUserById(Long userId) {
         User user = userRepo.getUserById(userId);
         return UserMapper.convertEntityToDto(user);
     }
 
     @Override
-    public UserDto deleteUserById(int userId) {
+    public UserDto deleteUserById(Long userId) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
         userRepo.deleteById(userId);
@@ -85,7 +82,7 @@ public class    UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDto changeRole(int id, String myRole) {
+    public UserDto changeRole(Long id, String myRole) {
         User user = userRepo.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("No user found with id: " + id));
         Role role = roleService.findRoleByName(myRole);

@@ -2,15 +2,13 @@ package com.example.producttestapi.dto;
 
 public class SuccessResponse {
     private String message;
-    private boolean success;
     private Object data;
     private int status;
 
     public SuccessResponse() {}
 
-    public SuccessResponse(String message, boolean success, Object data, int status) {
+    public SuccessResponse(String message, Object data, int status) {
         this.message = message;
-        this.success = success;
         this.data = data;
         this.status = status;
     }
@@ -23,13 +21,6 @@ public class SuccessResponse {
         this.message = message;
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
 
     public Object getData() {
         return data;

@@ -37,7 +37,7 @@ public class CategoryController {
     })
     public ResponseEntity<SuccessResponse> getAllMainCategories() {
         List<CategoryDto> categories = categoryService.getAllMainCategories();
-        return ResponseEntity.ok(new SuccessResponse("Main Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Main Categories retrieved successfully", categories, HttpStatus.OK.value()));
     }
 
     @GetMapping
@@ -48,7 +48,7 @@ public class CategoryController {
     })
     public ResponseEntity<SuccessResponse> getAllCategories() {
         List<CategoryDto> categories = categoryService.getAllCategory();
-        return ResponseEntity.ok(new SuccessResponse("ALL Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("ALL Categories retrieved successfully", categories, HttpStatus.OK.value()));
     }
 
     @GetMapping("/tree")
@@ -59,7 +59,7 @@ public class CategoryController {
     })
     public ResponseEntity<SuccessResponse> getCategoriesTree() {
         List<CategoryModelDto> categories = categoryService.getCategoriesTree();
-        return ResponseEntity.ok(new SuccessResponse("All Categories Tree retrieved successfully", true, categories, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("All Categories Tree retrieved successfully", categories, HttpStatus.OK.value()));
     }
 
     @GetMapping("/{id}/children")
@@ -69,9 +69,9 @@ public class CategoryController {
             @ApiResponse(responseCode = "404", description = "Category not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> getCategoryChildren(@PathVariable int id) {
+    public ResponseEntity<SuccessResponse> getCategoryChildren(@PathVariable Long id) {
         List<CategoryDto> categories = categoryService.getCategoryChildren(id);
-        return ResponseEntity.ok(new SuccessResponse("Children Categories retrieved successfully", true, categories, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Children Categories retrieved successfully", categories, HttpStatus.OK.value()));
     }
 
     @GetMapping("/{id}")
@@ -81,9 +81,9 @@ public class CategoryController {
             @ApiResponse(responseCode = "404", description = "Category not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> getCategory(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> getCategory(@PathVariable("id") Long id) {
         Category category = categoryService.getCategory(id);
-        return ResponseEntity.ok(new SuccessResponse("Category retrieved successfully", true, category, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Category retrieved successfully", category, HttpStatus.OK.value()));
     }
 
     @PostMapping
@@ -95,7 +95,7 @@ public class CategoryController {
     })
     public ResponseEntity<SuccessResponse> createCategory(@Valid @RequestBody Category category) {
         Category createdCategory = categoryService.createCategory(category);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Category created successfully", true, createdCategory, HttpStatus.CREATED.value()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Category created successfully", createdCategory, HttpStatus.CREATED.value()));
     }
 
     @DeleteMapping("/{id}")
@@ -105,8 +105,8 @@ public class CategoryController {
             @ApiResponse(responseCode = "404", description = "Category not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> deleteCategory(@PathVariable("id") int id) {
+    public ResponseEntity<SuccessResponse> deleteCategory(@PathVariable("id") Long id) {
         categoryService.deleteCategory(id);
-        return ResponseEntity.ok(new SuccessResponse("Category deleted successfully", true, null, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("Category deleted successfully", null, HttpStatus.OK.value()));
     }
 }
