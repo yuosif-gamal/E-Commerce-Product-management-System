@@ -11,8 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>productProject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>productTestApi</name>
-    <description>productTestApi</description>
+    <name>E-commerce-management-system</name>
+    <description>E-commerce-management-system</description>
     <url/>
     <licenses>
         <license/>
@@ -109,6 +109,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.example.Ecommerce.EcommerceManagementApiApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
