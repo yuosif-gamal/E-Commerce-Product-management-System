@@ -15,6 +15,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 @RequiredArgsConstructor
 
@@ -36,7 +38,7 @@ public class CartItemServiceImpl implements CartItemService{
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         int quantityToTake = getValidQuantity(cartItem, product);
-        int priceBeforeVoucher = (int) product.getPrice();
+        Double priceBeforeVoucher =  product.getPrice();
 
         voucherService.applyVoucherDiscount(product);
 
@@ -59,7 +61,7 @@ public class CartItemServiceImpl implements CartItemService{
         if (cart == null) {
             cart = new Cart();
             cart.setUser(user);
-            cart.setTotalPrice(0);
+            cart.setTotalPrice(0.0);
             cart = cartRepo.save(cart);
         }
         return cart;
