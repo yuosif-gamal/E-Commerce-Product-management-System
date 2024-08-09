@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -16,7 +18,7 @@ public class ProductDto {
 
     private String description;
 
-    private double price;
+    private Double price;
 
-    private int quantity;
+    private Integer quantity;
 }

@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Setter
 @Getter
@@ -21,9 +23,9 @@ public class CartItem {
     @JoinColumn(name = "product_id", nullable = false)
     @JsonBackReference
     private Product product;
-    @NotNull(message = "Price is required")
-    @Min(value = 0, message = "Price must be a positive number")
-    private int quantityToTake;
+    @NotNull(message = "Quantity is required")
+    @Min(value = 1, message = "Quantity must be more than zero")
+    private Integer quantityToTake;
     private Double pricePerItem;
 
     @ManyToOne
