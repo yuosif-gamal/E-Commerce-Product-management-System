@@ -32,12 +32,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Cacheable(value = "categories",key = "#id")
-    public Category getCategory(Long id) {
+    public CategoryDto getCategory(Long id) {
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
             throw new ResourceNotFoundException("Category not found with id: " + id);
         }
-        return category;
+        CategoryDto categoryDto = CategoryMapper.convertEntityToDto(category);
+        return categoryDto;
     }
     @Override
     @CacheEvict(value = "categories", allEntries = true)

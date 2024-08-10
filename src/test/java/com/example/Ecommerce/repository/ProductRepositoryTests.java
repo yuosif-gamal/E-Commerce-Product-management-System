@@ -30,9 +30,9 @@ public class ProductRepositoryTests {
         categoryRepo.save(category2);
 
 
-        Product product1 =Product.builder().name("samsung1").price(10000).category(category1).build();
-        Product product2 =Product.builder().name("samsung2").price(15000).category(category1).build();
-        Product product3 =Product.builder().name("samsung3").price(103000).category(category2).build();
+        Product product1 =Product.builder().name("samsung1").price(10000D).category(category1).build();
+        Product product2 =Product.builder().name("samsung2").price(15000D).category(category1).build();
+        Product product3 =Product.builder().name("samsung3").price(103000D).category(category2).build();
 
         productRepo.save(product1);
         productRepo.save(product2);
@@ -55,9 +55,9 @@ public class ProductRepositoryTests {
         voucherRepo.save(voucher1);
         voucherRepo.save(voucher2);
 
-        Product product1 =Product.builder().name("samsung1").price(10000).voucherCode(voucher1).build();
-        Product product2 =Product.builder().name("samsung2").price(15000).voucherCode(voucher1).build();
-        Product product3 =Product.builder().name("samsung3").price(103000).voucherCode(voucher2).build();
+        Product product1 =Product.builder().name("samsung1").price(10000D).voucherCode(voucher1).build();
+        Product product2 =Product.builder().name("samsung2").price(15000D).voucherCode(voucher1).build();
+        Product product3 =Product.builder().name("samsung3").price(103000D).voucherCode(voucher2).build();
 
         productRepo.save(product1);
         productRepo.save(product2);

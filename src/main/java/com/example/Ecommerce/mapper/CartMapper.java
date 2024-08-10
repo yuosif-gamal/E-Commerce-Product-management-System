@@ -18,7 +18,7 @@ public class CartMapper {
             cartItemDtos.add(cartItemDto);
         }
 
-        cartDto.setCartItemDtos(cartItemDtos);
+        cartDto.setCartItemDTOs(cartItemDtos);
         return cartDto;
     }
 }

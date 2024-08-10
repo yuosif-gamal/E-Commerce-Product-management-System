@@ -9,5 +9,5 @@ import java.util.List;
 @Setter
 public class CartDto {
     private Double totalPrice;
-    private List<CartItemDto> cartItemDtos;
+    private List<CartItemDto> cartItemDTOs;
 }
