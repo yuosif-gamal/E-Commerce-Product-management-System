@@ -9,7 +9,7 @@ import java.util.List;
 public interface CategoryService {
     List<CategoryDto> getAllCategory();
 
-    Category getCategory(Long parent_id);
+    CategoryDto getCategory(Long parent_id);
     Category createCategory(Category category);
     void deleteCategory(Long id);
     List<CategoryDto> getAllMainCategories();

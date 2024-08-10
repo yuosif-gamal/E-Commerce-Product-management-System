@@ -82,7 +82,7 @@ public class CategoryController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     public ResponseEntity<SuccessResponse> getCategory(@PathVariable("id") Long id) {
-        Category category = categoryService.getCategory(id);
+        CategoryDto category = categoryService.getCategory(id);
         return ResponseEntity.ok(new SuccessResponse("Category retrieved successfully", category, HttpStatus.OK.value()));
     }
 
