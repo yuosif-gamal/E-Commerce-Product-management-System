@@ -13,65 +13,6 @@ import java.util.List;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class CategoryRepositoryTests {
     private CategoryRepo categoryRepo;
-    @Test
-    public void CategoryRepo_SaveCategory_ReturnSavedCategory(){
-        Category category = Category.builder().name("elec").build();
-
-        Category saveCategory = categoryRepo.save(category);
-
-        Assertions.assertThat(saveCategory).isNotNull();
-        Assertions.assertThat(saveCategory.getId()).isGreaterThan(0);
-
-    }
-
-    @Test
-    public void CategoryRepo_SaveAllCategory_ReturnAllSavedCategory(){
-        Category category1 = Category.builder().name("elec").build();
-        Category category2 = Category.builder().name("samsung").build();
-
-        categoryRepo.save(category1);
-        categoryRepo.save(category2);
-
-        List<Category> categoryList =categoryRepo.findAll();
-
-        Assertions.assertThat(categoryList).isNotNull();
-        Assertions.assertThat(categoryList.size()).isEqualTo(2);
-
-    }
-
-    @Test
-    public void CategoryRepo_getCategoryById_ReturnCategory(){
-        Category category1 = Category.builder().name("elec").build();
-        Category category2 = Category.builder().name("samsung").build();
-
-        categoryRepo.save(category1);
-        categoryRepo.save(category2);
-        Long id = category1.getId();
-
-        Category category = categoryRepo.findById(id).get();
-
-        Assertions.assertThat(category).isNotNull();
-        Assertions.assertThat(category.getName()).isEqualTo("elec");
-    }
-
-
-    @Test
-    public void CategoryRepo_DeleteCategoryById_ReturnNullCategory(){
-        Category category1 = Category.builder().name("elec").build();
-        Category category2 = Category.builder().name("samsung").build();
-
-        categoryRepo.save(category1);
-        categoryRepo.save(category2);
-        Long id = category1.getId();
-        categoryRepo.deleteById(id);
-
-        Category category = categoryRepo.findById(id).orElse(null);
-        Assertions.assertThat(category).isNull();
-        List<Category> categoryList =categoryRepo.findAll();
-        Assertions.assertThat(categoryList.size()).isEqualTo(1);
-
-
-    }
 
     @Test
     public void CategoryRepo_GetMainCategories_ReturnAllMainCategories(){

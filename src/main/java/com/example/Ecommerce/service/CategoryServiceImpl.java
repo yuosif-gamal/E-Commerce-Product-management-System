@@ -10,6 +10,7 @@ import com.example.Ecommerce.repository.CategoryRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-
+@EnableCaching
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepo categoryRepo;
@@ -31,7 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Cacheable(value = "categories",key = "#id")
+    @Cacheable(value = "categories", key = "#id")
     public CategoryDto getCategory(Long id) {
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
@@ -40,6 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
         CategoryDto categoryDto = CategoryMapper.convertEntityToDto(category);
         return categoryDto;
     }
+
     @Override
     @CacheEvict(value = "categories", allEntries = true)
     public Category createCategory(Category category) {
@@ -49,7 +51,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @CacheEvict(value = "categories", allEntries = true)
     public void deleteCategory(Long id) {
-        if (!categoryRepo.existsById(id)) {
+        Category category = categoryRepo.findById(id).orElse(null);
+        if (category == null) {
             throw new ResourceNotFoundException("Category not found with id: " + id);
         }
         categoryRepo.deleteById(id);
@@ -66,9 +69,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Cacheable(value = "categories", key = "'sub_' + #categoryId")
     public List<CategoryDto> getCategoryChildren(Long categoryId) {
-        Category category = categoryRepo.findById(categoryId).orElseThrow(() ->
-                new ResourceNotFoundException("No category with this ID: " + categoryId)
-        );
+        Category category = categoryRepo.findById(categoryId).orElse(null);
+        if (category == null) {
+            throw new ResourceNotFoundException("Category not found with id: " + categoryId);
+        }
 
         List<Category> categories = categoryRepo.getCategoryChildren(categoryId);
         return convertToDto(categories);
@@ -104,7 +108,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
         List<CategoryModelDto> finalResult = new ArrayList<>();
         for (CategoryModel categoryModel : result) {
-                CategoryModelDto categoryModelDto = CategoryMapper.convertToModelDTO(categoryModel);
+            CategoryModelDto categoryModelDto = CategoryMapper.convertToModelDTO(categoryModel);
             finalResult.add(categoryModelDto);
         }
 
