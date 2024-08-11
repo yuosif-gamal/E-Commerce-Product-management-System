@@ -9,78 +9,101 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.*;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
 public class VoucherServiceImpl implements VoucherService {
     private final VoucherRepo voucherRepo;
     private final ProductRepo productRepo;
 
-
     @Override
     public Voucher createVoucher(Voucher voucher) {
-        String s = voucher.getCode();
-        if (voucherRepo.findByCode(s) != null){
-            throw  new ResourceNotFoundException("already exist Code : " + s);
+        if (voucherRepo.findByCode(voucher.getCode()) != null) {
+            throw new ResourceNotFoundException("Voucher with code already exists: " + voucher.getCode());
         }
-        LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expireDateTime = voucher.getExpireDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-
-        if (expireDateTime.isBefore(now)) {
-            throw new ResourceNotFoundException("this is expired date .. ");
-        }
-            return voucherRepo.save(voucher);
+        checkIfVoucherIsExpired(voucher.getExpireDate());
+        return voucherRepo.save(voucher);
     }
+
 
     @Override
     public Voucher findVoucherByCode(String code) {
         Voucher voucher = voucherRepo.findByCode(code);
         if (voucher == null) {
-            throw new ResourceNotFoundException("Voucher not found with this code : " + code);
+            throw new ResourceNotFoundException("Voucher not found with code: " + code);
         }
         return voucher;
     }
 
     @Override
     public void deleteVoucher(Long id) {
+        checkIfVoucherExistsById(id);
         List<Product> products = productRepo.findAllByVoucherID(id);
-
-        for (Product product : products) {
-            product.setVoucherCode(null);
-            productRepo.save(product);
-        }
-        if (!voucherRepo.existsById(id)) {
-            throw new ResourceNotFoundException("Voucher not found with id: " + id);
-        }
+        updateProductsWithoutVoucher(products);
         voucherRepo.deleteById(id);
     }
 
 
+    @Override
     public void applyVoucherDiscount(Product product) {
         if (product.getVoucherCode() != null) {
             Voucher voucher = product.getVoucherCode();
-            if (voucher != null) {
-                LocalDateTime now = LocalDateTime.now();
-                LocalDateTime expireDateTime = voucher.getExpireDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-
-                if (expireDateTime.isAfter(now)) {
-                    BigDecimal discount = voucher.getDiscount();
-                    BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
-                    BigDecimal discountedPrice = productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
-
-                    product.setPrice(discountedPrice.doubleValue());
-                }
-                else {
-                    Long id = voucher.getId();
-                    deleteVoucher(id);
-                    product.setPrice(product.getPrice());
-                }
+            if (isVoucherDateValid(voucher.getExpireDate())) {
+                BigDecimal discountedPrice = calculateDiscountedPrice(product.getPrice(), voucher.getDiscount());
+                product.setPrice(discountedPrice.doubleValue());
+            } else {
+                product.setPrice(product.getPrice());
+                deleteVoucher(voucher.getId());
 
             }
         }
     }
-}
 
+
+    private void checkIfVoucherExistsById(Long id) {
+        if (!voucherRepo.findById(id).isPresent()) {
+            throw new ResourceNotFoundException("Voucher not found with id: " + id);
+        }
+    }
+
+
+
+    private void checkIfVoucherIsExpired(Date expireDate) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expireDateTime = convertToLocalDateTime(expireDate);
+
+        if (expireDateTime.isBefore(now)) {
+            throw new ResourceNotFoundException("Voucher has expired.");
+        }
+    }
+
+    private LocalDateTime convertToLocalDateTime(Date date) {
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+    }
+
+    private void updateProductsWithoutVoucher(List<Product> products) {
+        for (Product product : products) {
+            product.setVoucherCode(null);
+            productRepo.save(product);
+        }
+    }
+
+
+    private boolean isVoucherDateValid(Date voucher) {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime expireDateTime = voucher.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return expireDateTime.isAfter(now);
+    }
+
+    private BigDecimal calculateDiscountedPrice(Double price, BigDecimal discount) {
+        BigDecimal productPrice = BigDecimal.valueOf(price);
+        return productPrice.subtract(productPrice.multiply(discount.divide(BigDecimal.valueOf(100))));
+    }
+}
