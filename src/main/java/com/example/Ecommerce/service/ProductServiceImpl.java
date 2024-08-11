@@ -34,10 +34,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Cacheable(value = "Products" , key = "#id")
     public ProductDto findProductById(Long id) {
-        Product product = productRepo.findById(id).orElse(null);
-        if (product == null) {
-            throw new ResourceNotFoundException("Product not found with id: " + id);
-        }
+        Product product = verifyExistingProduct(id);
         voucherService.applyVoucherDiscount(product);
         ProductDto productDto = ProductMapper.ProductEntityToDto(product);
         return productDto;
@@ -62,24 +59,19 @@ public class ProductServiceImpl implements ProductService {
     @CacheEvict(value = "Products", allEntries = true)
     @CachePut(value = "FindProduct", key = "#product.id")
     public Product updateProduct(Product product) {
-        if (!productRepo.existsById(product.getId())) {
-            throw new ResourceNotFoundException("Product not found with id: " + product.getId());
-        }
+        verifyExistingProduct(product.getId());
         return productRepo.save(product);
     }
 
     @Override
     @CacheEvict(value = "Products", allEntries = true)
     public void deleteProduct(Long id) {
-        if (!productRepo.existsById(id)) {
-            throw new ResourceNotFoundException("Product not found with id: " + id);
-        }
+        verifyExistingProduct(id);
         productRepo.deleteById(id);
     }
 
-    private List<Product> applyVoucher(List<Product> product){
-        product.forEach(voucherService::applyVoucherDiscount);
-        return product;
+    private void applyVoucher(List<Product> products) {
+        products.forEach(voucherService::applyVoucherDiscount);
     }
 
     private List<ProductDto> convertToDto(List<Product> products){
@@ -87,6 +79,11 @@ public class ProductServiceImpl implements ProductService {
                 .map(ProductMapper::ProductEntityToDto)
                 .collect(Collectors.toList());
         return productDtos;
+    }
+
+    private Product verifyExistingProduct(Long ID){
+        return productRepo.findById(ID)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + ID));
     }
 
 }
