@@ -28,7 +28,7 @@ various e-commerce needs.
     * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
     * spring.datasource.password=your_password
     * spring.datasource.username=your_username
-  
+
 3. **Build the Project**
     ```
    cd E-Commerce-Product-management-System
@@ -91,8 +91,6 @@ The E-Commerce application includes various tests to ensure the system works as 
 2. **Run the Tests**
    ```
     .\mvnw test
-
-###    
 
 ## Contact
 
