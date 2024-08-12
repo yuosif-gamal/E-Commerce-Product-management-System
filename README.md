@@ -74,7 +74,7 @@ This E-Commerce application includes the following features:
     * Utilize Swagger/OpenAPI for interactive API documentation, making it easy to test and understand available endpoints.
 
 ## Testing
-The E-Commerce application includes various tests to ensure the system works as expected. Here’s how to run and understand the different types of tests:
+The E-Commerce application includes various tests to ensure the system works as expected:
 
 1. **Unit Tests**
     * **JUnit 5:** Used for writing and executing unit tests.
