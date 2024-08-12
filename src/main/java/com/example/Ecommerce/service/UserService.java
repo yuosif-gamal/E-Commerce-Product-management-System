@@ -17,6 +17,5 @@ public interface UserService {
     User currentUser();
 
 
-
     UserDto changeRole(Long id, String myRole);
 }

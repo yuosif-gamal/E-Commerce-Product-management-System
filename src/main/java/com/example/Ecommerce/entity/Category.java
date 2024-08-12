@@ -18,7 +18,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "categoryID")
 
-    private Long id ;
+    private Long id;
 
     @NotBlank(message = "Name of category is require")
     private String name;
@@ -31,8 +31,8 @@ public class Category {
     @JoinColumn(name = "Parent_id")
     @JsonIgnore
 
-    private Category parentCategory ;
-    @OneToMany(mappedBy = "parentCategory",fetch = FetchType.LAZY)
+    private Category parentCategory;
+    @OneToMany(mappedBy = "parentCategory", fetch = FetchType.LAZY)
     private List<Category> subCategories;
 
 }

@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 
-public class    UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
 
@@ -40,12 +40,11 @@ public class    UserServiceImpl implements UserService{
     }
 
 
-
     @Override
     public List<UserDto> getAllUsers() {
         List<User> userList = userRepo.findAll();
         List<UserDto> userDtoList = new ArrayList<>();
-        for(User user:userList) {
+        for (User user : userList) {
             UserDto userDto = UserMapper.convertEntityToDto(user);
             userDtoList.add(userDto);
         }
@@ -67,11 +66,9 @@ public class    UserServiceImpl implements UserService{
     }
 
 
-
-
     @Override
     @Cacheable(value = "user")
-    public User currentUser(){
+    public User currentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null) {
             throw new ResourceNotFoundException("User not authenticated");

@@ -32,7 +32,7 @@ public class VoucherController {
             @ApiResponse(responseCode = "400", description = "Invalid input data")
     })
     public ResponseEntity<SuccessResponse> create(
-            @Valid @RequestBody  Voucher voucher) {
+            @Valid @RequestBody Voucher voucher) {
         Voucher createdVoucher = voucherService.createVoucher(voucher);
         SuccessResponse response = new SuccessResponse("Voucher created successfully", createdVoucher, HttpStatus.CREATED.value());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);

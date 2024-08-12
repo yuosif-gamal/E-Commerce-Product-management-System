@@ -15,15 +15,15 @@ import java.util.Set;
 @Builder
 public class User {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        private String firstName;
-        private String lastName;
-        private String password;
-        private String email;
-        @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-        private Cart cart;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private String email;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
 
     public User(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
@@ -33,17 +33,18 @@ public class User {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-        @JoinTable(
-                name = "user_role",
-                joinColumns = @JoinColumn(name = "USER_ID"),
-                inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
-        )
-        private Set<Role> roles;
-   public void addRole(Role role){
-            if(roles == null){
-                roles = new HashSet<>();
-            }
-            roles.add(role);
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "USER_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
+    )
+    private Set<Role> roles;
+
+    public void addRole(Role role) {
+        if (roles == null) {
+            roles = new HashSet<>();
         }
+        roles.add(role);
+    }
 
 }

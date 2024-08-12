@@ -22,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     private final VoucherService voucherService;
 
     @Override
-    @Cacheable(value = "Products" , key = "'all'")
+    @Cacheable(value = "Products", key = "'all'")
     public List<ProductDto> getAllProducts() {
         List<Product> products = productRepo.findAll();
         applyVoucher(products);
@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Cacheable(value = "Products" , key = "#id")
+    @Cacheable(value = "Products", key = "#id")
     public ProductDto findProductById(Long id) {
         Product product = verifyExistingProduct(id);
         voucherService.applyVoucherDiscount(product);
@@ -74,14 +74,14 @@ public class ProductServiceImpl implements ProductService {
         products.forEach(voucherService::applyVoucherDiscount);
     }
 
-    private List<ProductDto> convertToDto(List<Product> products){
+    private List<ProductDto> convertToDto(List<Product> products) {
         List<ProductDto> productDtos = products.stream()
                 .map(ProductMapper::ProductEntityToDto)
                 .collect(Collectors.toList());
         return productDtos;
     }
 
-    private Product verifyExistingProduct(Long ID){
+    private Product verifyExistingProduct(Long ID) {
         return productRepo.findById(ID)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + ID));
     }

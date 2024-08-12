@@ -72,7 +72,6 @@ public class VoucherServiceImpl implements VoucherService {
     }
 
 
-
     private void checkIfVoucherIsExpired(Date expireDate) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime expireDateTime = convertToLocalDateTime(expireDate);

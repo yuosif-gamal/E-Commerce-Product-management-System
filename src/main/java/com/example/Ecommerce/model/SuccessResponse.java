@@ -5,7 +5,8 @@ public class SuccessResponse {
     private Object data;
     private int status;
 
-    public SuccessResponse() {}
+    public SuccessResponse() {
+    }
 
     public SuccessResponse(String message, Object data, int status) {
         this.message = message;

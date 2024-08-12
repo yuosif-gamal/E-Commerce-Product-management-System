@@ -43,6 +43,7 @@ A Java-based E-Commerce application built using Spring Boot. This system provide
 - **Spring Web**
 - **Spring Cache**
 - **Spring Validation**
+- **Spring Testing** (Unit Test)
 - **Swagger/OpenAPI 3**
 - **MySQL Database**
 - **H2 Database**
