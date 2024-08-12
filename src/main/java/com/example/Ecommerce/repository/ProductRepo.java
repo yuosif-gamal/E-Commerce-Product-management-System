@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ProductRepo extends JpaRepository<Product,Long> {
+public interface ProductRepo extends JpaRepository<Product, Long> {
 
     // should ues built-in , but for trying ..
     @Query(value = "SELECT * FROM Product p WHERE p.category_id = :categoryID", nativeQuery = true)

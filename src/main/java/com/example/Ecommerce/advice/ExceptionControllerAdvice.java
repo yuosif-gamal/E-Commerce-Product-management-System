@@ -17,11 +17,12 @@ import java.util.Map;
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<ErrorModel> handleResourceNotFoundException(RuntimeException ex){
+    public ResponseEntity<ErrorModel> handleResourceNotFoundException(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(new ErrorModel(ex.getMessage(), LocalDateTime.now()));
     }
+
     @ExceptionHandler(DuplicateResourceException.class)
-    public ResponseEntity<ErrorModel> handleDuplicateResourceException(RuntimeException exception){
+    public ResponseEntity<ErrorModel> handleDuplicateResourceException(RuntimeException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(new ErrorModel(exception.getMessage(), LocalDateTime.now()));
     }
 

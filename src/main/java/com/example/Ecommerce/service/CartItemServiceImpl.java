@@ -20,13 +20,13 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 
-public class CartItemServiceImpl implements CartItemService{
+public class CartItemServiceImpl implements CartItemService {
     private final CartItemRepo cartItemRepo;
     private final CartRepo cartRepo;
     private final UserRepo userRepo;
     private final UserService userService;
     private final VoucherService voucherService;
-    private final ProductRepo productRepo ;
+    private final ProductRepo productRepo;
 
     @Override
     @Transactional
@@ -38,11 +38,11 @@ public class CartItemServiceImpl implements CartItemService{
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         int quantityToTake = getValidQuantity(cartItem, product);
-        Double priceBeforeVoucher =  product.getPrice();
+        Double priceBeforeVoucher = product.getPrice();
 
         voucherService.applyVoucherDiscount(product);
 
-        cartItem.setPricePerItem( product.getPrice());
+        cartItem.setPricePerItem(product.getPrice());
         product.setPrice(priceBeforeVoucher);
 
         updateProductQuantity(product, quantityToTake);
@@ -72,14 +72,17 @@ public class CartItemServiceImpl implements CartItemService{
         if (cartItem.getQuantityToTake() == 0)
             cartItem.setQuantityToTake(1);
         if (product.getQuantity() < cartItem.getQuantityToTake()) {
-            throw new ResourceNotFoundException("Not enough quantity available");
+            throw new ResourceNotFoundException("Requested quantity of " + cartItem.getQuantityToTake() + " exceeds available stock for product with name: " + product.getName());
         }
+
         return cartItem.getQuantityToTake();
     }
+
     private void updateProductQuantity(Product product, int quantityToTake) {
         product.setQuantity(product.getQuantity() - quantityToTake);
         productRepo.save(product);
     }
+
     private CartItem updateExistingCartItem(CartItem existingCartItem, CartItem newCartItem, Cart cart) {
         int updatedQuantity = existingCartItem.getQuantityToTake() + newCartItem.getQuantityToTake();
         existingCartItem.setQuantityToTake(updatedQuantity);
@@ -105,8 +108,10 @@ public class CartItemServiceImpl implements CartItemService{
     @Override
     @Transactional
     public CartItemDto decreaseOneFromItem(Long itemID) {
-        CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
-        Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+        CartItem item = cartItemRepo.findById(itemID).orElseThrow(()
+                -> new ResourceNotFoundException("Cart item not found"));
+        Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(()
+                -> new ResourceNotFoundException("Product not found"));
 
         if (item.getQuantityToTake() == 1) {
             cartItemRepo.delete(item);
@@ -117,7 +122,7 @@ public class CartItemServiceImpl implements CartItemService{
 
         product.setQuantity(product.getQuantity() + 1);
         productRepo.save(product);
-        CartItemDto cartItemDto  =  CartItemsMapper.convertToDTO(item);
+        CartItemDto cartItemDto = CartItemsMapper.convertToDTO(item);
 
         return cartItemDto;
     }
@@ -133,7 +138,7 @@ public class CartItemServiceImpl implements CartItemService{
 
         cartItemRepo.save(item);
         productRepo.save(product);
-        CartItemDto cartItemDto  =  CartItemsMapper.convertToDTO(item);
+        CartItemDto cartItemDto = CartItemsMapper.convertToDTO(item);
 
         return cartItemDto;
     }
@@ -147,7 +152,7 @@ public class CartItemServiceImpl implements CartItemService{
         product.setQuantity(product.getQuantity() + item.getQuantityToTake());
         cartItemRepo.delete(item);
         productRepo.save(product);
-        CartItemDto cartItemDto  =  CartItemsMapper.convertToDTO(item);
+        CartItemDto cartItemDto = CartItemsMapper.convertToDTO(item);
 
         return cartItemDto;
     }

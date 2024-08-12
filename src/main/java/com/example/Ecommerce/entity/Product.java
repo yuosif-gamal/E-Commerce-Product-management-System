@@ -17,19 +17,19 @@ import java.math.BigDecimal;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
+    private Long id;
     @NotBlank(message = "Product name is required")
     private String name;
     @NotBlank(message = "description is required")
 
     private String description;
     @NotNull(message = "Price is required")
-    @DecimalMin(value = "0" ,message = "Price should be non-negative ")
+    @DecimalMin(value = "0", message = "Price should be non-negative ")
     private Double price;
     @NotNull(message = "category id is required")
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category category ;
+    private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
 

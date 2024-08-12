@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-public class Role implements GrantedAuthority{
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +25,7 @@ public class Role implements GrantedAuthority{
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
+
     @Override
     public String getAuthority() {
         return name;

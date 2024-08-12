@@ -10,8 +10,11 @@ public interface CategoryService {
     List<CategoryDto> getAllCategory();
 
     CategoryDto getCategory(Long parent_id);
+
     Category createCategory(Category category);
+
     void deleteCategory(Long id);
+
     List<CategoryDto> getAllMainCategories();
 
     List<CategoryDto> getCategoryChildren(Long categoryId);

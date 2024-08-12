@@ -12,8 +12,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
-
-
     private String name;
 
     private String description;
