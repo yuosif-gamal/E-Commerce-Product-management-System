@@ -1,10 +1,15 @@
 # E-Commerce management System
+
 ## Overview
 
-This E-Commerce application, built with Java and Spring Boot, manages products, categories, carts, and user roles. It uses modern technologies to ensure the application is secure, scalable, and performs efficiently, making it suitable for various e-commerce needs.
+This E-Commerce application, built with Java and Spring Boot, manages products, categories, carts, and user roles. It
+uses modern technologies to ensure the application is secure, scalable, and performs efficiently, making it suitable for
+various e-commerce needs.
+
 ## installations
 
 ### Prerequisites
+
 * Java 17
 * Maven
 
@@ -16,14 +21,14 @@ This E-Commerce application, built with Java and Spring Boot, manages products, 
    git clone https://github.com/yuosif-gamal/E-Commerce-Product-management-System.git
 
 2. **Setup Database connections** </br>
+
 * Ensure that MySQL is installed and running, and that the database schema is created.
 * You can configure the database connection by modifying the src/main/resources/application.properties file. </br>
 
-  * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
-  * spring.datasource.password=your_password
-  * spring.datasource.username=your_username
-   
-   
+    * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
+    * spring.datasource.password=your_password
+    * spring.datasource.username=your_username
+  
 3. **Build the Project**
     ```
    cd E-Commerce-Product-management-System
@@ -34,6 +39,7 @@ This E-Commerce application, built with Java and Spring Boot, manages products, 
 
 5. **Swagger/OpenAPI** </br>
    and for testing  **endpoints** open a web browser and navigate to http://localhost:8080/swagger-ui.html
+
 ## Technologies Used
 
 - **Java 17**
@@ -51,6 +57,7 @@ This E-Commerce application, built with Java and Spring Boot, manages products, 
 - **Maven**
 
 ## Features
+
 This E-Commerce application includes the following features:
 
 * Product Management
@@ -71,9 +78,11 @@ This E-Commerce application includes the following features:
 * Caching
     * Improve application performance by caching frequently accessed data such as products, categories, and cart items.
 * API Documentation
-    * Utilize Swagger/OpenAPI for interactive API documentation, making it easy to test and understand available endpoints.
+    * Utilize Swagger/OpenAPI for interactive API documentation, making it easy to test and understand available
+      endpoints.
 
 ## Testing
+
 The E-Commerce application includes various tests to ensure the system works as expected:
 
 1. **Unit Tests**
@@ -82,8 +91,10 @@ The E-Commerce application includes various tests to ensure the system works as 
 2. **Run the Tests**
    ```
     .\mvnw test
-### 
+
+###    
 
 ## Contact
+
 - Name : Yousif Gamal
 - Email : yuosifgamal8@gmail.com
