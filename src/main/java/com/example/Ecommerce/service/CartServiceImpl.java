@@ -12,33 +12,42 @@ import com.example.Ecommerce.repository.CartRepo;
 import com.example.Ecommerce.repository.ProductRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
 public class CartServiceImpl implements CartService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CartServiceImpl.class);
+
     private final CartRepo cartRepo;
     private final CartItemRepo cartItemRepo;
     private final UserService userService;
     private final ProductRepo productRepo;
 
-
     @Override
     public CartDto getCart() {
         User user = userService.currentUser();
+        LOGGER.info("Fetching cart for user: {}", user.getFirstName());
+
         Cart cart = cartRepo.findByUser(user);
         if (cart == null) {
+            LOGGER.error("Cart not found for user: {}", user.getFirstName());
             throw new ResourceNotFoundException("Cart not found for user with name: " + user.getFirstName());
         }
         updateCartItemsAndTotalPrice(cart);
         CartDto cartDto = CartMapper.convertEntityToDto(cart);
+
+        LOGGER.info("Successfully fetched cart for user: {}", user.getFirstName());
         return cartDto;
     }
 
     private void updateCartItemsAndTotalPrice(Cart cart) {
+        LOGGER.debug("Updating cart items and total price for cart ID: {}", cart.getId());
+
         List<CartItem> cartItems = cart.getItems();
 
         double totalPrice = cartItems.stream()
@@ -46,7 +55,8 @@ public class CartServiceImpl implements CartService {
                     Product product = cartItem.getProduct();
                     double currentProductPrice = product.getPrice();
                     if (cartItem.getPricePerItem() != currentProductPrice) {
-                        cartItem.setPricePerItem( currentProductPrice);
+                        LOGGER.debug("Updating price for cart item ID: {} from {} to {}", cartItem.getId(), cartItem.getPricePerItem(), currentProductPrice);
+                        cartItem.setPricePerItem(currentProductPrice);
                         cartItemRepo.save(cartItem);
                     }
                     return cartItem.getQuantityToTake() * currentProductPrice;
@@ -56,21 +66,30 @@ public class CartServiceImpl implements CartService {
 
         cart.setTotalPrice(totalPrice);
         cartRepo.save(cart);
+
+        LOGGER.info("Total price updated to: {}", totalPrice);
     }
 
     @Override
     @Transactional
     public void deleteCart(Long id) {
-        Cart cart = cartRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("No cart found with id " + id));
+        LOGGER.info("Deleting cart with ID: {}", id);
+
+        Cart cart = cartRepo.findById(id).orElseThrow(() -> {
+            LOGGER.error("No cart found with ID: {}", id);
+            return new ResourceNotFoundException("No cart found with id " + id);
+        });
 
         for (CartItem item : cart.getItems()) {
             Product product = item.getProduct();
+            LOGGER.debug("Restoring quantity for product ID: {} by {} units.", product.getId(), item.getQuantityToTake());
             product.setQuantity(product.getQuantity() + item.getQuantityToTake());
             cartItemRepo.deleteById(item.getId());
             productRepo.save(product);
         }
 
         cartRepo.delete(cart);
+        LOGGER.info("Cart with ID: {} deleted successfully.", id);
     }
 
 }

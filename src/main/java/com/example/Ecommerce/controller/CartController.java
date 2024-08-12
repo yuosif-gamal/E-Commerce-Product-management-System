@@ -6,18 +6,20 @@ import com.example.Ecommerce.service.CartService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/cart")
+@RequiredArgsConstructor
 public class CartController {
-    private final CartService cartService;
 
-    public CartController(CartService cartService) {
-        this.cartService = cartService;
-    }
+    private final CartService cartService;
+    private final static Logger LOGGER = LoggerFactory.getLogger(CartController.class);
 
     @Operation(
             summary = "Get Cart",
@@ -29,7 +31,9 @@ public class CartController {
     })
     @GetMapping
     public ResponseEntity<SuccessResponse> getCart() {
+        LOGGER.info("Received request to retrieve cart");
         CartDto cart = cartService.getCart();
+        LOGGER.info("Returning cart with {} items", cart.getCartItemDTOs().size());
         return ResponseEntity.ok(new SuccessResponse("Cart retrieved successfully", cart, HttpStatus.OK.value()));
     }
 
@@ -44,7 +48,9 @@ public class CartController {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<SuccessResponse> deleteCart(@PathVariable("id") Long id) {
+        LOGGER.info("Received request to delete cart item with ID {}", id);
         cartService.deleteCart(id);
+        LOGGER.info("Cart item with ID {} deleted successfully", id);
         return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse("Cart item deleted successfully", null, HttpStatus.OK.value()));
     }
 }
