@@ -8,19 +8,20 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/item")
+@RequiredArgsConstructor
 public class CartItemController {
 
     private final CartItemService cartItemService;
-
-    public CartItemController(CartItemService cartItemService) {
-        this.cartItemService = cartItemService;
-    }
+    private final static Logger LOGGER = LoggerFactory.getLogger(CartItemController.class);
 
     @PostMapping
     @Operation(summary = "Add Item to Cart", description = "Add a new item to the cart")
@@ -29,8 +30,10 @@ public class CartItemController {
             @ApiResponse(responseCode = "400", description = "Invalid item details provided")
     })
     public ResponseEntity<SuccessResponse> addCartItemToCart(@Valid @RequestBody CartItem cartItem) {
-        CartItem createItem = cartItemService.addCartItem(cartItem);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item created successfully", createItem, HttpStatus.CREATED.value()));
+        LOGGER.info("Received request to add item to cart: {}", cartItem);
+        CartItem createdItem = cartItemService.addCartItem(cartItem);
+        LOGGER.info("Item added to cart successfully: {}", createdItem);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Item created successfully", createdItem, HttpStatus.CREATED.value()));
     }
 
     @PutMapping("/add-one/{id}")
@@ -40,7 +43,9 @@ public class CartItemController {
             @ApiResponse(responseCode = "404", description = "Item not found")
     })
     public ResponseEntity<SuccessResponse> increaseOneFromItem(@PathVariable("id") Long id) {
+        LOGGER.info("Received request to increase quantity of item with ID {}", id);
         CartItemDto item = cartItemService.increaseOneFromItem(id);
+        LOGGER.info("Increased quantity of item with ID {}: {}", id, item);
         return ResponseEntity.ok(new SuccessResponse("Item increased successfully", item, HttpStatus.OK.value()));
     }
 
@@ -51,7 +56,9 @@ public class CartItemController {
             @ApiResponse(responseCode = "404", description = "Item not found")
     })
     public ResponseEntity<SuccessResponse> decreaseOneFromItem(@PathVariable("id") Long id) {
+        LOGGER.info("Received request to decrease quantity of item with ID {}", id);
         CartItemDto item = cartItemService.decreaseOneFromItem(id);
+        LOGGER.info("Decreased quantity of item with ID {}: {}", id, item);
         return ResponseEntity.ok(new SuccessResponse("Item decreased successfully", item, HttpStatus.OK.value()));
     }
 
@@ -62,7 +69,9 @@ public class CartItemController {
             @ApiResponse(responseCode = "404", description = "Item not found")
     })
     public ResponseEntity<SuccessResponse> deleteItem(@PathVariable("id") Long id) {
+        LOGGER.info("Received request to delete item with ID {}", id);
         CartItemDto item = cartItemService.deleteItem(id);
+        LOGGER.info("Item with ID {} deleted successfully: {}", id, item);
         return ResponseEntity.ok(new SuccessResponse("Item deleted successfully", item, HttpStatus.OK.value()));
     }
 }
