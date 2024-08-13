@@ -1,5 +1,6 @@
 package com.example.Ecommerce.controller;
 
+import com.example.Ecommerce.dto.VoucherDto;
 import com.example.Ecommerce.entity.Voucher;
 import com.example.Ecommerce.service.VoucherService;
 import com.example.Ecommerce.dto.SuccessResponse;
@@ -31,10 +32,10 @@ public class VoucherController {
             @ApiResponse(responseCode = "400", description = "Invalid input data")
     })
     public ResponseEntity<SuccessResponse> create(
-            @Valid @RequestBody Voucher voucher) {
+            @Valid @RequestBody VoucherDto voucher) {
         LOGGER.info("Received request to create a new voucher with details: {}", voucher);
-        Voucher createdVoucher = voucherService.createVoucher(voucher);
-        LOGGER.info("Voucher created with ID {}", createdVoucher.getId());
+        VoucherDto createdVoucher = voucherService.createVoucher(voucher);
+        LOGGER.info("Voucher created with CODE {}", createdVoucher.getCode());
         SuccessResponse response = new SuccessResponse("Voucher created successfully", createdVoucher, HttpStatus.CREATED.value());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

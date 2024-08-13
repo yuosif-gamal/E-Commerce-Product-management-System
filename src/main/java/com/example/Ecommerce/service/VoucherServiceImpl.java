@@ -1,10 +1,13 @@
 package com.example.Ecommerce.service;
 
+import com.example.Ecommerce.dto.VoucherDto;
 import com.example.Ecommerce.entity.Product;
 import com.example.Ecommerce.entity.Voucher;
 import com.example.Ecommerce.exception.ResourceNotFoundException;
+import com.example.Ecommerce.mapper.VoucherMapper;
 import com.example.Ecommerce.repository.ProductRepo;
 import com.example.Ecommerce.repository.VoucherRepo;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static com.example.Ecommerce.util.DateUtil.convertToLocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class VoucherServiceImpl implements VoucherService {
@@ -27,18 +32,21 @@ public class VoucherServiceImpl implements VoucherService {
     private static final Logger LOGGER = LoggerFactory.getLogger(VoucherServiceImpl.class);
 
     @Override
-    public Voucher createVoucher(Voucher voucher) {
-        LOGGER.info("Creating voucher with code: {}", voucher.getCode());
+    public VoucherDto createVoucher(VoucherDto voucherDto) {
+        LOGGER.info("Creating voucher with code: {}", voucherDto.getCode());
 
-        if (voucherRepo.findByCode(voucher.getCode()) != null) {
-            LOGGER.error("Voucher with code already exists: {}", voucher.getCode());
-            throw new ResourceNotFoundException("Voucher with code already exists: " + voucher.getCode());
+        if (voucherRepo.findByCode(voucherDto.getCode()) != null) {
+            LOGGER.error("Voucher with code already exists: {}", voucherDto.getCode());
+            throw new ResourceNotFoundException("Voucher with code already exists: " + voucherDto.getCode());
         }
-        checkIfVoucherIsExpired(voucher.getExpireDate());
+        checkIfVoucherIsExpired(voucherDto.getExpiryDate());
+
+        Voucher voucher = VoucherMapper.convertDtoToEntity(voucherDto);
         Voucher savedVoucher = voucherRepo.save(voucher);
         LOGGER.info("Voucher created successfully: {}", savedVoucher);
-        return savedVoucher;
+        return VoucherMapper.convertEntityToDto(savedVoucher);
     }
+
 
     @Override
     public Voucher findVoucherByCode(String code) {
@@ -56,12 +64,9 @@ public class VoucherServiceImpl implements VoucherService {
     @Override
     public void deleteVoucher(Long id) {
         LOGGER.info("Deleting voucher with ID: {}", id);
-
         checkIfVoucherExistsById(id);
-        List<Product> products = productRepo.findAllByVoucherID(id);
-        updateProductsWithoutVoucher(products);
+        updateProductsWithoutVoucher(id);
         voucherRepo.deleteById(id);
-
         LOGGER.info("Voucher deleted successfully with ID: {}", id);
     }
 
@@ -71,7 +76,7 @@ public class VoucherServiceImpl implements VoucherService {
 
         if (product.getVoucherCode() != null) {
             Voucher voucher = product.getVoucherCode();
-            if (isVoucherDateValid(voucher.getExpireDate())) {
+            if (isVoucherDateValid(voucher.getExpiryDate())) {
                 BigDecimal discountedPrice = calculateDiscountedPrice(product.getPrice(), voucher.getDiscount());
                 product.setPrice(discountedPrice.doubleValue());
                 LOGGER.info("Discount applied. New price: {}", product.getPrice());
@@ -102,24 +107,15 @@ public class VoucherServiceImpl implements VoucherService {
         }
     }
 
-    private LocalDateTime convertToLocalDateTime(Date date) {
-        return date.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
-    }
-
-    private void updateProductsWithoutVoucher(List<Product> products) {
-        LOGGER.debug("Updating products without voucher. Number of products: {}", products.size());
-        for (Product product : products) {
-            product.setVoucherCode(null);
-            productRepo.save(product);
-        }
+    private void updateProductsWithoutVoucher(Long voucherId) {
+        LOGGER.debug("Updating products without voucher. Deleting all products with voucher_id {}", voucherId);
+        productRepo.updateProductsWithoutVoucher(voucherId);
     }
 
     private boolean isVoucherDateValid(Date voucher) {
         LOGGER.debug("Checking if voucher date is valid. Voucher date: {}", voucher);
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expireDateTime = voucher.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime expireDateTime = convertToLocalDateTime(voucher);
         return expireDateTime.isAfter(now);
     }
 

@@ -1,10 +1,11 @@
 package com.example.Ecommerce.service;
 
+import com.example.Ecommerce.dto.VoucherDto;
 import com.example.Ecommerce.entity.Product;
 import com.example.Ecommerce.entity.Voucher;
 
 public interface VoucherService {
-    Voucher createVoucher(Voucher voucher);
+    VoucherDto createVoucher(VoucherDto voucher);
 
     Voucher findVoucherByCode(String code);
 

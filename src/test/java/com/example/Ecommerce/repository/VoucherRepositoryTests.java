@@ -18,7 +18,7 @@ public class VoucherRepositoryTests {
     @Test
     public void VoucherRepo_SaveVoucher_ReturnSavedCategory(){
         Date date = new Date(2025,11,12);
-        Voucher voucher = Voucher.builder().discount(BigDecimal.valueOf(10)).expireDate(date).code("SALE").build();
+        Voucher voucher = Voucher.builder().discount(BigDecimal.valueOf(10)).expiryDate(date).code("SALE").build();
 
         Voucher v = voucherRepo.save(voucher);
 
@@ -31,10 +31,10 @@ public class VoucherRepositoryTests {
     @Test
     public void VoucherRepo_SaveAllVoucher_ReturnAllSavedVoucher(){
         Date date1 = new Date(2025,11,12);
-        Voucher voucher1 = Voucher.builder().discount(BigDecimal.valueOf(10)).expireDate(date1).code("SALE1").build();
+        Voucher voucher1 = Voucher.builder().discount(BigDecimal.valueOf(10)).expiryDate(date1).code("SALE1").build();
 
         Date date2 = new Date(2025,11,12);
-        Voucher voucher2 = Voucher.builder().discount(BigDecimal.valueOf(10)).expireDate(date2).code("SALE2").build();
+        Voucher voucher2 = Voucher.builder().discount(BigDecimal.valueOf(10)).expiryDate(date2).code("SALE2").build();
 
         voucherRepo.save(voucher1);
         voucherRepo.save(voucher2);
@@ -48,7 +48,7 @@ public class VoucherRepositoryTests {
     @Test
     public void VoucherRepo_FindVoucherByCode_ReturnVoucherByCode(){
         Date date = new Date(2025,11,12);
-        Voucher voucher = Voucher.builder().discount(BigDecimal.valueOf(10)).expireDate(date).code("SALE1").build();
+        Voucher voucher = Voucher.builder().discount(BigDecimal.valueOf(10)).expiryDate(date).code("SALE1").build();
 
         voucherRepo.save(voucher);
 
