@@ -10,9 +10,9 @@ import java.util.List;
 
 public class CategoryMapper {
     public static CategoryDto convertEntityToDto(Category category) {
-        CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setName(category.getName());
-        return categoryDto;
+        return CategoryDto.builder()
+                .name(category.getName())
+                .build();
     }
 
     public static CategoryModelDto convertToModelDTO(CategoryModel categoryModel) {
@@ -20,7 +20,9 @@ public class CategoryMapper {
         for (CategoryModel subCategory : categoryModel.getCategoriesModelList()) {
             subCategoriesDTO.add(convertToModelDTO(subCategory));
         }
-        return new CategoryModelDto(categoryModel.getName(), subCategoriesDTO);
+        return CategoryModelDto.builder()
+                .name(categoryModel.getName())
+                .subCategories(subCategoriesDTO)
+                .build();
     }
-
 }

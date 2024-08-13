@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
 
         Product product = verifyExistingProduct(id);
         voucherService.applyVoucherDiscount(product);
-        ProductDto productDto = ProductMapper.ProductEntityToDto(product);
+        ProductDto productDto = ProductMapper.convertEntityToDto(product);
 
         LOGGER.info("Product found and converted to DTO: {}", productDto);
         return productDto;
@@ -106,7 +106,7 @@ public class ProductServiceImpl implements ProductService {
     private List<ProductDto> convertToDto(List<Product> products) {
         LOGGER.debug("Converting {} products to DTOs.", products.size());
         return products.stream()
-                .map(ProductMapper::ProductEntityToDto)
+                .map(ProductMapper::convertEntityToDto)
                 .collect(Collectors.toList());
     }
 

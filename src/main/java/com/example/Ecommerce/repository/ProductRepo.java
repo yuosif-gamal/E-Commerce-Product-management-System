@@ -1,7 +1,9 @@
 package com.example.Ecommerce.repository;
 
 import com.example.Ecommerce.entity.Product;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,4 +17,8 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 
     @Query("SELECT p FROM Product p JOIN p.voucherCode v WHERE v.id = :voucherId")
     List<Product> findAllByVoucherID(Long voucherId);
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE product SET voucher_code = null WHERE voucher_code = :voucherId", nativeQuery = true)
+    void updateProductsWithoutVoucher(Long voucherId);
 }
