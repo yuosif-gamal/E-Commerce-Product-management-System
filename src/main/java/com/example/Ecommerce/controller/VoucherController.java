@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/vouchers")
 @Validated
@@ -67,6 +69,19 @@ public class VoucherController {
         voucherService.deleteVoucher(id);
         LOGGER.info("Voucher with ID {} deleted successfully", id);
         SuccessResponse response = new SuccessResponse("Voucher deleted successfully", null, HttpStatus.NO_CONTENT.value());
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
+    }
+
+    @PutMapping("/add-products/{voucher_id}")
+    @Operation(summary = "update a voucher by ID to add products", description = "update a voucher based on its ID to add products.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Voucher updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Voucher not found")
+    })
+    public ResponseEntity<SuccessResponse> addVoucherToProducts(@Valid @RequestBody List<Long> productIds, @PathVariable Long voucher_id) {
+        LOGGER.info("Received request to update a voucher to adding products with voucher ID {}", voucher_id);
+        voucherService.addProductsToVoucher(voucher_id, productIds);
+        SuccessResponse response = new SuccessResponse("Voucher updated successfully", null, HttpStatus.NO_CONTENT.value());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
     }
 }

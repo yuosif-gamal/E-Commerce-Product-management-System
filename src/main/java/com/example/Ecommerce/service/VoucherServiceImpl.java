@@ -88,9 +88,37 @@ public class VoucherServiceImpl implements VoucherService {
         }
     }
 
+    @Override
+    @Transactional
+    public void addProductsToVoucher(Long voucherId, List<Long> productIds) {
+        LOGGER.info("Adding products to voucher with ID: {}", voucherId);
+        checkIfVoucherExistsById(voucherId);
+        Voucher voucher = voucherRepo.findById(voucherId).orElse(null);
+
+        LOGGER.info("Fetching products with IDs: {}", productIds);
+        List<Product> products = productRepo.findAllById(productIds);
+
+        if (products.size() != productIds.size()) {
+            LOGGER.error(
+                    "Mismatch between provided product IDs and found products. Provided IDs: {}" +
+                    ", Found Products: {}",
+                    productIds.size(), products.size());
+            throw new ResourceNotFoundException("One or more product IDs do not match any existing products.");
+        }
+
+        for (Product product : products) {
+            LOGGER.debug("Associating product with ID: {} to voucher with ID: {}", product.getId(), voucherId);
+            product.setVoucherCode(voucher);
+        }
+
+        productRepo.saveAll(products);
+        LOGGER.info("Successfully added {} products to voucher with ID: {}", products.size(), voucherId);
+    }
+
+
     private void checkIfVoucherExistsById(Long id) {
         LOGGER.debug("Checking if voucher exists with ID: {}", id);
-        if (!voucherRepo.findById(id).isPresent()) {
+        if (voucherRepo.findById(id).isEmpty()) {
             LOGGER.error("Voucher not found with ID: {}", id);
             throw new ResourceNotFoundException("Voucher not found with id: " + id);
         }
