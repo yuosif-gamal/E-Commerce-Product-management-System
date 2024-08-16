@@ -1,302 +1,145 @@
-2024-08-12T12:53:43.643-07:00  INFO 10412 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 19.0.2 with PID 10412 (C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System\target\classes started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T12:53:43.647-07:00  INFO 10412 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T12:53:45.310-07:00  INFO 10412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T12:53:45.422-07:00  INFO 10412 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 101 ms. Found 7 JPA repository interfaces.
-2024-08-12T12:53:46.227-07:00  INFO 10412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-08-12T12:53:46.247-07:00  INFO 10412 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-08-12T12:53:46.248-07:00  INFO 10412 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
-2024-08-12T12:53:46.346-07:00  INFO 10412 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-08-12T12:53:46.347-07:00  INFO 10412 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2613 ms
-2024-08-12T12:53:46.585-07:00  INFO 10412 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T12:53:46.676-07:00  INFO 10412 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T12:53:46.729-07:00  INFO 10412 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T12:53:47.192-07:00  INFO 10412 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T12:53:47.233-07:00  INFO 10412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-08-12T12:53:47.711-07:00  INFO 10412 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@556aed22
-2024-08-12T12:53:47.713-07:00  INFO 10412 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-08-12T12:53:49.437-07:00  INFO 10412 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T12:53:49.616-07:00  INFO 10412 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T12:53:50.184-07:00  INFO 10412 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T12:53:50.867-07:00  WARN 10412 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-08-12T12:53:50.900-07:00  INFO 10412 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
-2024-08-12T12:53:51.804-07:00  INFO 10412 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-08-12T12:53:51.818-07:00  INFO 10412 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 8.933 seconds (process running for 10.767)
-2024-08-12T12:54:06.075-07:00  INFO 10412 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-08-12T12:54:06.075-07:00  INFO 10412 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-08-12T12:54:06.080-07:00  INFO 10412 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
-2024-08-12T12:54:06.965-07:00  INFO 10412 --- [http-nio-8080-exec-2] c.e.E.controller.CategoryController      : Received request to get all main categories
-2024-08-12T12:54:06.976-07:00  INFO 10412 --- [http-nio-8080-exec-2] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
-2024-08-12T12:54:06.994-07:00  INFO 10412 --- [http-nio-8080-exec-2] c.e.E.service.CategoryServiceImpl        : Successfully fetched 1 main categories.
-2024-08-12T12:54:06.996-07:00  INFO 10412 --- [http-nio-8080-exec-2] c.e.E.controller.CategoryController      : Returning 1 main categories
-2024-08-12T12:54:25.373-07:00  INFO 10412 --- [http-nio-8080-exec-3] c.e.E.controller.CategoryController      : Received request to get all main categories
-2024-08-12T12:54:25.375-07:00  INFO 10412 --- [http-nio-8080-exec-3] c.e.E.controller.CategoryController      : Returning 1 main categories
-2024-08-12T12:54:37.657-07:00  INFO 10412 --- [http-nio-8080-exec-4] c.e.E.controller.CategoryController      : Received request to get all main categories
-2024-08-12T12:54:37.657-07:00  INFO 10412 --- [http-nio-8080-exec-4] c.e.E.controller.CategoryController      : Returning 1 main categories
-2024-08-12T12:54:46.833-07:00  INFO 10412 --- [http-nio-8080-exec-5] c.e.E.controller.CategoryController      : Received request to get all categories
-2024-08-12T12:54:46.834-07:00  INFO 10412 --- [http-nio-8080-exec-5] c.e.E.service.CategoryServiceImpl        : Fetching all categories from the database.
-2024-08-12T12:54:46.867-07:00  INFO 10412 --- [http-nio-8080-exec-5] c.e.E.service.CategoryServiceImpl        : Successfully fetched 1 categories.
-2024-08-12T12:54:46.868-07:00  INFO 10412 --- [http-nio-8080-exec-5] c.e.E.controller.CategoryController      : Returning 1 categories
-2024-08-12T15:37:44.753-07:00  WARN 10412 --- [http-nio-8080-exec-7] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [286] milliseconds.
-2024-08-12T15:48:03.028-07:00  INFO 10412 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:48:03.078-07:00  INFO 10412 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-08-12T15:48:03.123-07:00  INFO 10412 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-08-12T15:48:42.935-07:00  INFO 164 --- [main] c.e.E.ProductTestApiApplicationTests     : Starting ProductTestApiApplicationTests using Java 21.0.1 with PID 164 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:48:42.938-07:00  INFO 164 --- [main] c.e.E.ProductTestApiApplicationTests     : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:48:44.818-07:00  INFO 164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:48:44.994-07:00  INFO 164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 158 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:48:46.078-07:00  INFO 164 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:48:46.274-07:00  INFO 164 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:48:46.355-07:00  INFO 164 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:48:47.061-07:00  INFO 164 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:48:47.119-07:00  INFO 164 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-08-12T15:48:47.788-07:00  INFO 164 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2047adea
-2024-08-12T15:48:47.792-07:00  INFO 164 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-08-12T15:48:49.840-07:00  INFO 164 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:48:50.058-07:00  INFO 164 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:48:51.110-07:00  INFO 164 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:48:52.414-07:00  WARN 164 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-08-12T15:48:52.467-07:00  INFO 164 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
-2024-08-12T15:48:53.931-07:00  INFO 164 --- [main] c.e.E.ProductTestApiApplicationTests     : Started ProductTestApiApplicationTests in 11.512 seconds (process running for 13.567)
-2024-08-12T15:48:55.204-07:00  INFO 164 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.Ecommerce.repository.CategoryRepositoryTests]: CategoryRepositoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-08-12T15:48:55.282-07:00  INFO 164 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.Ecommerce.EcommerceManagementApiApplication for test class com.example.Ecommerce.repository.CategoryRepositoryTests
-2024-08-12T15:48:55.373-07:00  INFO 164 --- [main] c.e.E.r.CategoryRepositoryTests          : Starting CategoryRepositoryTests using Java 21.0.1 with PID 164 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:48:55.374-07:00  INFO 164 --- [main] c.e.E.r.CategoryRepositoryTests          : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:48:55.601-07:00  INFO 164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:48:55.650-07:00  INFO 164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:48:55.675-07:00  INFO 164 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:48:55.733-07:00  INFO 164 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:99ec564d-4059-4654-90b7-8ae58a003256;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:48:56.189-07:00  INFO 164 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:48:56.195-07:00  INFO 164 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:48:56.212-07:00  INFO 164 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:48:56.556-07:00  INFO 164 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:48:56.659-07:00  INFO 164 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:48:56.954-07:00  INFO 164 --- [main] c.e.E.r.CategoryRepositoryTests          : Started CategoryRepositoryTests in 1.651 seconds (process running for 16.59)
-2024-08-12T15:48:57.162-07:00  INFO 164 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.Ecommerce.repository.ProductRepositoryTests]: ProductRepositoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-08-12T15:48:57.187-07:00  INFO 164 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.Ecommerce.EcommerceManagementApiApplication for test class com.example.Ecommerce.repository.ProductRepositoryTests
-2024-08-12T15:48:57.263-07:00  INFO 164 --- [main] c.e.E.repository.ProductRepositoryTests  : Starting ProductRepositoryTests using Java 21.0.1 with PID 164 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:48:57.264-07:00  INFO 164 --- [main] c.e.E.repository.ProductRepositoryTests  : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:48:57.473-07:00  INFO 164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:48:57.521-07:00  INFO 164 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:48:57.546-07:00  INFO 164 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:48:57.568-07:00  INFO 164 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:8a4e8878-0b34-4829-86d6-0cdfe2b9de1e;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:48:57.603-07:00  INFO 164 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:48:57.609-07:00  INFO 164 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:48:57.623-07:00  INFO 164 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:48:57.864-07:00  INFO 164 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:48:57.898-07:00  INFO 164 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:48:58.095-07:00  INFO 164 --- [main] c.e.E.repository.ProductRepositoryTests  : Started ProductRepositoryTests in 0.904 seconds (process running for 17.732)
-2024-08-12T15:48:58.272-07:00  INFO 164 --- [main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.Ecommerce.repository.VoucherRepositoryTests]: VoucherRepositoryTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-08-12T15:48:58.298-07:00  INFO 164 --- [main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.Ecommerce.EcommerceManagementApiApplication for test class com.example.Ecommerce.repository.VoucherRepositoryTests
-2024-08-12T15:48:59.109-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching children categories for category ID: 1
-2024-08-12T15:48:59.121-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 child categories for parent ID: 1
-2024-08-12T15:48:59.173-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
-2024-08-12T15:48:59.175-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 main categories.
-2024-08-12T15:48:59.176-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
-2024-08-12T15:48:59.177-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 main categories.
-2024-08-12T15:48:59.191-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Deleting category with ID: 1
-2024-08-12T15:48:59.192-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Category with ID: 1 deleted successfully.
-2024-08-12T15:48:59.206-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all categories from the database.
-2024-08-12T15:48:59.207-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 0 categories.
-2024-08-12T15:48:59.218-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
-2024-08-12T15:48:59.219-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 0 main categories.
-2024-08-12T15:48:59.232-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Creating new category: com.example.Ecommerce.entity.Category@599bda7e
-2024-08-12T15:48:59.233-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Category created with ID: null
-2024-08-12T15:48:59.243-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching category with ID: 1
-2024-08-12T15:48:59.244-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Category found and converted to DTO: com.example.Ecommerce.dto.CategoryDto@1dbecb0a
-2024-08-12T15:48:59.257-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching category with ID: 1
-2024-08-12T15:48:59.258-07:00 ERROR 164 --- [main] c.e.E.service.CategoryServiceImpl        : Category not found with ID: 1
-2024-08-12T15:48:59.269-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching children categories for category ID: 1
-2024-08-12T15:48:59.271-07:00 ERROR 164 --- [main] c.e.E.service.CategoryServiceImpl        : Category not found with ID: 1
-2024-08-12T15:48:59.285-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all categories from the database.
-2024-08-12T15:48:59.286-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 categories.
-2024-08-12T15:48:59.295-07:00  INFO 164 --- [main] c.e.E.service.CategoryServiceImpl        : Deleting category with ID: 1
-2024-08-12T15:48:59.296-07:00 ERROR 164 --- [main] c.e.E.service.CategoryServiceImpl        : Category not found with ID: 1
-2024-08-12T15:48:59.565-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Fetching product with ID: 1
-2024-08-12T15:48:59.580-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Deleting product with ID: 1
-2024-08-12T15:48:59.589-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Fetching products for category ID: 1
-2024-08-12T15:48:59.593-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products for category ID: 1
-2024-08-12T15:48:59.603-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Updating product with ID: 1
-2024-08-12T15:48:59.604-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Product updated successfully: com.example.Ecommerce.entity.Product@1201d134
-2024-08-12T15:48:59.613-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Creating new product: com.example.Ecommerce.entity.Product@29dee1de
-2024-08-12T15:48:59.614-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Product created with ID: null
-2024-08-12T15:48:59.624-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Updating product with ID: 1
-2024-08-12T15:48:59.634-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Fetching all products from the database.
-2024-08-12T15:48:59.635-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Successfully fetched 2 products.
-2024-08-12T15:48:59.643-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Fetching product with ID: 1
-2024-08-12T15:48:59.644-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Product found and converted to DTO: com.example.Ecommerce.dto.ProductDto@4e33a209
-2024-08-12T15:48:59.652-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Deleting product with ID: 1
-2024-08-12T15:48:59.653-07:00  INFO 164 --- [main] c.e.E.service.ProductServiceImpl         : Product with ID: 1 deleted successfully.
-2024-08-12T15:48:59.829-07:00  INFO 164 --- [main] c.e.E.service.VoucherServiceImpl         : Finding voucher with code: code
-2024-08-12T15:48:59.830-07:00  INFO 164 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher found: com.example.Ecommerce.entity.Voucher@629eeeec
-2024-08-12T15:48:59.837-07:00  INFO 164 --- [main] c.e.E.service.VoucherServiceImpl         : Creating voucher with code: code
-2024-08-12T15:48:59.838-07:00  INFO 164 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher created successfully: com.example.Ecommerce.entity.Voucher@1b821a86
-2024-08-12T15:48:59.846-07:00  INFO 164 --- [main] c.e.E.service.VoucherServiceImpl         : Creating voucher with code: code
-2024-08-12T15:48:59.846-07:00 ERROR 164 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher has expired. Expire date: Tue Feb 01 00:00:00 PST 2011
-2024-08-12T15:48:59.860-07:00  INFO 164 --- [main] c.e.E.service.VoucherServiceImpl         : Creating voucher with code: code
-2024-08-12T15:48:59.861-07:00 ERROR 164 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher with code already exists: code
-2024-08-12T15:48:59.869-07:00  INFO 164 --- [main] c.e.E.service.VoucherServiceImpl         : Finding voucher with code: code
-2024-08-12T15:48:59.869-07:00 ERROR 164 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher not found with code: code
-2024-08-12T15:48:59.913-07:00  INFO 164 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:48:59.917-07:00  INFO 164 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-08-12T15:48:59.943-07:00  INFO 164 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-08-12T15:48:59.948-07:00  INFO 164 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:48:59.952-07:00  INFO 164 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:50:09.959-07:00  INFO 12660 --- [main] c.e.E.ProductTestApiApplicationTests     : Starting ProductTestApiApplicationTests using Java 21.0.1 with PID 12660 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:50:09.962-07:00  INFO 12660 --- [main] c.e.E.ProductTestApiApplicationTests     : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:50:11.884-07:00  INFO 12660 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:50:12.039-07:00  INFO 12660 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:50:13.150-07:00  INFO 12660 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:50:13.269-07:00  INFO 12660 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:50:13.363-07:00  INFO 12660 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:50:14.012-07:00  INFO 12660 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:50:14.065-07:00  INFO 12660 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-08-12T15:50:14.742-07:00  INFO 12660 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@44485db
-2024-08-12T15:50:14.746-07:00  INFO 12660 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-08-12T15:50:16.799-07:00  INFO 12660 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:50:16.983-07:00  INFO 12660 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:50:17.809-07:00  INFO 12660 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:50:19.070-07:00  WARN 12660 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-08-12T15:50:19.115-07:00  INFO 12660 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
-2024-08-12T15:50:20.561-07:00  INFO 12660 --- [main] c.e.E.ProductTestApiApplicationTests     : Started ProductTestApiApplicationTests in 11.122 seconds (process running for 13.173)
-2024-08-12T15:50:22.261-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching children categories for category ID: 1
-2024-08-12T15:50:22.275-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 child categories for parent ID: 1
-2024-08-12T15:50:22.323-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
-2024-08-12T15:50:22.324-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 main categories.
-2024-08-12T15:50:22.325-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
-2024-08-12T15:50:22.326-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 main categories.
-2024-08-12T15:50:22.339-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Deleting category with ID: 1
-2024-08-12T15:50:22.341-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Category with ID: 1 deleted successfully.
-2024-08-12T15:50:22.352-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all categories from the database.
-2024-08-12T15:50:22.353-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 0 categories.
-2024-08-12T15:50:22.364-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
-2024-08-12T15:50:22.364-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 0 main categories.
-2024-08-12T15:50:22.374-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Creating new category: com.example.Ecommerce.entity.Category@6a6580d6
-2024-08-12T15:50:22.375-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Category created with ID: null
-2024-08-12T15:50:22.386-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching category with ID: 1
-2024-08-12T15:50:22.387-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Category found and converted to DTO: com.example.Ecommerce.dto.CategoryDto@c2d0e93
-2024-08-12T15:50:22.402-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching category with ID: 1
-2024-08-12T15:50:22.403-07:00 ERROR 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Category not found with ID: 1
-2024-08-12T15:50:22.413-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching children categories for category ID: 1
-2024-08-12T15:50:22.414-07:00 ERROR 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Category not found with ID: 1
-2024-08-12T15:50:22.423-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Fetching all categories from the database.
-2024-08-12T15:50:22.424-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Successfully fetched 2 categories.
-2024-08-12T15:50:22.436-07:00  INFO 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Deleting category with ID: 1
-2024-08-12T15:50:22.437-07:00 ERROR 12660 --- [main] c.e.E.service.CategoryServiceImpl        : Category not found with ID: 1
-2024-08-12T15:50:22.695-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Fetching product with ID: 1
-2024-08-12T15:50:22.716-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Deleting product with ID: 1
-2024-08-12T15:50:22.725-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Fetching products for category ID: 1
-2024-08-12T15:50:22.729-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products for category ID: 1
-2024-08-12T15:50:22.738-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Updating product with ID: 1
-2024-08-12T15:50:22.739-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Product updated successfully: com.example.Ecommerce.entity.Product@649573d0
-2024-08-12T15:50:22.749-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Creating new product: com.example.Ecommerce.entity.Product@27e037c1
-2024-08-12T15:50:22.750-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Product created with ID: null
-2024-08-12T15:50:22.758-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Updating product with ID: 1
-2024-08-12T15:50:22.768-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Fetching all products from the database.
-2024-08-12T15:50:22.769-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Successfully fetched 2 products.
-2024-08-12T15:50:22.777-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Fetching product with ID: 1
-2024-08-12T15:50:22.778-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Product found and converted to DTO: com.example.Ecommerce.dto.ProductDto@76b96594
-2024-08-12T15:50:22.786-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Deleting product with ID: 1
-2024-08-12T15:50:22.787-07:00  INFO 12660 --- [main] c.e.E.service.ProductServiceImpl         : Product with ID: 1 deleted successfully.
-2024-08-12T15:50:22.946-07:00  INFO 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Finding voucher with code: code
-2024-08-12T15:50:22.947-07:00  INFO 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher found: com.example.Ecommerce.entity.Voucher@72c5902b
-2024-08-12T15:50:22.954-07:00  INFO 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Creating voucher with code: code
-2024-08-12T15:50:22.955-07:00  INFO 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher created successfully: com.example.Ecommerce.entity.Voucher@6ab86832
-2024-08-12T15:50:22.962-07:00  INFO 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Creating voucher with code: code
-2024-08-12T15:50:22.963-07:00 ERROR 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher has expired. Expire date: Tue Feb 01 00:00:00 PST 2011
-2024-08-12T15:50:22.969-07:00  INFO 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Creating voucher with code: code
-2024-08-12T15:50:22.970-07:00 ERROR 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher with code already exists: code
-2024-08-12T15:50:22.978-07:00  INFO 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Finding voucher with code: code
-2024-08-12T15:50:22.979-07:00 ERROR 12660 --- [main] c.e.E.service.VoucherServiceImpl         : Voucher not found with code: code
-2024-08-12T15:50:23.026-07:00  INFO 12660 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:50:23.030-07:00  INFO 12660 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-08-12T15:50:23.052-07:00  INFO 12660 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-08-12T15:51:06.416-07:00  INFO 5916 --- [main] c.e.E.r.CategoryRepositoryTests          : Starting CategoryRepositoryTests using Java 19.0.2 with PID 5916 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:51:06.419-07:00  INFO 5916 --- [main] c.e.E.r.CategoryRepositoryTests          : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:51:08.149-07:00  INFO 5916 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:51:08.360-07:00  INFO 5916 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 193 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:51:08.488-07:00  INFO 5916 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:51:09.085-07:00  INFO 5916 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:e8aa5358-d948-41cb-af91-2eba0fc364f3;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:51:09.734-07:00  INFO 5916 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:51:09.892-07:00  INFO 5916 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:51:09.981-07:00  INFO 5916 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:51:10.659-07:00  INFO 5916 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:51:12.846-07:00  INFO 5916 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:51:13.007-07:00  INFO 5916 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:51:14.088-07:00  INFO 5916 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:51:15.087-07:00  INFO 5916 --- [main] c.e.E.r.CategoryRepositoryTests          : Started CategoryRepositoryTests in 9.696 seconds (process running for 12.171)
-2024-08-12T15:51:16.492-07:00  INFO 5916 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:55:44.868-07:00  INFO 4484 --- [main] c.e.E.r.CategoryRepositoryTests          : Starting CategoryRepositoryTests using Java 19.0.2 with PID 4484 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:55:44.871-07:00  INFO 4484 --- [main] c.e.E.r.CategoryRepositoryTests          : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:55:45.869-07:00  INFO 4484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:55:46.026-07:00  INFO 4484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 144 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:55:46.129-07:00  INFO 4484 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:55:46.674-07:00  INFO 4484 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:e2bb59a7-05a4-4070-94d0-d050ce78f7d0;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:55:47.331-07:00  INFO 4484 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:55:47.492-07:00  INFO 4484 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:55:47.584-07:00  INFO 4484 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:55:48.355-07:00  INFO 4484 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:55:50.689-07:00  INFO 4484 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:55:50.813-07:00  INFO 4484 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:55:51.718-07:00  INFO 4484 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:55:52.704-07:00  INFO 4484 --- [main] c.e.E.r.CategoryRepositoryTests          : Started CategoryRepositoryTests in 8.629 seconds (process running for 10.636)
-2024-08-12T15:55:54.014-07:00  INFO 4484 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:56:08.527-07:00  INFO 7720 --- [main] c.e.E.repository.ProductRepositoryTests  : Starting ProductRepositoryTests using Java 19.0.2 with PID 7720 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:56:08.530-07:00  INFO 7720 --- [main] c.e.E.repository.ProductRepositoryTests  : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:56:09.462-07:00  INFO 7720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:56:09.616-07:00  INFO 7720 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:56:09.754-07:00  INFO 7720 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:56:10.257-07:00  INFO 7720 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:5e0b6915-e37d-485e-8983-d0a25c037b44;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:56:10.813-07:00  INFO 7720 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:56:10.948-07:00  INFO 7720 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:56:11.026-07:00  INFO 7720 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:56:11.615-07:00  INFO 7720 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:56:13.845-07:00  INFO 7720 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:56:13.995-07:00  INFO 7720 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:56:14.938-07:00  INFO 7720 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:56:15.939-07:00  INFO 7720 --- [main] c.e.E.repository.ProductRepositoryTests  : Started ProductRepositoryTests in 8.346 seconds (process running for 10.54)
-2024-08-12T15:56:17.117-07:00  INFO 7720 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:56:37.728-07:00  INFO 16440 --- [main] c.e.E.repository.ProductRepositoryTests  : Starting ProductRepositoryTests using Java 19.0.2 with PID 16440 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:56:37.732-07:00  INFO 16440 --- [main] c.e.E.repository.ProductRepositoryTests  : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:56:38.768-07:00  INFO 16440 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:56:38.978-07:00  INFO 16440 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 178 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:56:39.129-07:00  INFO 16440 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:56:39.760-07:00  INFO 16440 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:aa2d69d1-30e9-49ab-aef2-f109cf1cfd53;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:56:40.512-07:00  INFO 16440 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:56:40.796-07:00  INFO 16440 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:56:40.906-07:00  INFO 16440 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:56:41.830-07:00  INFO 16440 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:56:44.124-07:00  INFO 16440 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:56:44.249-07:00  INFO 16440 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:56:45.079-07:00  INFO 16440 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:56:45.971-07:00  INFO 16440 --- [main] c.e.E.repository.ProductRepositoryTests  : Started ProductRepositoryTests in 9.169 seconds (process running for 11.545)
-2024-08-12T15:56:47.204-07:00  INFO 16440 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:57:13.812-07:00  INFO 11712 --- [main] c.e.E.repository.VoucherRepositoryTests  : Starting VoucherRepositoryTests using Java 19.0.2 with PID 11712 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:57:13.815-07:00  INFO 11712 --- [main] c.e.E.repository.VoucherRepositoryTests  : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:57:14.977-07:00  INFO 11712 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:57:15.186-07:00  INFO 11712 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 190 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:57:15.316-07:00  INFO 11712 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:57:15.853-07:00  INFO 11712 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:5ed7e840-92f2-41ea-a374-0a413fb9a24a;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:57:16.388-07:00  INFO 11712 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:57:16.506-07:00  INFO 11712 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:57:16.576-07:00  INFO 11712 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:57:17.165-07:00  INFO 11712 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:57:19.361-07:00  INFO 11712 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:57:19.508-07:00  INFO 11712 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:57:20.456-07:00  INFO 11712 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:57:21.466-07:00  INFO 11712 --- [main] c.e.E.repository.VoucherRepositoryTests  : Started VoucherRepositoryTests in 8.499 seconds (process running for 10.681)
-2024-08-12T15:57:22.900-07:00  INFO 11712 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:57:41.220-07:00  INFO 14904 --- [main] c.e.E.repository.ProductRepositoryTests  : Starting ProductRepositoryTests using Java 19.0.2 with PID 14904 (started by DELL in C:\Users\DELL\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-12T15:57:41.227-07:00  INFO 14904 --- [main] c.e.E.repository.ProductRepositoryTests  : No active profile set, falling back to 1 default profile: "default"
-2024-08-12T15:57:42.195-07:00  INFO 14904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-12T15:57:42.350-07:00  INFO 14904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142 ms. Found 7 JPA repository interfaces.
-2024-08-12T15:57:42.479-07:00  INFO 14904 --- [main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-08-12T15:57:42.948-07:00  INFO 14904 --- [main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:f852d2b9-e560-49d9-afc9-c4e79103f11a;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-08-12T15:57:43.499-07:00  INFO 14904 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-12T15:57:43.604-07:00  INFO 14904 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-12T15:57:43.674-07:00  INFO 14904 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-12T15:57:44.227-07:00  INFO 14904 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-12T15:57:46.188-07:00  INFO 14904 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-12T15:57:46.311-07:00  INFO 14904 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-12T15:57:47.195-07:00  INFO 14904 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-12T15:57:48.102-07:00  INFO 14904 --- [main] c.e.E.repository.ProductRepositoryTests  : Started ProductRepositoryTests in 7.759 seconds (process running for 9.792)
-2024-08-12T15:57:49.401-07:00  INFO 14904 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T18:22:41.698+03:00  INFO 11376 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 11376 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-16T18:22:41.711+03:00  INFO 11376 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-16T18:22:42.723+03:00  INFO 11376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-16T18:22:42.799+03:00  INFO 11376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 7 JPA repository interfaces.
+2024-08-16T18:22:43.388+03:00  INFO 11376 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-16T18:22:43.401+03:00  INFO 11376 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-16T18:22:43.401+03:00  INFO 11376 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-16T18:22:43.463+03:00  INFO 11376 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-16T18:22:43.464+03:00  INFO 11376 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1689 ms
+2024-08-16T18:22:43.666+03:00  INFO 11376 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-16T18:22:43.742+03:00  INFO 11376 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-16T18:22:43.780+03:00  INFO 11376 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-16T18:22:44.106+03:00  INFO 11376 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-16T18:22:44.138+03:00  INFO 11376 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-16T18:22:44.544+03:00  INFO 11376 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1eb9d69a
+2024-08-16T18:22:44.546+03:00  INFO 11376 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-16T18:22:46.367+03:00  INFO 11376 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-16T18:22:46.616+03:00  INFO 11376 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T18:22:47.124+03:00  INFO 11376 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-16T18:22:47.735+03:00  WARN 11376 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-16T18:22:47.780+03:00  INFO 11376 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-16T18:22:48.542+03:00  INFO 11376 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-16T18:22:48.549+03:00  INFO 11376 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 7.433 seconds (process running for 8.894)
+2024-08-16T18:24:22.392+03:00  INFO 11376 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-16T18:24:22.392+03:00  INFO 11376 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-16T18:24:22.395+03:00  INFO 11376 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-08-16T18:24:36.200+03:00  INFO 11376 --- [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 397 ms
+2024-08-16T18:25:05.158+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:25:05.164+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:26:04.397+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:26:04.398+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:26:17.622+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:26:17.623+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:26:43.001+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:26:43.002+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:27:01.520+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:27:01.521+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:27:16.500+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:27:16.501+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:27:32.478+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:27:32.479+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:27:43.633+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:27:43.634+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:32:55.692+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 2
+2024-08-16T18:32:55.693+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 2
+2024-08-16T18:32:55.694+03:00 ERROR 11376 --- [http-nio-8080-exec-9] c.e.E.service.VoucherServiceImpl         : Voucher not found with ID: 2
+2024-08-16T18:33:02.979+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:33:02.980+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:33:21.416+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.controller.UserController  : Received request to retrieve all users
+2024-08-16T18:33:21.416+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.service.UserServiceImpl    : Retrieving all users
+2024-08-16T18:33:21.425+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.service.UserServiceImpl    : Total users retrieved: 1
+2024-08-16T18:33:21.425+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.controller.UserController  : Returning list of 1 users
+2024-08-16T18:44:04.241+03:00  INFO 11376 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T18:44:04.245+03:00  INFO 11376 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-16T18:44:04.252+03:00  INFO 11376 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-16T18:44:09.786+03:00  INFO 7408 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 7408 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-16T18:44:09.790+03:00  INFO 7408 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-16T18:44:10.826+03:00  INFO 7408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-16T18:44:10.906+03:00  INFO 7408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 7 JPA repository interfaces.
+2024-08-16T18:44:11.487+03:00  INFO 7408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-16T18:44:11.500+03:00  INFO 7408 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-16T18:44:11.500+03:00  INFO 7408 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-16T18:44:11.568+03:00  INFO 7408 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-16T18:44:11.569+03:00  INFO 7408 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1690 ms
+2024-08-16T18:44:11.743+03:00  INFO 7408 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-16T18:44:11.821+03:00  INFO 7408 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-16T18:44:11.871+03:00  INFO 7408 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-16T18:44:12.211+03:00  INFO 7408 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-16T18:44:12.242+03:00  INFO 7408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-16T18:44:12.627+03:00  INFO 7408 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@61d011e
+2024-08-16T18:44:12.630+03:00  INFO 7408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-16T18:44:13.839+03:00  INFO 7408 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-16T18:44:13.944+03:00  INFO 7408 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T18:44:14.320+03:00  INFO 7408 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-16T18:44:14.908+03:00  WARN 7408 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-16T18:44:14.931+03:00  INFO 7408 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-16T18:44:15.509+03:00  INFO 7408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-16T18:44:15.516+03:00  INFO 7408 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 6.337 seconds (process running for 7.105)
+2024-08-16T18:44:15.595+03:00  INFO 7408 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-16T18:44:15.595+03:00  INFO 7408 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-16T18:44:15.597+03:00  INFO 7408 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-08-16T18:44:18.001+03:00  INFO 7408 --- [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1076 ms
+2024-08-16T18:44:35.471+03:00  INFO 7408 --- [http-nio-8080-exec-4] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T18:44:35.477+03:00  INFO 7408 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T18:44:35.493+03:00  INFO 7408 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Fetching products with IDs: [0]
+2024-08-16T18:44:35.512+03:00 ERROR 7408 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Mismatch between provided product IDs and found products. Provided IDs: 1, Found Products: 0
+2024-08-16T18:47:40.281+03:00  INFO 7408 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T18:47:40.283+03:00  INFO 7408 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-16T18:47:40.292+03:00  INFO 7408 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-16T19:17:26.214+03:00  INFO 12936 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 12936 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-16T19:17:26.218+03:00  INFO 12936 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-16T19:17:27.744+03:00  INFO 12936 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-16T19:17:27.817+03:00  INFO 12936 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 7 JPA repository interfaces.
+2024-08-16T19:17:28.372+03:00  INFO 12936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-16T19:17:28.383+03:00  INFO 12936 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-16T19:17:28.383+03:00  INFO 12936 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-16T19:17:28.444+03:00  INFO 12936 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-16T19:17:28.444+03:00  INFO 12936 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2154 ms
+2024-08-16T19:17:28.613+03:00  INFO 12936 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-16T19:17:28.694+03:00  INFO 12936 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-16T19:17:28.733+03:00  INFO 12936 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-16T19:17:29.061+03:00  INFO 12936 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-16T19:17:29.089+03:00  INFO 12936 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-16T19:17:29.547+03:00  INFO 12936 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78bd02c8
+2024-08-16T19:17:29.548+03:00  INFO 12936 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-16T19:17:30.713+03:00  INFO 12936 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-16T19:17:30.818+03:00  INFO 12936 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-16T19:17:31.250+03:00  INFO 12936 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-16T19:17:31.861+03:00  WARN 12936 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-16T19:17:31.884+03:00  INFO 12936 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-16T19:17:32.514+03:00  INFO 12936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-16T19:17:32.522+03:00  INFO 12936 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 6.892 seconds (process running for 8.091)
+2024-08-16T19:17:32.821+03:00  INFO 12936 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-16T19:17:32.821+03:00  INFO 12936 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-16T19:17:32.823+03:00  INFO 12936 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-08-16T19:18:25.683+03:00  INFO 12936 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 525 ms
+2024-08-16T19:20:33.406+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.controller.UserController  : Received request to register new user with details: com.example.Ecommerce.dto.UserDto@6504bad3
+2024-08-16T19:20:33.406+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.UserServiceImpl    : Registering user with email: nono@gmail.com
+2024-08-16T19:20:33.495+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.RoleServiceImpl    : Searching for role by name: USER
+2024-08-16T19:20:33.498+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.RoleServiceImpl    : Role found: com.example.Ecommerce.entity.Role@53b1a9c0
+2024-08-16T19:20:33.596+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.UserServiceImpl    : User registered successfully: com.example.Ecommerce.entity.User@2cefb6bf
+2024-08-16T19:20:33.596+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.controller.UserController  : User registered successfully with details: com.example.Ecommerce.dto.UserDto@6504bad3
+2024-08-16T19:20:57.032+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.controller.UserController  : Received request to retrieve all users
+2024-08-16T19:20:57.032+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.service.UserServiceImpl    : Retrieving all users
+2024-08-16T19:20:57.046+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.service.UserServiceImpl    : Total users retrieved: 2
+2024-08-16T19:20:57.047+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.controller.UserController  : Returning list of 2 users
+2024-08-16T19:25:04.062+03:00  INFO 12936 --- [http-nio-8080-exec-5] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T19:25:04.062+03:00  INFO 12936 --- [http-nio-8080-exec-5] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T19:25:04.074+03:00  INFO 12936 --- [http-nio-8080-exec-5] c.e.E.service.VoucherServiceImpl         : Fetching products with IDs: [7, 8, 9]
+2024-08-16T19:25:04.083+03:00 ERROR 12936 --- [http-nio-8080-exec-5] c.e.E.service.VoucherServiceImpl         : Mismatch between provided product IDs and found products. Provided IDs: 3, Found Products: 0
+2024-08-16T19:25:19.822+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
+2024-08-16T19:25:19.823+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
+2024-08-16T19:25:19.825+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Fetching products with IDs: [1, 2]
+2024-08-16T19:25:19.834+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Successfully added 2 products to voucher with ID: 1
+2024-08-16T19:26:33.025+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.controller.ProductController       : Received request to retrieve all products
+2024-08-16T19:26:33.029+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.ProductServiceImpl         : Fetching all products from the database.
+2024-08-16T19:26:33.037+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 1
+2024-08-16T19:26:33.038+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Discount applied. New price: 900.0
+2024-08-16T19:26:33.038+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 2
+2024-08-16T19:26:33.038+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Discount applied. New price: 9000.0
+2024-08-16T19:26:33.039+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.ProductServiceImpl         : Successfully fetched 2 products.
+2024-08-16T19:26:33.040+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.controller.ProductController       : Returning list of 2 products
+2024-08-16T19:30:45.488+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 2
+2024-08-16T19:30:45.489+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 2
+2024-08-16T19:30:45.490+03:00 ERROR 12936 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Voucher not found with ID: 2
