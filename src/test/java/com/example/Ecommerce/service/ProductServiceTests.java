@@ -53,7 +53,7 @@ public class ProductServiceTests {
         when(productRepo.findAll()).thenReturn(products);
 
         // Act
-        List<ProductDto> result = productService.getAllProducts();
+        List<ProductDto> result = productService.getAllProductsPagination(0,2);
 
         // Assert
         assertNotNull(result);
