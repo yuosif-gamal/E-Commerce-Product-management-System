@@ -1,145 +1,58 @@
-2024-08-16T18:22:41.698+03:00  INFO 11376 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 11376 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-16T18:22:41.711+03:00  INFO 11376 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-08-16T18:22:42.723+03:00  INFO 11376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-16T18:22:42.799+03:00  INFO 11376 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 7 JPA repository interfaces.
-2024-08-16T18:22:43.388+03:00  INFO 11376 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-08-16T18:22:43.401+03:00  INFO 11376 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-08-16T18:22:43.401+03:00  INFO 11376 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
-2024-08-16T18:22:43.463+03:00  INFO 11376 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-08-16T18:22:43.464+03:00  INFO 11376 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1689 ms
-2024-08-16T18:22:43.666+03:00  INFO 11376 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-16T18:22:43.742+03:00  INFO 11376 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-16T18:22:43.780+03:00  INFO 11376 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-16T18:22:44.106+03:00  INFO 11376 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-16T18:22:44.138+03:00  INFO 11376 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-08-16T18:22:44.544+03:00  INFO 11376 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1eb9d69a
-2024-08-16T18:22:44.546+03:00  INFO 11376 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-08-16T18:22:46.367+03:00  INFO 11376 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-16T18:22:46.616+03:00  INFO 11376 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-16T18:22:47.124+03:00  INFO 11376 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-16T18:22:47.735+03:00  WARN 11376 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-08-16T18:22:47.780+03:00  INFO 11376 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
-2024-08-16T18:22:48.542+03:00  INFO 11376 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-08-16T18:22:48.549+03:00  INFO 11376 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 7.433 seconds (process running for 8.894)
-2024-08-16T18:24:22.392+03:00  INFO 11376 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-08-16T18:24:22.392+03:00  INFO 11376 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-08-16T18:24:22.395+03:00  INFO 11376 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-08-16T18:24:36.200+03:00  INFO 11376 --- [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 397 ms
-2024-08-16T18:25:05.158+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:25:05.164+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:26:04.397+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:26:04.398+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:26:17.622+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:26:17.623+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:26:43.001+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:26:43.002+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:27:01.520+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:27:01.521+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:27:16.500+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:27:16.501+03:00  INFO 11376 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:27:32.478+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:27:32.479+03:00  INFO 11376 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:27:43.633+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:27:43.634+03:00  INFO 11376 --- [http-nio-8080-exec-6] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:32:55.692+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 2
-2024-08-16T18:32:55.693+03:00  INFO 11376 --- [http-nio-8080-exec-9] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 2
-2024-08-16T18:32:55.694+03:00 ERROR 11376 --- [http-nio-8080-exec-9] c.e.E.service.VoucherServiceImpl         : Voucher not found with ID: 2
-2024-08-16T18:33:02.979+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:33:02.980+03:00  INFO 11376 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:33:21.416+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.controller.UserController  : Received request to retrieve all users
-2024-08-16T18:33:21.416+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.service.UserServiceImpl    : Retrieving all users
-2024-08-16T18:33:21.425+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.service.UserServiceImpl    : Total users retrieved: 1
-2024-08-16T18:33:21.425+03:00  INFO 11376 --- [http-nio-8080-exec-3] c.e.Ecommerce.controller.UserController  : Returning list of 1 users
-2024-08-16T18:44:04.241+03:00  INFO 11376 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-16T18:44:04.245+03:00  INFO 11376 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-08-16T18:44:04.252+03:00  INFO 11376 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-08-16T18:44:09.786+03:00  INFO 7408 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 7408 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-16T18:44:09.790+03:00  INFO 7408 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-08-16T18:44:10.826+03:00  INFO 7408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-16T18:44:10.906+03:00  INFO 7408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 7 JPA repository interfaces.
-2024-08-16T18:44:11.487+03:00  INFO 7408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-08-16T18:44:11.500+03:00  INFO 7408 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-08-16T18:44:11.500+03:00  INFO 7408 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
-2024-08-16T18:44:11.568+03:00  INFO 7408 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-08-16T18:44:11.569+03:00  INFO 7408 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1690 ms
-2024-08-16T18:44:11.743+03:00  INFO 7408 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-16T18:44:11.821+03:00  INFO 7408 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-16T18:44:11.871+03:00  INFO 7408 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-16T18:44:12.211+03:00  INFO 7408 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-16T18:44:12.242+03:00  INFO 7408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-08-16T18:44:12.627+03:00  INFO 7408 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@61d011e
-2024-08-16T18:44:12.630+03:00  INFO 7408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-08-16T18:44:13.839+03:00  INFO 7408 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-16T18:44:13.944+03:00  INFO 7408 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-16T18:44:14.320+03:00  INFO 7408 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-16T18:44:14.908+03:00  WARN 7408 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-08-16T18:44:14.931+03:00  INFO 7408 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
-2024-08-16T18:44:15.509+03:00  INFO 7408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-08-16T18:44:15.516+03:00  INFO 7408 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 6.337 seconds (process running for 7.105)
-2024-08-16T18:44:15.595+03:00  INFO 7408 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-08-16T18:44:15.595+03:00  INFO 7408 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-08-16T18:44:15.597+03:00  INFO 7408 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-08-16T18:44:18.001+03:00  INFO 7408 --- [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1076 ms
-2024-08-16T18:44:35.471+03:00  INFO 7408 --- [http-nio-8080-exec-4] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T18:44:35.477+03:00  INFO 7408 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T18:44:35.493+03:00  INFO 7408 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Fetching products with IDs: [0]
-2024-08-16T18:44:35.512+03:00 ERROR 7408 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Mismatch between provided product IDs and found products. Provided IDs: 1, Found Products: 0
-2024-08-16T18:47:40.281+03:00  INFO 7408 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-08-16T18:47:40.283+03:00  INFO 7408 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2024-08-16T18:47:40.292+03:00  INFO 7408 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2024-08-16T19:17:26.214+03:00  INFO 12936 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 12936 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
-2024-08-16T19:17:26.218+03:00  INFO 12936 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
-2024-08-16T19:17:27.744+03:00  INFO 12936 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-16T19:17:27.817+03:00  INFO 12936 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 7 JPA repository interfaces.
-2024-08-16T19:17:28.372+03:00  INFO 12936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2024-08-16T19:17:28.383+03:00  INFO 12936 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2024-08-16T19:17:28.383+03:00  INFO 12936 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
-2024-08-16T19:17:28.444+03:00  INFO 12936 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2024-08-16T19:17:28.444+03:00  INFO 12936 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2154 ms
-2024-08-16T19:17:28.613+03:00  INFO 12936 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-16T19:17:28.694+03:00  INFO 12936 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-16T19:17:28.733+03:00  INFO 12936 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-08-16T19:17:29.061+03:00  INFO 12936 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-16T19:17:29.089+03:00  INFO 12936 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2024-08-16T19:17:29.547+03:00  INFO 12936 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78bd02c8
-2024-08-16T19:17:29.548+03:00  INFO 12936 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2024-08-16T19:17:30.713+03:00  INFO 12936 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-16T19:17:30.818+03:00  INFO 12936 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-16T19:17:31.250+03:00  INFO 12936 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-08-16T19:17:31.861+03:00  WARN 12936 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-08-16T19:17:31.884+03:00  INFO 12936 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
-2024-08-16T19:17:32.514+03:00  INFO 12936 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2024-08-16T19:17:32.522+03:00  INFO 12936 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 6.892 seconds (process running for 8.091)
-2024-08-16T19:17:32.821+03:00  INFO 12936 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-08-16T19:17:32.821+03:00  INFO 12936 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2024-08-16T19:17:32.823+03:00  INFO 12936 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2024-08-16T19:18:25.683+03:00  INFO 12936 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 525 ms
-2024-08-16T19:20:33.406+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.controller.UserController  : Received request to register new user with details: com.example.Ecommerce.dto.UserDto@6504bad3
-2024-08-16T19:20:33.406+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.UserServiceImpl    : Registering user with email: nono@gmail.com
-2024-08-16T19:20:33.495+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.RoleServiceImpl    : Searching for role by name: USER
-2024-08-16T19:20:33.498+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.RoleServiceImpl    : Role found: com.example.Ecommerce.entity.Role@53b1a9c0
-2024-08-16T19:20:33.596+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.service.UserServiceImpl    : User registered successfully: com.example.Ecommerce.entity.User@2cefb6bf
-2024-08-16T19:20:33.596+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.Ecommerce.controller.UserController  : User registered successfully with details: com.example.Ecommerce.dto.UserDto@6504bad3
-2024-08-16T19:20:57.032+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.controller.UserController  : Received request to retrieve all users
-2024-08-16T19:20:57.032+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.service.UserServiceImpl    : Retrieving all users
-2024-08-16T19:20:57.046+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.service.UserServiceImpl    : Total users retrieved: 2
-2024-08-16T19:20:57.047+03:00  INFO 12936 --- [http-nio-8080-exec-2] c.e.Ecommerce.controller.UserController  : Returning list of 2 users
-2024-08-16T19:25:04.062+03:00  INFO 12936 --- [http-nio-8080-exec-5] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T19:25:04.062+03:00  INFO 12936 --- [http-nio-8080-exec-5] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T19:25:04.074+03:00  INFO 12936 --- [http-nio-8080-exec-5] c.e.E.service.VoucherServiceImpl         : Fetching products with IDs: [7, 8, 9]
-2024-08-16T19:25:04.083+03:00 ERROR 12936 --- [http-nio-8080-exec-5] c.e.E.service.VoucherServiceImpl         : Mismatch between provided product IDs and found products. Provided IDs: 3, Found Products: 0
-2024-08-16T19:25:19.822+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 1
-2024-08-16T19:25:19.823+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 1
-2024-08-16T19:25:19.825+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Fetching products with IDs: [1, 2]
-2024-08-16T19:25:19.834+03:00  INFO 12936 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Successfully added 2 products to voucher with ID: 1
-2024-08-16T19:26:33.025+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.controller.ProductController       : Received request to retrieve all products
-2024-08-16T19:26:33.029+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.ProductServiceImpl         : Fetching all products from the database.
-2024-08-16T19:26:33.037+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 1
-2024-08-16T19:26:33.038+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Discount applied. New price: 900.0
-2024-08-16T19:26:33.038+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 2
-2024-08-16T19:26:33.038+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.VoucherServiceImpl         : Discount applied. New price: 9000.0
-2024-08-16T19:26:33.039+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.service.ProductServiceImpl         : Successfully fetched 2 products.
-2024-08-16T19:26:33.040+03:00  INFO 12936 --- [http-nio-8080-exec-8] c.e.E.controller.ProductController       : Returning list of 2 products
-2024-08-16T19:30:45.488+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.E.controller.VoucherController       : Received request to update a voucher to adding products with voucher ID 2
-2024-08-16T19:30:45.489+03:00  INFO 12936 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Adding products to voucher with ID: 2
-2024-08-16T19:30:45.490+03:00 ERROR 12936 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Voucher not found with ID: 2
+2024-08-18T00:01:08.191+03:00  INFO 13048 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-18T00:01:08.213+03:00  INFO 13048 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-18T00:01:08.223+03:00  INFO 13048 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-18T00:01:14.344+03:00  INFO 18192 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 18192 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-18T00:01:14.347+03:00  INFO 18192 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-18T00:01:15.408+03:00  INFO 18192 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-18T00:01:15.478+03:00  INFO 18192 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 62 ms. Found 7 JPA repository interfaces.
+2024-08-18T00:01:16.042+03:00  INFO 18192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-18T00:01:16.055+03:00  INFO 18192 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-18T00:01:16.055+03:00  INFO 18192 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-18T00:01:16.117+03:00  INFO 18192 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-18T00:01:16.118+03:00  INFO 18192 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1708 ms
+2024-08-18T00:01:16.271+03:00  INFO 18192 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-18T00:01:16.349+03:00  INFO 18192 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-18T00:01:16.386+03:00  INFO 18192 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-18T00:01:16.686+03:00  INFO 18192 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-18T00:01:16.714+03:00  INFO 18192 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-18T00:01:17.094+03:00  INFO 18192 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@212e39ee
+2024-08-18T00:01:17.096+03:00  INFO 18192 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-18T00:01:18.263+03:00  INFO 18192 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-18T00:01:18.368+03:00  INFO 18192 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-18T00:01:18.745+03:00  INFO 18192 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-18T00:01:19.313+03:00  WARN 18192 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-18T00:01:19.334+03:00  INFO 18192 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-18T00:01:19.919+03:00  INFO 18192 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-18T00:01:19.929+03:00  INFO 18192 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 6.043 seconds (process running for 6.755)
+2024-08-18T00:01:23.521+03:00  INFO 18192 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-18T00:01:23.521+03:00  INFO 18192 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-18T00:01:23.522+03:00  INFO 18192 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-08-18T00:01:24.885+03:00  INFO 18192 --- [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 422 ms
+2024-08-18T00:01:36.612+03:00  INFO 18192 --- [http-nio-8080-exec-6] c.e.E.service.ProductServiceImpl         : Fetching products with pagination - Page: 0, Size: 2
+2024-08-18T00:01:36.648+03:00  INFO 18192 --- [http-nio-8080-exec-6] c.e.E.service.ProductServiceImpl         : Successfully fetched 2 products on page 0.
+2024-08-18T00:09:37.234+03:00  INFO 18192 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-18T00:09:37.249+03:00  INFO 18192 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-18T00:09:37.265+03:00  INFO 18192 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-18T00:13:12.603+03:00  INFO 17488 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 17488 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-18T00:13:12.603+03:00  INFO 17488 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-18T00:13:13.412+03:00  INFO 17488 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-18T00:13:13.491+03:00  INFO 17488 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 7 JPA repository interfaces.
+2024-08-18T00:13:13.995+03:00  INFO 17488 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-18T00:13:14.011+03:00  INFO 17488 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-18T00:13:14.011+03:00  INFO 17488 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-18T00:13:14.073+03:00  INFO 17488 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-18T00:13:14.073+03:00  INFO 17488 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1417 ms
+2024-08-18T00:13:14.214+03:00  INFO 17488 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-18T00:13:14.276+03:00  INFO 17488 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-18T00:13:14.323+03:00  INFO 17488 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-18T00:13:14.573+03:00  INFO 17488 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-18T00:13:14.604+03:00  INFO 17488 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-18T00:13:14.886+03:00  INFO 17488 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2047adea
+2024-08-18T00:13:14.886+03:00  INFO 17488 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-18T00:13:15.918+03:00  INFO 17488 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-18T00:13:16.027+03:00  INFO 17488 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-18T00:13:16.386+03:00  INFO 17488 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-18T00:13:16.931+03:00  WARN 17488 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-18T00:13:16.946+03:00  INFO 17488 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-18T00:13:17.510+03:00  INFO 17488 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-18T00:13:17.510+03:00  INFO 17488 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 5.374 seconds (process running for 6.087)

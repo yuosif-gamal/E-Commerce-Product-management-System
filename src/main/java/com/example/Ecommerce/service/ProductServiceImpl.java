@@ -11,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,17 +28,18 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final VoucherService voucherService;
 
+    @Cacheable(value = "Products", key = "'page_' + #page + '_size_' + #size")
     @Override
-    @Cacheable(value = "Products", key = "'all'")
-    public List<ProductDto> getAllProducts() {
-        LOGGER.info("Fetching all products from the database.");
+    public List<ProductDto> getAllProductsPagination(int page, int size) {
+        LOGGER.info("Fetching products with pagination - Page: {}, Size: {}", page, size);
 
-        List<Product> products = productRepo.findAll();
-        applyVoucher(products);
-        List<ProductDto> productDto = convertToDto(products);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productRepo.findAll(pageable);
 
-        LOGGER.info("Successfully fetched {} products.", productDto.size());
-        return productDto;
+        List<ProductDto> productDtoPage = productPage.map(ProductMapper::convertEntityToDto).getContent();
+
+        LOGGER.info("Successfully fetched products on page {}.", page);
+        return productDtoPage;
     }
 
     @Override

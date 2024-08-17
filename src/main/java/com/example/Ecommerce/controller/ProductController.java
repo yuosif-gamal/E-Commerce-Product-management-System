@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -40,16 +41,16 @@ public class ProductController {
     }
 
     @GetMapping
-    @Operation(summary = "Get All Products", description = "Returns a list of all products")
+    @Operation(summary = "Get All Products", description = "Returns a paginated list of products")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Products retrieved successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid input parameters"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> getAllProducts() {
-        LOGGER.info("Received request to retrieve all products");
-        List<ProductDto> products = productService.getAllProducts();
-        LOGGER.info("Returning list of {} products", products.size());
-        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", products, HttpStatus.OK.value()));
+    public ResponseEntity<SuccessResponse> getAllProducts(@RequestParam(defaultValue = "0") int page,
+                                                          @RequestParam(defaultValue = "2") int size) {
+        List<ProductDto> paginatedProducts = productService.getAllProductsPagination(page, size);
+        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully with page number " + page, paginatedProducts, HttpStatus.OK.value()));
     }
 
     @GetMapping("/category/{id}")
@@ -122,4 +123,5 @@ public class ProductController {
         LOGGER.info("Product with ID {} deleted successfully", id);
         return ResponseEntity.ok(new SuccessResponse("Product deleted successfully", null, HttpStatus.OK.value()));
     }
+
 }

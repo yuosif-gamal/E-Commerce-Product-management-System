@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ProductRepo extends JpaRepository<Product, Long> {
 
-    // should ues built-in , but for trying ..
+    // should ues built-in , but for trying
     @Query(value = "SELECT * FROM Product p WHERE p.category_id = :categoryID", nativeQuery = true)
     List<Product> findAllByCategoryID(@Param("categoryID") Long categoryID);
 
