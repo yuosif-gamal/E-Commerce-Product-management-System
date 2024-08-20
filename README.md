@@ -2,10 +2,9 @@
 
 ## Overview
 
-This E-Commerce application is online shopping platform built using Spring Boot. It allows users to browse products, manage carts, apply vouchers, and make purchases. The application includes robust authentication and authorization mechanisms, along with various features for filtering and sorting products.
-
-
-
+This E-Commerce application is online shopping platform built using Spring Boot. It allows users to browse products,
+manage carts, apply vouchers, and make purchases. The application includes robust authentication and authorization
+mechanisms, along with various features for filtering and sorting products.
 
 ## installations
 
@@ -23,13 +22,12 @@ This E-Commerce application is online shopping platform built using Spring Boot.
 
 2. **Setup Database connections** </br>
 
-   * Ensure that MySQL is installed and running, and that the database schema is created.
-   * You can configure the database connection by modifying the src/main/resources/application.properties file. </br>
+    * Ensure that MySQL is installed and running, and that the database schema is created.
+    * You can configure the database connection by modifying the src/main/resources/application.properties file. </br>
 
-       * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
-       * spring.datasource.password=your_password
-       * spring.datasource.username=your_username
-
+        * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
+        * spring.datasource.password=your_password
+        * spring.datasource.username=your_username
 3. **Build the Project**
     ```
    cd E-Commerce-Product-management-System
@@ -65,7 +63,8 @@ This E-Commerce application includes the following features:
     * Create, update, view, and delete products with details such as name, description, price, and category.
     * Apply vouchers or discounts to products dynamically.
     * **Product Filtering**
-      * The application supports dynamic product filtering based on price range, name, and quantity using a flexible filter object and the Spring Data JPA `Specification` interface.
+        * The application supports dynamic product filtering based on price range, name, and quantity using a flexible
+          filter object and the Spring Data JPA `Specification` interface.
 * **Category Management**
     * Manage product categories and subcategories.
     * Retrieve hierarchical category structures with parent-child relationships.
@@ -84,11 +83,15 @@ This E-Commerce application includes the following features:
     * Utilize Swagger/OpenAPI for interactive API documentation, making it easy to test and understand available
       endpoints.
 * **Logging:**
-  * **Detailed Logging:** Added logging throughout the application to track input parameters, processing steps, and outcomes.
-  * **Log Monitoring:** Logs provide insights into system operations, making it easier to debug and monitor.
+    * **Detailed Logging:** Added logging throughout the application to track input parameters, processing steps, and
+      outcomes.
+    * **Log Monitoring:** Logs provide insights into system operations, making it easier to debug and monitor.
 * **Error Handling**
-    * **Global Exception Handling:** A centralized mechanism for handling exceptions, providing meaningful error messages to the user.
-    * **Custom Exceptions:** Specific exceptions for different error scenarios like resource not found, invalid input, etc.
+    * **Global Exception Handling:** A centralized mechanism for handling exceptions, providing meaningful error
+      messages to the user.
+    * **Custom Exceptions:** Specific exceptions for different error scenarios like resource not found, invalid input,
+      etc.
+
 ## Testing
 
 The E-Commerce application includes various tests to ensure the system works as expected:
