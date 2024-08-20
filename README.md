@@ -10,7 +10,7 @@ various e-commerce needs.
 
 ### Prerequisites
 
-* Java 17
+* Java 21
 * Maven
 
 ### Steps

@@ -957,3 +957,229 @@ Caused by: org.springframework.data.mapping.PropertyReferenceException: No prope
 2024-08-20T14:21:49.157+03:00  INFO 12032 --- [http-nio-8080-exec-3] c.e.E.service.CategoryServiceImpl        : Fetching all main categories.
 2024-08-20T14:21:49.171+03:00  INFO 12032 --- [http-nio-8080-exec-3] c.e.E.service.CategoryServiceImpl        : Successfully fetched 3 main categories.
 2024-08-20T14:21:49.172+03:00  INFO 12032 --- [http-nio-8080-exec-3] c.e.E.controller.CategoryController      : Returning 3 main categories
+2024-08-20T18:21:01.030+03:00  WARN 12032 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=29m56s274ms515µs500ns).
+2024-08-20T18:45:11.132+03:00  INFO 9096 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 9096 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-20T18:45:11.155+03:00  INFO 9096 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-20T18:45:17.386+03:00  INFO 9096 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20T18:45:18.082+03:00  INFO 9096 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 587 ms. Found 7 JPA repository interfaces.
+2024-08-20T18:45:20.503+03:00  INFO 9096 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-20T18:45:20.581+03:00  INFO 9096 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-20T18:45:20.581+03:00  INFO 9096 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-20T18:45:20.938+03:00  INFO 9096 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-20T18:45:20.938+03:00  INFO 9096 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 9375 ms
+2024-08-20T18:45:22.219+03:00  INFO 9096 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20T18:45:22.648+03:00  INFO 9096 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-20T18:45:22.917+03:00  INFO 9096 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-20T18:45:24.579+03:00  INFO 9096 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20T18:45:24.758+03:00  INFO 9096 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-20T18:45:27.521+03:00  INFO 9096 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f80d8c
+2024-08-20T18:45:27.527+03:00  INFO 9096 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-20T18:45:31.966+03:00  INFO 12032 --- [http-nio-8080-exec-3] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 3077 ms
+2024-08-20T18:45:36.282+03:00  INFO 9096 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20T18:45:36.892+03:00  INFO 9096 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T18:45:39.202+03:00  INFO 9096 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-20T18:45:40.158+03:00  WARN 9096 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-20T18:45:40.276+03:00  INFO 9096 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-20T18:45:42.469+03:00  WARN 9096 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-08-20T18:45:42.485+03:00  INFO 9096 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T18:45:42.485+03:00  INFO 9096 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-20T18:45:42.516+03:00  INFO 9096 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-20T18:45:42.558+03:00  INFO 9096 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-08-20T18:45:42.619+03:00 ERROR 9096 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2024-08-20T18:46:07.954+03:00  INFO 16140 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 16140 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-20T18:46:07.965+03:00  INFO 16140 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-20T18:46:11.313+03:00  INFO 16140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20T18:46:11.598+03:00  INFO 16140 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 280 ms. Found 7 JPA repository interfaces.
+2024-08-20T18:46:13.325+03:00  INFO 16140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-20T18:46:13.372+03:00  INFO 16140 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-20T18:46:13.372+03:00  INFO 16140 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-20T18:46:13.588+03:00  INFO 16140 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-20T18:46:13.588+03:00  INFO 16140 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5397 ms
+2024-08-20T18:46:14.039+03:00  INFO 16140 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20T18:46:14.208+03:00  INFO 16140 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-20T18:46:14.348+03:00  INFO 16140 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-20T18:46:15.254+03:00  INFO 16140 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20T18:46:15.332+03:00  INFO 16140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-20T18:46:16.660+03:00  INFO 16140 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f80d8c
+2024-08-20T18:46:16.660+03:00  INFO 16140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-20T18:46:22.240+03:00  INFO 16140 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20T18:46:22.733+03:00  INFO 16140 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T18:46:27.264+03:00  INFO 16140 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-20T18:46:30.266+03:00  WARN 16140 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-20T18:46:30.469+03:00  INFO 16140 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-20T18:46:36.344+03:00  WARN 16140 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2024-08-20T18:46:36.367+03:00  INFO 16140 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T18:46:36.372+03:00  INFO 16140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-20T18:46:36.386+03:00  INFO 16140 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-20T18:46:36.447+03:00  INFO 16140 --- [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-08-20T18:46:36.514+03:00 ERROR 16140 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2024-08-20T18:49:45.825+03:00  INFO 11760 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 11760 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-20T18:49:45.830+03:00  INFO 11760 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-20T18:49:49.461+03:00  INFO 11760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20T18:49:49.609+03:00  INFO 11760 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 129 ms. Found 7 JPA repository interfaces.
+2024-08-20T18:49:50.801+03:00  INFO 11760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-20T18:49:50.847+03:00  INFO 11760 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-20T18:49:50.848+03:00  INFO 11760 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-20T18:49:50.966+03:00  INFO 11760 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-20T18:49:50.966+03:00  INFO 11760 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5031 ms
+2024-08-20T18:49:51.299+03:00  INFO 11760 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20T18:49:51.443+03:00  INFO 11760 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-20T18:49:51.517+03:00  INFO 11760 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-20T18:49:52.038+03:00  INFO 11760 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20T18:49:52.080+03:00  INFO 11760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-20T18:49:52.889+03:00  INFO 11760 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c71cf3e
+2024-08-20T18:49:52.893+03:00  INFO 11760 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-20T18:49:55.581+03:00  INFO 11760 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20T18:49:56.004+03:00  INFO 11760 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T18:49:56.863+03:00  INFO 11760 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-20T18:49:57.417+03:00  WARN 11760 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-20T18:49:57.458+03:00  INFO 11760 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-20T18:49:58.721+03:00  INFO 11760 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-20T18:49:58.758+03:00  INFO 11760 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 13.981 seconds (process running for 24.332)
+2024-08-20T18:50:02.139+03:00  INFO 11760 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20T18:50:02.139+03:00  INFO 11760 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-20T18:50:02.140+03:00  INFO 11760 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-08-20T18:50:19.138+03:00  INFO 11760 --- [http-nio-8080-exec-2] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1433 ms
+2024-08-20T18:50:31.203+03:00  INFO 11760 --- [http-nio-8080-exec-3] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T18:50:31.219+03:00  INFO 11760 --- [http-nio-8080-exec-3] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, and price range 0.0 - 1.0E8
+2024-08-20T18:50:31.272+03:00  INFO 11760 --- [http-nio-8080-exec-3] c.e.E.service.ProductServiceImpl         : Successfully fetched 0 products.
+2024-08-20T18:50:49.013+03:00  INFO 11760 --- [http-nio-8080-exec-10] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T18:50:49.018+03:00  INFO 11760 --- [http-nio-8080-exec-10] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, and price range 0.0 - 1.0E8
+2024-08-20T18:50:49.185+03:00  INFO 11760 --- [http-nio-8080-exec-10] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 1
+2024-08-20T18:50:49.192+03:00  INFO 11760 --- [http-nio-8080-exec-10] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products.
+2024-08-20T18:50:58.698+03:00  INFO 11760 --- [http-nio-8080-exec-1] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T18:50:58.699+03:00  INFO 11760 --- [http-nio-8080-exec-1] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, and price range 0.0 - 1.0E8
+2024-08-20T18:50:58.750+03:00  INFO 11760 --- [http-nio-8080-exec-1] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 1
+2024-08-20T18:50:58.752+03:00  INFO 11760 --- [http-nio-8080-exec-1] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products.
+2024-08-20T18:51:06.683+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T18:51:06.684+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 5, sort id, and price range 0.0 - 1.0E8
+2024-08-20T18:51:06.760+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 1
+2024-08-20T18:51:06.760+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 2
+2024-08-20T18:51:06.760+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 3
+2024-08-20T18:51:06.761+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 4
+2024-08-20T18:51:06.761+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 5
+2024-08-20T18:51:06.761+03:00  INFO 11760 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Successfully fetched 5 products.
+2024-08-20T18:51:10.998+03:00  INFO 11760 --- [http-nio-8080-exec-4] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T18:51:10.999+03:00  INFO 11760 --- [http-nio-8080-exec-4] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 5, sort id, and price range 0.0 - 1.0E8
+2024-08-20T18:51:11.010+03:00  INFO 11760 --- [http-nio-8080-exec-4] c.e.E.service.ProductServiceImpl         : Successfully fetched 0 products.
+2024-08-20T19:02:08.441+03:00  INFO 11760 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T19:02:08.457+03:00  INFO 11760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-20T19:02:08.504+03:00  INFO 11760 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-20T19:29:21.366+03:00  INFO 4076 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 4076 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-20T19:29:21.395+03:00  INFO 4076 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-20T19:29:29.337+03:00  INFO 4076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20T19:29:29.649+03:00  INFO 4076 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 277 ms. Found 7 JPA repository interfaces.
+2024-08-20T19:29:31.918+03:00  INFO 4076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-20T19:29:31.965+03:00  INFO 4076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-20T19:29:31.965+03:00  INFO 4076 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-20T19:29:32.215+03:00  INFO 4076 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-20T19:29:32.215+03:00  INFO 4076 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10445 ms
+2024-08-20T19:29:33.089+03:00  INFO 4076 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20T19:29:33.394+03:00  INFO 4076 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-20T19:29:33.550+03:00  INFO 4076 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-20T19:29:35.017+03:00  INFO 4076 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20T19:29:35.264+03:00  INFO 4076 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-20T19:29:39.645+03:00  INFO 4076 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6a2badb1
+2024-08-20T19:29:39.659+03:00  INFO 4076 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-20T19:29:50.065+03:00  INFO 4076 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20T19:29:50.822+03:00  INFO 4076 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T19:29:53.750+03:00  INFO 4076 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-20T19:29:56.066+03:00  WARN 4076 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-20T19:29:56.307+03:00  INFO 4076 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-20T19:29:59.587+03:00  INFO 4076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-20T19:29:59.634+03:00  INFO 4076 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 41.544 seconds (process running for 57.71)
+2024-08-20T19:30:04.899+03:00  INFO 4076 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20T19:30:04.900+03:00  INFO 4076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-20T19:30:04.909+03:00  INFO 4076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2024-08-20T19:30:56.305+03:00  INFO 4076 --- [http-nio-8080-exec-2] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 1594 ms
+2024-08-20T19:31:19.307+03:00  INFO 4076 --- [http-nio-8080-exec-3] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T19:31:19.322+03:00  INFO 4076 --- [http-nio-8080-exec-3] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, price range 0.0 - 1.0E8, and product name containing ''
+2024-08-20T19:31:19.324+03:00  INFO 4076 --- [http-nio-8080-exec-3] c.e.E.service.ProductServiceImpl         : Executing query: findAll with pagination and sorting
+2024-08-20T19:31:19.471+03:00  INFO 4076 --- [http-nio-8080-exec-3] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 1
+2024-08-20T19:31:19.471+03:00  INFO 4076 --- [http-nio-8080-exec-3] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products.
+2024-08-20T19:31:30.790+03:00  INFO 4076 --- [http-nio-8080-exec-10] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T19:31:30.793+03:00  INFO 4076 --- [http-nio-8080-exec-10] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, price range 0.0 - 1.0E8, and product name containing '2'
+2024-08-20T19:31:30.795+03:00  INFO 4076 --- [http-nio-8080-exec-10] c.e.E.service.ProductServiceImpl         : Executing query: findByNameContaining with pagination and sorting, productNameContain: '2'
+2024-08-20T19:31:30.898+03:00  INFO 4076 --- [http-nio-8080-exec-10] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 2
+2024-08-20T19:31:30.899+03:00  INFO 4076 --- [http-nio-8080-exec-10] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products.
+2024-08-20T19:31:35.803+03:00  INFO 4076 --- [http-nio-8080-exec-1] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 8.0
+2024-08-20T19:31:35.804+03:00  INFO 4076 --- [http-nio-8080-exec-1] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, price range 0.0 - 8.0, and product name containing '2'
+2024-08-20T19:31:35.804+03:00  INFO 4076 --- [http-nio-8080-exec-1] c.e.E.service.ProductServiceImpl         : Executing query: findByPriceBetween with pagination and sorting, minPrice: 0.0, maxPrice: 8.0
+2024-08-20T19:31:35.804+03:00  INFO 4076 --- [http-nio-8080-exec-1] c.e.E.service.ProductServiceImpl         : Executing query: findByPriceBetweenAndNameContaining with pagination and sorting, minPrice: 0.0, maxPrice: 8.0, productNameContain: '2'
+2024-08-20T19:31:35.835+03:00  INFO 4076 --- [http-nio-8080-exec-1] c.e.E.service.ProductServiceImpl         : Successfully fetched 0 products.
+2024-08-20T19:31:47.292+03:00  INFO 4076 --- [http-nio-8080-exec-2] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 8.0
+2024-08-20T19:31:47.293+03:00  INFO 4076 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, price range 0.0 - 8.0, and product name containing 'prod'
+2024-08-20T19:31:47.294+03:00  INFO 4076 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Executing query: findByPriceBetween with pagination and sorting, minPrice: 0.0, maxPrice: 8.0
+2024-08-20T19:31:47.294+03:00  INFO 4076 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Executing query: findByPriceBetweenAndNameContaining with pagination and sorting, minPrice: 0.0, maxPrice: 8.0, productNameContain: 'prod'
+2024-08-20T19:31:47.312+03:00  INFO 4076 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 5
+2024-08-20T19:31:47.313+03:00  INFO 4076 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products.
+2024-08-20T19:43:10.683+03:00  INFO 4076 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T19:43:10.714+03:00  INFO 4076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-08-20T19:43:10.928+03:00  INFO 4076 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-08-20T19:44:00.532+03:00  INFO 1308 --- [main] c.e.E.EcommerceManagementApiApplication  : Starting EcommerceManagementApiApplication using Java 22.0.2 with PID 1308 (C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System\target\classes started by Yousif Gamal in C:\Users\Yousif Gamal\IdeaProjects\E-Commerce-Product-management-System)
+2024-08-20T19:44:00.548+03:00  INFO 1308 --- [main] c.e.E.EcommerceManagementApiApplication  : No active profile set, falling back to 1 default profile: "default"
+2024-08-20T19:44:06.740+03:00  INFO 1308 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-20T19:44:07.333+03:00  INFO 1308 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 530 ms. Found 7 JPA repository interfaces.
+2024-08-20T19:44:11.238+03:00  INFO 1308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-08-20T19:44:11.316+03:00  INFO 1308 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-08-20T19:44:11.316+03:00  INFO 1308 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-08-20T19:44:11.847+03:00  INFO 1308 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-08-20T19:44:11.863+03:00  INFO 1308 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 10969 ms
+2024-08-20T19:44:13.003+03:00  INFO 1308 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-20T19:44:13.472+03:00  INFO 1308 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-20T19:44:13.800+03:00  INFO 1308 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-08-20T19:44:16.049+03:00  INFO 1308 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-20T19:44:16.237+03:00  INFO 1308 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-08-20T19:44:18.736+03:00  INFO 1308 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2047adea
+2024-08-20T19:44:18.752+03:00  INFO 1308 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-08-20T19:44:28.220+03:00  INFO 1308 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-20T19:44:28.610+03:00  INFO 1308 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-20T19:44:29.782+03:00  INFO 1308 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-08-20T19:44:30.453+03:00  WARN 1308 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-20T19:44:30.563+03:00  INFO 1308 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServices
+2024-08-20T19:44:32.375+03:00  INFO 1308 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-08-20T19:44:32.422+03:00  INFO 1308 --- [main] c.e.E.EcommerceManagementApiApplication  : Started EcommerceManagementApiApplication in 34.866 seconds (process running for 50.209)
+2024-08-20T19:46:41.821+03:00  INFO 1308 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-20T19:46:41.821+03:00  INFO 1308 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-08-20T19:46:41.823+03:00  INFO 1308 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-08-20T19:46:49.179+03:00  INFO 1308 --- [http-nio-8080-exec-9] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 2717 ms
+2024-08-20T19:47:06.151+03:00  INFO 1308 --- [http-nio-8080-exec-2] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T19:47:06.240+03:00  INFO 1308 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, price range 0.0 - 1.0E8, and product name containing ''
+2024-08-20T19:47:06.250+03:00  INFO 1308 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Executing query: findAll with pagination and sorting
+2024-08-20T19:47:06.602+03:00  INFO 1308 --- [http-nio-8080-exec-2] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 1
+2024-08-20T19:47:06.614+03:00  INFO 1308 --- [http-nio-8080-exec-2] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products.
+2024-08-20T19:47:15.351+03:00  INFO 1308 --- [http-nio-8080-exec-4] c.e.E.controller.ProductController       : Returning a paginated, sorted, and filtered list of products with price range 0.0 - 1.0E8
+2024-08-20T19:47:15.355+03:00  INFO 1308 --- [http-nio-8080-exec-4] c.e.E.service.ProductServiceImpl         : Fetching products with page 0, size 1, sort id, price range 0.0 - 1.0E8, and product name containing '3'
+2024-08-20T19:47:15.357+03:00  INFO 1308 --- [http-nio-8080-exec-4] c.e.E.service.ProductServiceImpl         : Executing query: findByNameContaining with pagination and sorting, productNameContain: '3'
+2024-08-20T19:47:15.454+03:00  INFO 1308 --- [http-nio-8080-exec-4] c.e.E.service.VoucherServiceImpl         : Applying voucher discount to product ID: 3
+2024-08-20T19:47:15.456+03:00  INFO 1308 --- [http-nio-8080-exec-4] c.e.E.service.ProductServiceImpl         : Successfully fetched 1 products.

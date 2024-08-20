@@ -18,5 +18,6 @@ public interface ProductService {
 
     List<ProductDto> getPaginatedProductsByCategoryID(Long id,int page , int size, String sortBy );
 
-    List<ProductDto> getProducts(int page, int size, String sortBy, Double minPrice, Double maxPrice);
+    List<ProductDto> getProducts(int page, int size, String sortBy, Double minPrice, Double maxPrice,String productNameContains);
+
 }

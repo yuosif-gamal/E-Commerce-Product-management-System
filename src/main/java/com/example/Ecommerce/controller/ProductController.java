@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -74,14 +75,14 @@ public class ProductController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     public ResponseEntity<SuccessResponse> getProducts(@RequestParam(defaultValue = "0") int page,
-                                                                   @RequestParam(defaultValue = "1") int size,
-                                                                   @RequestParam(defaultValue = "id") String sortBy,
-                                                                   @RequestParam (defaultValue = "0") Double minPrice,
-                                                                   @RequestParam (defaultValue = "100000000") Double maxPrice) {
+                                                       @RequestParam(defaultValue = "1") int size,
+                                                       @RequestParam(defaultValue = "id") String sortBy,
+                                                       @RequestParam(defaultValue = "0") Double minPrice,
+                                                       @RequestParam(defaultValue = "100000000") Double maxPrice,
+                                                       @RequestParam(defaultValue = "") String productNameContains) {
 
         LOGGER.info("Returning a paginated, sorted, and filtered list of products with price range {} - {}", minPrice, maxPrice);
-
-        List<ProductDto> products = productService.getProducts(page, size, sortBy, minPrice, maxPrice);
+        List<ProductDto> products = productService.getProducts(page,size,sortBy,minPrice,maxPrice,productNameContains);
 
         return ResponseEntity.ok(new SuccessResponse(
                 "Products retrieved successfully with page number " + page,

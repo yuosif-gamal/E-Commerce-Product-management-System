@@ -50,7 +50,7 @@ public class ProductServiceTests {
         when(productRepo.findByPriceBetween(minPrice, maxPrice, pageable)).thenReturn(productPage);
 
         // Act
-        List<ProductDto> result = productService.getProducts(page, size, sortBy, minPrice, maxPrice);
+        List<ProductDto> result = productService.getProducts(page, size, sortBy, minPrice, maxPrice, "");
 
         // Assert
         assertNotNull(result);
