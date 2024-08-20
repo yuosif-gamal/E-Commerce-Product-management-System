@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,38 +31,35 @@ public class ProductServiceTests {
     private ProductServiceImpl productService;
 
     @Test
-    void testGetAllProducts() {
+    void testGetProducts() {
         // Arrange
-        List<Product> products = new ArrayList<>();
-        Product product = Product.builder()
-                .id(1L)
-                .name("Product1")
-                .description("Desc1")
-                .price(100.0)
-                .quantity(10)
-                .build();
-        Product product2 = Product.builder()
-                .id(2L)
-                .name("Product2")
-                .description("Desc2")
-                .price(1030.0)
-                .quantity(130).build();
+        int page = 0;
+        int size = 2;
+        String sortBy = "price";
+        Double minPrice = 50.0;
+        Double maxPrice = 150.0;
+        Sort sort = Sort.by(sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
 
-        products.add(product2);
-        products.add(product);
+        List<Product> products = List.of(
+                Product.builder().id(1L).name("Product1").price(100.0).build(),
+                Product.builder().id(2L).name("Product2").price(120.0).build()
+        );
+        Page<Product> productPage = new PageImpl<>(products, pageable, products.size());
 
-        when(productRepo.findAll()).thenReturn(products);
+        when(productRepo.findByPriceBetween(minPrice, maxPrice, pageable)).thenReturn(productPage);
 
         // Act
-        List<ProductDto> result = productService.getAllProductsPagination(0,2);
+        List<ProductDto> result = productService.getProducts(page, size, sortBy, minPrice, maxPrice);
 
         // Assert
         assertNotNull(result);
         assertEquals(2, result.size());
-        assertEquals("Product2", result.get(0).getName());
-        verify(productRepo, times(1)).findAll();
+        assertEquals("Product1", result.get(0).getName());
+        verify(productRepo, times(1)).findByPriceBetween(minPrice, maxPrice, pageable);
         verify(voucherService, times(result.size())).applyVoucherDiscount(any(Product.class));
     }
+
 
     @Test
     void testFindProductById_Success() {
@@ -104,31 +102,34 @@ public class ProductServiceTests {
     }
 
     @Test
-    void testGetProductsByCategoryID_Success() {
+    void testGetPaginatedProductsByCategoryID() {
         // Arrange
         Long categoryId = 1L;
-        List<Product> products = new ArrayList<>();
-        Product product = Product.builder()
-                .id(1L)
-                .name("Product1")
-                .description("Description1")
-                .price(100.0)
-                .quantity(10)
-                .build();
-        products.add(product);
+        int page = 0;
+        int size = 2;
+        String sortBy = "price";
+        Sort sort = Sort.by(sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
 
-        when(productRepo.findAllByCategoryID(categoryId)).thenReturn(products);
+        List<Product> products = List.of(
+                Product.builder().id(1L).name("Product1").price(100.0).build(),
+                Product.builder().id(2L).name("Product2").price(200.0).build()
+        );
+        Page<Product> productPage = new PageImpl<>(products, pageable, products.size());
+
+        when(productRepo.findByCategoryId(categoryId, pageable)).thenReturn(productPage);
 
         // Act
-        List<ProductDto> result = productService.getProductsByCategoryID(categoryId);
+        List<ProductDto> result = productService.getPaginatedProductsByCategoryID(categoryId, page, size, sortBy);
 
         // Assert
         assertNotNull(result);
-        assertEquals(1, result.size());
+        assertEquals(2, result.size());
         assertEquals("Product1", result.get(0).getName());
-        verify(productRepo, times(1)).findAllByCategoryID(categoryId);
-        verify(voucherService, times(1)).applyVoucherDiscount(any(Product.class));
+        verify(productRepo, times(1)).findByCategoryId(categoryId, pageable);
+        verify(voucherService, times(result.size())).applyVoucherDiscount(any(Product.class));
     }
+
 
     @Test
     void testCreateProduct() {

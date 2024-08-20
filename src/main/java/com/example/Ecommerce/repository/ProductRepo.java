@@ -2,6 +2,8 @@ package com.example.Ecommerce.repository;
 
 import com.example.Ecommerce.entity.Product;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,14 +13,13 @@ import java.util.List;
 
 public interface ProductRepo extends JpaRepository<Product, Long> {
 
-    // should ues built-in , but for trying
-    @Query(value = "SELECT * FROM Product p WHERE p.category_id = :categoryID", nativeQuery = true)
-    List<Product> findAllByCategoryID(@Param("categoryID") Long categoryID);
-
-    @Query("SELECT p FROM Product p JOIN p.voucherCode v WHERE v.id = :voucherId")
-    List<Product> findAllByVoucherID(Long voucherId);
     @Modifying
     @Transactional
     @Query(value = "UPDATE product SET voucher_code = null WHERE voucher_code = :voucherId", nativeQuery = true)
     void updateProductsWithoutVoucher(Long voucherId);
+
+    Page<Product> findByCategoryId(Long categoryId, Pageable pageable);
+
+    Page<Product> findByPriceBetween(Double minPrice, Double maxPrice, Pageable pageable);
+
 }

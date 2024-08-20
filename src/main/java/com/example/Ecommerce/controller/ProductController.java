@@ -12,6 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -40,32 +43,52 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
-    @Operation(summary = "Get All Products", description = "Returns a paginated list of products")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Products retrieved successfully"),
-            @ApiResponse(responseCode = "400", description = "Invalid input parameters"),
-            @ApiResponse(responseCode = "500", description = "Internal server error")
-    })
-    public ResponseEntity<SuccessResponse> getAllProducts(@RequestParam(defaultValue = "0") int page,
-                                                          @RequestParam(defaultValue = "2") int size) {
-        List<ProductDto> paginatedProducts = productService.getAllProductsPagination(page, size);
-        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully with page number " + page, paginatedProducts, HttpStatus.OK.value()));
-    }
-
     @GetMapping("/category/{id}")
-    @Operation(summary = "Get Products by Category ID", description = "Returns a list of products by category ID")
+    @Operation(summary = "Get Products by Category ID", description = "Returns a paginated list of products by category ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Products retrieved successfully"),
             @ApiResponse(responseCode = "404", description = "Category not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> getProductsByCategoryID(@PathVariable("id") Long id) {
-        LOGGER.info("Received request to retrieve products for category ID {}", id);
-        List<ProductDto> products = productService.getProductsByCategoryID(id);
-        LOGGER.info("Returning list of {} products for category ID {}", products.size(), id);
-        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully", products, HttpStatus.OK.value()));
+    public ResponseEntity<SuccessResponse> getProductsByCategoryID(@PathVariable("id") Long id,
+                                                                   @RequestParam(defaultValue = "0") int page,
+                                                                   @RequestParam(defaultValue = "2") int size,
+                                                                   @RequestParam(defaultValue = "id") String sortBy) {
+        LOGGER.info("Returning a paginated list of products for category ID {}", id);
+
+        List<ProductDto> products = productService.getPaginatedProductsByCategoryID(id, page, size, sortBy);
+
+        LOGGER.info("Returning list of {} products for category ID {} with page number {}", products.size(), id, page);
+        return ResponseEntity.ok(new SuccessResponse(
+                "Products retrieved successfully",
+                products,
+                HttpStatus.OK.value()));
     }
+
+
+    @GetMapping
+    @Operation(summary = "Get Products", description = "Returns a paginated, sorted, and filtered list of products can be based on price range")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Products retrieved successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid input parameters"),
+            @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    public ResponseEntity<SuccessResponse> getProducts(@RequestParam(defaultValue = "0") int page,
+                                                                   @RequestParam(defaultValue = "1") int size,
+                                                                   @RequestParam(defaultValue = "id") String sortBy,
+                                                                   @RequestParam (defaultValue = "0") Double minPrice,
+                                                                   @RequestParam (defaultValue = "100000000") Double maxPrice) {
+
+        LOGGER.info("Returning a paginated, sorted, and filtered list of products with price range {} - {}", minPrice, maxPrice);
+
+        List<ProductDto> products = productService.getProducts(page, size, sortBy, minPrice, maxPrice);
+
+        return ResponseEntity.ok(new SuccessResponse(
+                "Products retrieved successfully with page number " + page,
+                products,
+                HttpStatus.OK.value()));
+    }
+
 
     @GetMapping("/{id}")
     @Operation(summary = "Get Product by ID", description = "Returns a product by its ID")
@@ -76,9 +99,14 @@ public class ProductController {
     })
     public ResponseEntity<SuccessResponse> getProduct(@PathVariable("id") Long id) {
         LOGGER.info("Received request to retrieve product with ID {}", id);
+
         ProductDto product = productService.findProductById(id);
+
         LOGGER.info("Returning product with ID {}", id);
-        return ResponseEntity.ok(new SuccessResponse("Product retrieved successfully", product, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse(
+                "Product retrieved successfully",
+                product,
+                HttpStatus.OK.value()));
     }
 
     @PostMapping
@@ -90,9 +118,14 @@ public class ProductController {
     })
     public ResponseEntity<SuccessResponse> createProduct(@Valid @RequestBody Product product) {
         LOGGER.info("Received request to create a new product with details: {}", product);
+
         Product createdProduct = productService.createProduct(product);
+
         LOGGER.info("Product created successfully with details: {}", createdProduct);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse("Product created successfully", createdProduct, HttpStatus.CREATED.value()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(new SuccessResponse(
+                "Product created successfully",
+                createdProduct,
+                HttpStatus.CREATED.value()));
     }
 
     @PutMapping
@@ -105,9 +138,14 @@ public class ProductController {
     })
     public ResponseEntity<SuccessResponse> updateProduct(@Valid @RequestBody Product product) {
         LOGGER.info("Received request to update product with details: {}", product);
+
         Product updatedProduct = productService.updateProduct(product);
+
         LOGGER.info("Product updated successfully with details: {}", updatedProduct);
-        return ResponseEntity.ok(new SuccessResponse("Product updated successfully", updatedProduct, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse(
+                "Product updated successfully",
+                updatedProduct,
+                HttpStatus.OK.value()));
     }
 
     @DeleteMapping("/{id}")
@@ -119,9 +157,14 @@ public class ProductController {
     })
     public ResponseEntity<SuccessResponse> deleteProduct(@PathVariable("id") Long id) {
         LOGGER.info("Received request to delete product with ID {}", id);
+
         productService.deleteProduct(id);
+
         LOGGER.info("Product with ID {} deleted successfully", id);
-        return ResponseEntity.ok(new SuccessResponse("Product deleted successfully", null, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse(
+                "Product deleted successfully",
+                null,
+                HttpStatus.OK.value()));
     }
 
 }
