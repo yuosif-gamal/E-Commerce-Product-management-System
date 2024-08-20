@@ -173,7 +173,7 @@ public class CategoryServiceTests {
         categories.add(firstCategory);
         categories.add(secondCategory);
 
-        when(categoryRepo.getAllMainCategories()).thenReturn(categories);
+        when(categoryRepo.findByParentCategoryIsNull()).thenReturn(categories);
 
         List<CategoryDto> result = categoryService.getAllMainCategories();
         List<CategoryDto> result2 = categoryService.getAllMainCategories();
@@ -181,19 +181,19 @@ public class CategoryServiceTests {
         assertEquals(2, result.size());
         assertEquals("first_category", result.get(0).getName());
         assertEquals("second_category", result.get(1).getName());
-        verify(categoryRepo, times(2)).getAllMainCategories();
+        verify(categoryRepo, times(2)).findByParentCategoryIsNull();
     }
 
     @Test
     void testGetAllMainCategories_ReturnEmptyList() {
         List<Category> categories = new ArrayList<>();
 
-        when(categoryRepo.getAllMainCategories()).thenReturn(categories);
+        when(categoryRepo.findByParentCategoryIsNull()).thenReturn(categories);
 
         List<CategoryDto> result = categoryService.getAllMainCategories();
 
         assertEquals(0, result.size());
-        verify(categoryRepo, times(1)).getAllMainCategories();
+        verify(categoryRepo, times(1)).findByParentCategoryIsNull();
     }
 
     @Test
@@ -215,14 +215,14 @@ public class CategoryServiceTests {
         categories.add(secondCategory);
 
         when(categoryRepo.findById(mainCategory.getId())).thenReturn(Optional.of(mainCategory));
-        when(categoryRepo.getCategoryChildren(mainCategory.getId())).thenReturn(categories);
+        when(categoryRepo.findByParentCategoryId(mainCategory.getId())).thenReturn(categories);
 
         List<CategoryDto> result = categoryService.getCategoryChildren(mainCategory.getId());
 
         assertEquals(2, result.size());
         assertEquals(1, categories.get(0).getParentCategory().getId());
         assertEquals(1, categories.get(1).getParentCategory().getId());
-        verify(categoryRepo, times(1)).getCategoryChildren(mainCategory.getId());
+        verify(categoryRepo, times(1)).findByParentCategoryId(mainCategory.getId());
         verify(categoryRepo, times(1)).findById(mainCategory.getId());
     }
 
@@ -242,7 +242,7 @@ public class CategoryServiceTests {
 
 
         assertEquals(thrownException.getMessage(), "Category not found with id: " + id);
-        verify(categoryRepo, times(0)).getCategoryChildren(id);
+        verify(categoryRepo, times(0)).findByParentCategoryId(id);
         verify(categoryRepo, times(1)).findById(id);
 
     }

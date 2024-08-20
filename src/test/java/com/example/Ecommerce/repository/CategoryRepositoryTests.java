@@ -29,7 +29,7 @@ public class CategoryRepositoryTests {
         categoryRepo.save(category4);
 
 
-        List<Category> categoryMainList =categoryRepo.getAllMainCategories();
+        List<Category> categoryMainList =categoryRepo.findByParentCategoryIsNull();
         List<Category> categoryList =categoryRepo.findAll();
         Assertions.assertThat(categoryList.size()).isEqualTo(4);
         int categoryListSize = categoryList.size();
@@ -48,10 +48,10 @@ public class CategoryRepositoryTests {
         categoryRepo.save(category4);
 
 
-        List<Category> categoryChildrenList =categoryRepo.getCategoryChildren(category3.getId());
+        List<Category> categoryChildrenList =categoryRepo.findByParentCategoryId(category3.getId());
         Assertions.assertThat(categoryChildrenList.size()).isEqualTo(1);
 
-        categoryChildrenList =categoryRepo.getCategoryChildren(category4.getId());
+        categoryChildrenList =categoryRepo.findByParentCategoryId(category4.getId());
         Assertions.assertThat(categoryChildrenList.size()).isEqualTo(0);
 
     }

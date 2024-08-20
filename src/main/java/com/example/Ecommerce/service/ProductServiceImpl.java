@@ -14,6 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,19 +29,24 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepo productRepo;
     private final VoucherService voucherService;
 
-    @Cacheable(value = "Products", key = "'page_' + #page + '_size_' + #size")
     @Override
-    public List<ProductDto> getAllProductsPagination(int page, int size) {
-        LOGGER.info("Fetching products with pagination - Page: {}, Size: {}", page, size);
+    @Cacheable(value = "Products", key = "#categoryID + '_' + #page + '_' + #size + '_' + #sortBy")
+    public List<ProductDto> getPaginatedProductsByCategoryID(Long categoryID, int page, int size, String sortBy) {
+        LOGGER.info("Fetching products for category ID: {} with page {}, size {}, and sort {}",
+                categoryID, page, size, sortBy);
 
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Product> productPage = productRepo.findAll(pageable);
+        Sort sort = Sort.by(sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
 
-        List<ProductDto> productDtoPage = productPage.map(ProductMapper::convertEntityToDto).getContent();
+        Page<Product> productPage = productRepo.findByCategoryId(categoryID, pageable);
+        List<Product> products = productPage.getContent();
+        applyVoucher(products);
+        List<ProductDto> productDto = convertToDto(products);
 
-        LOGGER.info("Successfully fetched products on page {}.", page);
-        return productDtoPage;
+        LOGGER.info("Successfully fetched {} products for category ID: {}", productDto.size(), categoryID);
+        return productDto;
     }
+
 
     @Override
     @Cacheable(value = "Products", key = "#id")
@@ -55,18 +61,26 @@ public class ProductServiceImpl implements ProductService {
         return productDto;
     }
 
-    @Override
-    @Cacheable(value = "Products", key = "#categoryID")
-    public List<ProductDto> getProductsByCategoryID(Long categoryID) {
-        LOGGER.info("Fetching products for category ID: {}", categoryID);
 
-        List<Product> products = productRepo.findAllByCategoryID(categoryID);
+    @Override
+    @Cacheable(value = "Products", key = "'priceRange_' + #page + '_' + #size + '_' + #sortBy + '_' + #minPrice + '_' + #maxPrice")
+    public List<ProductDto> getProducts(int page, int size, String sortBy, Double minPrice, Double maxPrice) {
+        LOGGER.info("Fetching products with page {}, size {}, sort {}, and price range {} - {}",
+                page, size, sortBy, minPrice, maxPrice);
+
+        Sort sort = Sort.by(sortBy);
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Page<Product> productPage = productRepo.findByPriceBetween(minPrice, maxPrice, pageable);
+        List<Product> products = productPage.getContent();
+
         applyVoucher(products);
         List<ProductDto> productDto = convertToDto(products);
 
-        LOGGER.info("Successfully fetched {} products for category ID: {}", productDto.size(), categoryID);
+        LOGGER.info("Successfully fetched {} products.", productDto.size());
         return productDto;
     }
+
 
     @Override
     @CacheEvict(value = "Products", allEntries = true)

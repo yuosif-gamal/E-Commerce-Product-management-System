@@ -86,7 +86,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryDto> getAllMainCategories() {
         LOGGER.info("Fetching all main categories.");
 
-        List<Category> categories = categoryRepo.getAllMainCategories();
+        List<Category> categories = categoryRepo.findByParentCategoryIsNull();
         List<CategoryDto> categoryDto = convertToDto(categories);
 
         LOGGER.info("Successfully fetched {} main categories.", categoryDto.size());
@@ -104,7 +104,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new ResourceNotFoundException("Category not found with id: " + categoryId);
         }
 
-        List<Category> categories = categoryRepo.getCategoryChildren(categoryId);
+        List<Category> categories = categoryRepo.findByParentCategoryId(categoryId);
         List<CategoryDto> categoryDto = convertToDto(categories);
 
         LOGGER.info("Successfully fetched {} child categories for parent ID: {}", categoryDto.size(), categoryId);

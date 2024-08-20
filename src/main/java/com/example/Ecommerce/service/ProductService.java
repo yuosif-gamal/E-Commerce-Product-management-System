@@ -2,18 +2,13 @@ package com.example.Ecommerce.service;
 
 import com.example.Ecommerce.dto.ProductDto;
 import com.example.Ecommerce.entity.Product;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
 public interface ProductService {
 
-    List<ProductDto> getAllProductsPagination(int page, int size);
-
     ProductDto findProductById(Long id);
 
-    List<ProductDto> getProductsByCategoryID(Long categoryID);
 
     Product createProduct(Product product);
 
@@ -21,4 +16,7 @@ public interface ProductService {
 
     void deleteProduct(Long id);
 
+    List<ProductDto> getPaginatedProductsByCategoryID(Long id,int page , int size, String sortBy );
+
+    List<ProductDto> getProducts(int page, int size, String sortBy, Double minPrice, Double maxPrice);
 }
