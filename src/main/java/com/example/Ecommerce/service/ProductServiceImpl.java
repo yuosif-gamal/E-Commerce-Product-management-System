@@ -128,6 +128,7 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
     }
 
+
     private Page<Product> choosingRightQuery(int page, int size, String sortBy, Double minPrice, Double maxPrice, String productNameContain) {
         Page<Product> productPage = null;
         Sort sort = Sort.by(sortBy);

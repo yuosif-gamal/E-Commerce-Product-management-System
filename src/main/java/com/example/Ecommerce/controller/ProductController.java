@@ -82,7 +82,7 @@ public class ProductController {
                                                        @RequestParam(defaultValue = "") String productNameContains) {
 
         LOGGER.info("Returning a paginated, sorted, and filtered list of products with price range {} - {}", minPrice, maxPrice);
-        List<ProductDto> products = productService.getProducts(page,size,sortBy,minPrice,maxPrice,productNameContains);
+        List<ProductDto> products = productService.getProducts(page, size, sortBy, minPrice, maxPrice, productNameContains);
 
         return ResponseEntity.ok(new SuccessResponse(
                 "Products retrieved successfully with page number " + page,
