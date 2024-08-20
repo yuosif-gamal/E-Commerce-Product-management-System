@@ -21,7 +21,6 @@ mechanisms, along with various features for filtering and sorting products.
    git clone https://github.com/yuosif-gamal/E-Commerce-Product-management-System.git
 
 2. **Setup Database connections** </br>
-
     * Ensure that MySQL is installed and running, and that the database schema is created.
     * You can configure the database connection by modifying the src/main/resources/application.properties file. </br>
 
