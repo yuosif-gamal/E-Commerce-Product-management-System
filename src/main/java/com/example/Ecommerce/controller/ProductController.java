@@ -3,6 +3,7 @@ package com.example.Ecommerce.controller;
 import com.example.Ecommerce.dto.ProductDto;
 import com.example.Ecommerce.dto.SuccessResponse;
 import com.example.Ecommerce.entity.Product;
+import com.example.Ecommerce.filter.ProductFilter;
 import com.example.Ecommerce.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -74,18 +75,28 @@ public class ProductController {
             @ApiResponse(responseCode = "400", description = "Invalid input parameters"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    public ResponseEntity<SuccessResponse> getProducts(@RequestParam(defaultValue = "0") int page,
-                                                       @RequestParam(defaultValue = "1") int size,
-                                                       @RequestParam(defaultValue = "id") String sortBy,
-                                                       @RequestParam(defaultValue = "0") Double minPrice,
-                                                       @RequestParam(defaultValue = "100000000") Double maxPrice,
-                                                       @RequestParam(defaultValue = "") String productNameContains) {
+    public ResponseEntity<SuccessResponse> getFilteredProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "2") int size,
+            @RequestParam(defaultValue = "price") String sortBy,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer minQuantity) {
 
-        LOGGER.info("Returning a paginated, sorted, and filtered list of products with price range {} - {}", minPrice, maxPrice);
-        List<ProductDto> products = productService.getProducts(page, size, sortBy, minPrice, maxPrice, productNameContains);
+        LOGGER.info("Received request to get filtered products with parameters - page: {}, size: {}, sortBy: {}, minPrice: {}, maxPrice: {}, name: {}, minQuantity: {}",
+                page, size, sortBy, minPrice, maxPrice, name, minQuantity);
 
-        return ResponseEntity.ok(new SuccessResponse(
-                "Products retrieved successfully with page number " + page,
+        ProductFilter filter = new ProductFilter();
+        filter.setMinPrice(minPrice);
+        filter.setMaxPrice(maxPrice);
+        filter.setProductNameContain(name);
+        filter.setMinQuantity(minQuantity);
+
+        List<ProductDto> products = productService.getProducts(filter, page, size, sortBy);
+        LOGGER.info("Successfully retrieved {} products with applied filters.", products.size());
+
+        return ResponseEntity.ok(new SuccessResponse("Products retrieved successfully",
                 products,
                 HttpStatus.OK.value()));
     }
