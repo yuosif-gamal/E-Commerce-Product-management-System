@@ -5,13 +5,14 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ProductRepo extends JpaRepository<Product, Long> {
+public interface ProductRepo extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
 
     @Modifying
     @Transactional
@@ -20,11 +21,5 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 
     Page<Product> findByCategoryId(Long categoryId, Pageable pageable);
 
-
-    Page<Product> findByPriceBetweenAndNameContaining(Double minPrice, Double maxPrice, String productNameContain, Pageable pageable);
-
-    Page<Product> findByPriceBetween(Double minPrice, Double maxPrice, Pageable pageable);
-
-    Page<Product> findByNameContaining(String productNameContain, Pageable pageable);
 
 }

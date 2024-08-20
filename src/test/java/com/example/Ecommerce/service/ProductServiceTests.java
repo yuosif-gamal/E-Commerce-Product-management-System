@@ -3,7 +3,9 @@ package com.example.Ecommerce.service;
 import com.example.Ecommerce.dto.ProductDto;
 import com.example.Ecommerce.entity.Product;
 import com.example.Ecommerce.exception.ResourceNotFoundException;
+import com.example.Ecommerce.filter.ProductFilter;
 import com.example.Ecommerce.repository.ProductRepo;
+import com.example.Ecommerce.specification.ProductSpecification;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +39,8 @@ public class ProductServiceTests {
         String sortBy = "price";
         Double minPrice = 50.0;
         Double maxPrice = 150.0;
-        Sort sort = Sort.by(sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
+        ProductFilter filter = new ProductFilter(minPrice, maxPrice, 0);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 
         List<Product> products = List.of(
                 Product.builder().id(1L).name("Product1").price(100.0).build(),
@@ -47,19 +48,18 @@ public class ProductServiceTests {
         );
         Page<Product> productPage = new PageImpl<>(products, pageable, products.size());
 
-        when(productRepo.findByPriceBetween(minPrice, maxPrice, pageable)).thenReturn(productPage);
+        when(productRepo.findAll(any(ProductSpecification.class), eq(pageable))).thenReturn(productPage);
 
         // Act
-        List<ProductDto> result = productService.getProducts(page, size, sortBy, minPrice, maxPrice, "");
+        List<ProductDto> result = productService.getProducts(filter,page, size, sortBy );
 
         // Assert
         assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals("Product1", result.get(0).getName());
-        verify(productRepo, times(1)).findByPriceBetween(minPrice, maxPrice, pageable);
+        verify(productRepo, times(1)).findAll(any(ProductSpecification.class), eq(pageable));
         verify(voucherService, times(result.size())).applyVoucherDiscount(any(Product.class));
     }
-
 
     @Test
     void testFindProductById_Success() {
@@ -129,7 +129,6 @@ public class ProductServiceTests {
         verify(productRepo, times(1)).findByCategoryId(categoryId, pageable);
         verify(voucherService, times(result.size())).applyVoucherDiscount(any(Product.class));
     }
-
 
     @Test
     void testCreateProduct() {
