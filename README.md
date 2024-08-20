@@ -2,9 +2,9 @@
 
 ## Overview
 
-This E-Commerce application, built with Java and Spring Boot, manages products, categories, carts, and user roles. It
-uses modern technologies to ensure the application is secure, scalable, and performs efficiently, making it suitable for
-various e-commerce needs.
+This E-Commerce application is online shopping platform built using Spring Boot. It allows users to browse products,
+manage carts, apply vouchers, and make purchases. The application includes robust authentication and authorization
+mechanisms, along with various features for filtering and sorting products.
 
 ## installations
 
@@ -21,14 +21,13 @@ various e-commerce needs.
    git clone https://github.com/yuosif-gamal/E-Commerce-Product-management-System.git
 
 2. **Setup Database connections** </br>
+    * Ensure that MySQL is installed and running, and that the database schema is created.
+    * You can configure the database connection by modifying the src/main/resources/application.properties file. </br>
 
-* Ensure that MySQL is installed and running, and that the database schema is created.
-* You can configure the database connection by modifying the src/main/resources/application.properties file. </br>
-
-    * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
-    * spring.datasource.password=your_password
-    * spring.datasource.username=your_username
-
+        * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
+        * spring.datasource.password=your_password
+        * spring.datasource.username=your_username
+      
 3. **Build the Project**
     ```
    cd E-Commerce-Product-management-System
@@ -60,26 +59,38 @@ various e-commerce needs.
 
 This E-Commerce application includes the following features:
 
-* Product Management
+* **Product Management**
     * Create, update, view, and delete products with details such as name, description, price, and category.
     * Apply vouchers or discounts to products dynamically.
-* Category Management
+    * **Product Filtering**
+        * The application supports dynamic product filtering based on price range, name, and quantity using a flexible
+          filter object and the Spring Data JPA `Specification` interface.
+* **Category Management**
     * Manage product categories and subcategories.
     * Retrieve hierarchical category structures with parent-child relationships.
-* Cart Management
+* **Cart Management**
     * Add, update, or remove items in the shopping cart.
     * Automatically update cart total based on current product prices.
     * Apply vouchers or discounts to cart items.
-* User Management
+* **User Management**
     * Manage user roles with different levels of access control.
     * Handle user registration, authentication, and authorization using Spring Security.
 * Access Control by User Roles
     * Ensure only authorized users can access specific features based on their roles.
-* Caching
+* **Caching**
     * Improve application performance by caching frequently accessed data such as products, categories, and cart items.
-* API Documentation
+* **API Documentation**
     * Utilize Swagger/OpenAPI for interactive API documentation, making it easy to test and understand available
       endpoints.
+* **Logging:**
+    * **Detailed Logging:** Added logging throughout the application to track input parameters, processing steps, and
+      outcomes.
+    * **Log Monitoring:** Logs provide insights into system operations, making it easier to debug and monitor.
+* **Error Handling**
+    * **Global Exception Handling:** A centralized mechanism for handling exceptions, providing meaningful error
+      messages to the user.
+    * **Custom Exceptions:** Specific exceptions for different error scenarios like resource not found, invalid input,
+      etc.
 
 ## Testing
 

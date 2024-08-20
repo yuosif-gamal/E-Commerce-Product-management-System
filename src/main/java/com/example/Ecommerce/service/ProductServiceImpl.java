@@ -3,8 +3,10 @@ package com.example.Ecommerce.service;
 import com.example.Ecommerce.dto.ProductDto;
 import com.example.Ecommerce.entity.Product;
 import com.example.Ecommerce.exception.ResourceNotFoundException;
+import com.example.Ecommerce.filter.ProductFilter;
 import com.example.Ecommerce.mapper.ProductMapper;
 import com.example.Ecommerce.repository.ProductRepo;
+import com.example.Ecommerce.specification.ProductSpecification;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +14,9 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,22 +61,23 @@ public class ProductServiceImpl implements ProductService {
         return productDto;
     }
 
-
+    @Cacheable(value = "Products", key = "#filter.toString() + '_' + #page + '_' + #size + '_' + #sortBy")
     @Override
-    @Cacheable(value = "Products", key = "'priceRange_' + #page + '_' + #size + '_' + #sortBy + '_' + #minPrice + '_' + #maxPrice + '_' +#productNameContain ")
-    public List<ProductDto> getProducts(int page, int size, String sortBy, Double minPrice, Double maxPrice, String productNameContain) {
-        LOGGER.info("Fetching products with page {}, size {}, sort {}, price range {} - {}, and product name containing '{}'",
-                page, size, sortBy, minPrice, maxPrice, productNameContain);
+    public List<ProductDto> getProducts(ProductFilter filter, int page, int size, String sortBy) {
+        LOGGER.info("Fetching products with filters: {}, page: {}, size: {}, sortBy: {}", filter, page, size, sortBy);
 
-        List<Product> products = choosingRightQuery(page, size, sortBy, minPrice, maxPrice, productNameContain).getContent();
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Specification<Product> spec = new ProductSpecification(filter);
 
+        Page<Product> productPage = productRepo.findAll(spec, pageable);
+        List<Product> products = productPage.getContent();
+
+        LOGGER.info("Applying vouchers to the retrieved products.");
         applyVoucher(products);
-        List<ProductDto> productDto = convertToDto(products);
 
-        LOGGER.info("Successfully fetched {} products.", productDto.size());
-        return productDto;
+        LOGGER.info("Successfully converted {} products to DTOs.", products.size());
+        return convertToDto(products);
     }
-
 
     @Override
     @CacheEvict(value = "Products", allEntries = true)
@@ -128,41 +131,4 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
     }
 
-
-    private Page<Product> choosingRightQuery(int page, int size, String sortBy, Double minPrice, Double maxPrice, String productNameContain) {
-        Page<Product> productPage = null;
-        Sort sort = Sort.by(sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
-
-        boolean containName = false, containPrice = false;
-
-        if (!(minPrice == 0) || !(maxPrice == 100000000)) containPrice = true;
-        if (!productNameContain.isEmpty()) containName = true;
-
-
-        if (containPrice && containName) {
-            LOGGER.info("Executing query: findByPriceBetweenAndNameContaining with pagination and sorting, minPrice: {}, maxPrice: {}, productNameContain: '{}'",
-                    minPrice, maxPrice, productNameContain);
-            productPage = productRepo.findByPriceBetweenAndNameContaining(minPrice, maxPrice, productNameContain, pageable);
-        }
-
-        if (containPrice && !containName) {
-            LOGGER.info("Executing query: findByPriceBetween with pagination and sorting, minPrice: {}, maxPrice: {}",
-                    minPrice, maxPrice);
-            productPage = productRepo.findByPriceBetween(minPrice, maxPrice, pageable);
-        }
-
-        if (!containPrice && !containName) {
-            LOGGER.info("Executing query: findAll with pagination and sorting");
-            productPage = productRepo.findAll(pageable);
-        }
-
-        if (!containPrice && containName) {
-            LOGGER.info("Executing query: findByNameContaining with pagination and sorting, productNameContain: '{}'",
-                    productNameContain);
-            productPage = productRepo.findByNameContaining(productNameContain, pageable);
-        }
-
-        return productPage;
-    }
 }
