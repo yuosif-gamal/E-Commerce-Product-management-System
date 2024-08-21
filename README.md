@@ -41,7 +41,7 @@ mechanisms, along with various features for filtering and sorting products.
 
 ## Technologies Used
 
-- **Java 17**
+- **Java 21**
 - **Spring Boot 3**
 - **Spring Data JPA** (Hibernate)
 - **Spring Security**
@@ -75,7 +75,7 @@ This E-Commerce application includes the following features:
 * **User Management**
     * Manage user roles with different levels of access control.
     * Handle user registration, authentication, and authorization using Spring Security.
-* Access Control by User Roles
+* **Access Control by User Roles**
     * Ensure only authorized users can access specific features based on their roles.
 * **Caching**
     * Improve application performance by caching frequently accessed data such as products, categories, and cart items.
