@@ -78,7 +78,7 @@ public class ProductController {
     public ResponseEntity<SuccessResponse> getFilteredProducts(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "2") int size,
-            @RequestParam(defaultValue = "price") String sortBy,
+            @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) String name,
