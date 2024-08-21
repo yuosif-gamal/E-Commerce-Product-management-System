@@ -31,7 +31,6 @@ public class ProductSpecification implements Specification<Product> {
             predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("quantity"), filter.getMinQuantity()));
         }
 
-
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
 }

@@ -32,4 +32,7 @@ public class CartItem {
     @JoinColumn(name = "cart_id", nullable = false)
     @JsonIgnore
     private Cart cart;
+
+    @Enumerated(EnumType.STRING)
+    private CartItemStatus status;
 }

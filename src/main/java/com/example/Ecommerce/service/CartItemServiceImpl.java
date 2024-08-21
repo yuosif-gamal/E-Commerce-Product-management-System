@@ -1,23 +1,17 @@
 package com.example.Ecommerce.service;
 
 import com.example.Ecommerce.dto.CartItemDto;
-import com.example.Ecommerce.entity.Cart;
-import com.example.Ecommerce.entity.CartItem;
-import com.example.Ecommerce.entity.Product;
-import com.example.Ecommerce.entity.User;
+import com.example.Ecommerce.entity.*;
 import com.example.Ecommerce.exception.ResourceNotFoundException;
 import com.example.Ecommerce.mapper.CartItemsMapper;
 import com.example.Ecommerce.repository.CartItemRepo;
 import com.example.Ecommerce.repository.CartRepo;
 import com.example.Ecommerce.repository.ProductRepo;
-import com.example.Ecommerce.repository.UserRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
@@ -26,10 +20,10 @@ public class CartItemServiceImpl implements CartItemService {
 
     private final CartItemRepo cartItemRepo;
     private final CartRepo cartRepo;
-    private final UserRepo userRepo;
     private final UserService userService;
     private final VoucherService voucherService;
     private final ProductRepo productRepo;
+    private final CartItemQueueServiceImpl cartItemQueueServiceImpl;
 
     @Override
     @Transactional
@@ -51,6 +45,10 @@ public class CartItemServiceImpl implements CartItemService {
         updateProductQuantity(product, quantityToTake);
 
         CartItem existingCartItem = cartItemRepo.findByProductAndCart_User(cartItem.getProduct(), user);
+        cartItem.setStatus(CartItemStatus.RESERVED);
+        /// SO add now() and CartItemId to my Queue
+        //not here the id noe declared yet!!!!W
+        cartItemQueueServiceImpl.addToQueue(cartItem.getId());
 
         if (existingCartItem != null) {
             LOGGER.info("Updating existing cart item with ID: {}", existingCartItem.getId());
@@ -59,6 +57,7 @@ public class CartItemServiceImpl implements CartItemService {
             LOGGER.info("Adding new cart item with product ID: {}", cartItem.getProduct().getId());
             return addNewCartItem(cartItem, cart);
         }
+
     }
 
     private Cart getOrCreateCart(User user) {
