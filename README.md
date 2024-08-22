@@ -12,6 +12,7 @@ mechanisms, along with various features for filtering and sorting products.
 
 * Java 21
 * Maven
+* MySql
 
 ### Steps
 

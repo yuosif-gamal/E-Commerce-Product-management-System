@@ -50,7 +50,7 @@ public class CartController {
     public ResponseEntity<SuccessResponse> deleteCart(@PathVariable("id") Long id) {
         LOGGER.info("Received request to delete cart item with ID {}", id);
         cartService.deleteCart(id);
-        LOGGER.info("Cart item with ID {} deleted successfully", id);
-        return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse("Cart item deleted successfully", null, HttpStatus.OK.value()));
+        LOGGER.info("Cart with ID {} deleted successfully", id);
+        return ResponseEntity.status(HttpStatus.OK).body(new SuccessResponse("Cart deleted successfully", null, HttpStatus.OK.value()));
     }
 }

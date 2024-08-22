@@ -13,6 +13,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import static com.example.Ecommerce.entity.CartItemStatus.NOT_RESERVED;
+import static com.example.Ecommerce.entity.CartItemStatus.RESERVED;
+
 @Service
 @RequiredArgsConstructor
 public class CartItemServiceImpl implements CartItemService {
@@ -23,7 +26,7 @@ public class CartItemServiceImpl implements CartItemService {
     private final UserService userService;
     private final VoucherService voucherService;
     private final ProductRepo productRepo;
-    private final CartItemQueueServiceImpl cartItemQueueServiceImpl;
+    private final CartItemQueueService cartItemQueueService;
 
     @Override
     @Transactional
@@ -45,12 +48,11 @@ public class CartItemServiceImpl implements CartItemService {
         updateProductQuantity(product, quantityToTake);
 
         CartItem existingCartItem = cartItemRepo.findByProductAndCart_User(cartItem.getProduct(), user);
-        cartItem.setStatus(CartItemStatus.RESERVED);
-        /// SO add now() and CartItemId to my Queue
-        //not here the id noe declared yet!!!!W
-        cartItemQueueServiceImpl.addToQueue(cartItem.getId());
 
         if (existingCartItem != null) {
+            if (existingCartItem.getStatus() == NOT_RESERVED) {
+                return replaceNotReservedItemWithNewOne(existingCartItem, cartItem);
+            }
             LOGGER.info("Updating existing cart item with ID: {}", existingCartItem.getId());
             return updateExistingCartItem(existingCartItem, cartItem, cart);
         } else {
@@ -60,6 +62,13 @@ public class CartItemServiceImpl implements CartItemService {
 
     }
 
+    private CartItem replaceNotReservedItemWithNewOne(CartItem existingCartItem ,CartItem cartItem){
+        existingCartItem.setStatus(RESERVED);
+        existingCartItem.setQuantityToTake(cartItem.getQuantityToTake());
+        cartItemRepo.save(existingCartItem);
+        cartItemQueueService.addToQueue(cartItem.getId());
+        return existingCartItem;
+    }
     private Cart getOrCreateCart(User user) {
         Cart cart = cartRepo.findByUser(user);
         if (cart == null) {
@@ -94,6 +103,7 @@ public class CartItemServiceImpl implements CartItemService {
         existingCartItem.setQuantityToTake(updatedQuantity);
         cartItemRepo.save(existingCartItem);
         updateCartTotalPrice(cart, newCartItem);
+        cartItemQueueService.addToQueue(existingCartItem.getId());
         return existingCartItem;
     }
 
@@ -101,6 +111,8 @@ public class CartItemServiceImpl implements CartItemService {
         cartItem.setCart(cart);
         cartItemRepo.save(cartItem);
         updateCartTotalPrice(cart, cartItem);
+        cartItem.setStatus(RESERVED);
+        cartItemQueueService.addToQueue(cartItem.getId());
         return cartItem;
     }
 
@@ -119,8 +131,11 @@ public class CartItemServiceImpl implements CartItemService {
         CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
+        if (item.getStatus() == NOT_RESERVED) {
+            throw new ResourceNotFoundException("Cart item is not reserved");
+        }
         if (item.getQuantityToTake() == 1) {
-            LOGGER.info("Deleting cart item with ID: {}", itemID);
+            deletingItemLogger(itemID);
             cartItemRepo.delete(item);
         } else {
             item.setQuantityToTake(item.getQuantityToTake() - 1);
@@ -130,8 +145,7 @@ public class CartItemServiceImpl implements CartItemService {
         product.setQuantity(product.getQuantity() + 1);
         productRepo.save(product);
 
-        CartItemDto cartItemDto = CartItemsMapper.convertToDTO(item);
-        return cartItemDto;
+        return CartItemsMapper.convertToDTO(item);
     }
 
     @Override
@@ -141,30 +155,62 @@ public class CartItemServiceImpl implements CartItemService {
 
         CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
-
-        item.setQuantityToTake(item.getQuantityToTake() + 1);
+        if (item.getStatus() == NOT_RESERVED){
+            getValidQuantity(item, product);
+            item.setStatus(RESERVED);
+            item.setQuantityToTake(1);
+            cartItemQueueService.addToQueue(item.getId());
+        }
+        else {
+            item.setQuantityToTake(item.getQuantityToTake() + 1);
+        }
         product.setQuantity(product.getQuantity() - 1);
 
         cartItemRepo.save(item);
         productRepo.save(product);
 
-        CartItemDto cartItemDto = CartItemsMapper.convertToDTO(item);
-        return cartItemDto;
+        return CartItemsMapper.convertToDTO(item);
     }
 
     @Override
     @Transactional
     public CartItemDto deleteItem(Long id) {
-        LOGGER.info("Deleting cart item with ID: {}", id);
+        deletingItemLogger(id);
 
         CartItem item = cartItemRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
+        if (item.getStatus() == NOT_RESERVED) {
+            deletingItemLogger(item.getId());
+            cartItemRepo.delete(item);
+            return CartItemsMapper.convertToDTO(item);
+        }
+        cartItemQueueService.removeFromQueue(item.getId());
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         product.setQuantity(product.getQuantity() + item.getQuantityToTake());
         cartItemRepo.delete(item);
         productRepo.save(product);
-
-        CartItemDto cartItemDto = CartItemsMapper.convertToDTO(item);
-        return cartItemDto;
+        return CartItemsMapper.convertToDTO(item);
     }
+
+    @Override
+    public CartItemDto reReserveItem(Long id) {
+        CartItem item = cartItemRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
+        if (item.getStatus() == RESERVED){
+            throw new ResourceNotFoundException("Cart item already reserved");
+        }
+        Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
+        if (product.getQuantity() > item.getQuantityToTake()) {
+            updateProductQuantity(product, item.getQuantityToTake());
+            item.setStatus(RESERVED);
+            cartItemRepo.save(item);
+            cartItemQueueService.addToQueue(item.getId());
+        }
+        getValidQuantity(item, product);
+        return CartItemsMapper.convertToDTO(item);
+    }
+
+    private void deletingItemLogger(Long id){
+        LOGGER.info("Deleting cart item with ID: {}", id);
+    }
+
 }

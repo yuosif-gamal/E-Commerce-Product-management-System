@@ -1,6 +1,6 @@
 package com.example.Ecommerce.scheduler;
 
-import com.example.Ecommerce.service.CartItemQueueServiceImpl;
+import com.example.Ecommerce.service.CartItemQueueService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class CartItemReservationScheduler {
-    private final CartItemQueueServiceImpl cartItemQueueServiceImpl;
+    private final CartItemQueueService cartItemQueueService;
 
 
-    @Scheduled(fixedRate =  60 *1000)
+    @Scheduled(fixedRate = 60 * 1000)
     public void scheduleQueueProcessing() {
-        if (!cartItemQueueServiceImpl.isQueueEmpty()) {
-            cartItemQueueServiceImpl.processQueue();
+        if (!cartItemQueueService.isQueueEmpty()) {
+            cartItemQueueService.processQueue();
         }
     }
 }

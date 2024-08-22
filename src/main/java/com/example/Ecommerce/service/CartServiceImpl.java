@@ -1,10 +1,7 @@
 package com.example.Ecommerce.service;
 
 import com.example.Ecommerce.dto.CartDto;
-import com.example.Ecommerce.entity.Cart;
-import com.example.Ecommerce.entity.CartItem;
-import com.example.Ecommerce.entity.Product;
-import com.example.Ecommerce.entity.User;
+import com.example.Ecommerce.entity.*;
 import com.example.Ecommerce.exception.ResourceNotFoundException;
 import com.example.Ecommerce.mapper.CartMapper;
 import com.example.Ecommerce.repository.CartItemRepo;
@@ -39,9 +36,10 @@ public class CartServiceImpl implements CartService {
             throw new ResourceNotFoundException("Cart not found for user with name: " + user.getFirstName());
         }
         updateCartItemsAndTotalPrice(cart);
+
         CartDto cartDto = CartMapper.convertEntityToDto(cart);
 
-        LOGGER.info("Successfully fetched cart for user: {}", user.getFirstName());
+        LOGGER.info("Successfully fetched cart with reserved items for user: {}", user.getFirstName());
         return cartDto;
     }
 
@@ -51,15 +49,17 @@ public class CartServiceImpl implements CartService {
         List<CartItem> cartItems = cart.getItems();
 
         double totalPrice = cartItems.stream()
+                .filter(cartItem -> cartItem.getStatus() == CartItemStatus.RESERVED)
                 .map(cartItem -> {
-                    Product product = cartItem.getProduct();
-                    double currentProductPrice = product.getPrice();
-                    if (cartItem.getPricePerItem() != currentProductPrice) {
-                        LOGGER.debug("Updating price for cart item ID: {} from {} to {}", cartItem.getId(), cartItem.getPricePerItem(), currentProductPrice);
-                        cartItem.setPricePerItem(currentProductPrice);
-                        cartItemRepo.save(cartItem);
-                    }
-                    return cartItem.getQuantityToTake() * currentProductPrice;
+                        Product product = cartItem.getProduct();
+                        double currentProductPrice = product.getPrice();
+                        if (cartItem.getPricePerItem() != currentProductPrice) {
+                            LOGGER.debug("Updating price for cart item ID: {} from {} to {}", cartItem.getId(), cartItem.getPricePerItem(), currentProductPrice);
+                            cartItem.setPricePerItem(currentProductPrice);
+                            cartItemRepo.save(cartItem);
+                        }
+                        return cartItem.getQuantityToTake() * currentProductPrice;
+
                 })
                 .mapToDouble(Double::doubleValue)
                 .sum();
@@ -81,15 +81,18 @@ public class CartServiceImpl implements CartService {
         });
 
         for (CartItem item : cart.getItems()) {
-            Product product = item.getProduct();
-            LOGGER.debug("Restoring quantity for product ID: {} by {} units.", product.getId(), item.getQuantityToTake());
-            product.setQuantity(product.getQuantity() + item.getQuantityToTake());
+            if (item.getStatus() == CartItemStatus.RESERVED) {
+                Product product = item.getProduct();
+                LOGGER.debug("Restoring quantity for product ID: {} by {} units.", product.getId(), item.getQuantityToTake());
+                product.setQuantity(product.getQuantity() + item.getQuantityToTake());
+                productRepo.save(product);
+            }
             cartItemRepo.deleteById(item.getId());
-            productRepo.save(product);
         }
 
         cartRepo.delete(cart);
         LOGGER.info("Cart with ID: {} deleted successfully.", id);
     }
+
 
 }
