@@ -92,6 +92,12 @@ This E-Commerce application includes the following features:
       messages to the user.
     * **Custom Exceptions:** Specific exceptions for different error scenarios like resource not found, invalid input,
       etc.
+* **Scheduler for Cart Item Expiration**
+    * In this project, a scheduler has been implemented to manage cart item expiration. The scheduler periodically checks for cart items that have not been reserved within a specified time frame (e.g., 2 hours) and marks them as not reserved.
+    *  **Key Features:**
+        * **Automatic Expiration:** Cart items that have not been reserved within 2 hours are automatically marked as NOT_RESERVED.
+        * **Product Quantity Restoration:** When an item expires, the quantity of the associated product is restored to its original state.
+
 
 ## Testing
 
