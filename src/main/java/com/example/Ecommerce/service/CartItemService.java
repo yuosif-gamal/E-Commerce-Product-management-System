@@ -11,4 +11,6 @@ public interface CartItemService {
     CartItemDto increaseOneFromItem(Long itemID);
 
     CartItemDto deleteItem(Long id);
+
+    CartItemDto reReserveItem(Long id);
 }

@@ -74,4 +74,17 @@ public class CartItemController {
         LOGGER.info("Item with ID {} deleted successfully: {}", id, item);
         return ResponseEntity.ok(new SuccessResponse("Item deleted successfully", item, HttpStatus.OK.value()));
     }
+
+    @PutMapping("/re-reserve/{id}")
+    @Operation(summary = "re reserve Item ", description = "re reserving an item")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Item reserving successfully"),
+            @ApiResponse(responseCode = "404", description = "Item not found")
+    })
+    public ResponseEntity<SuccessResponse> reReserveItem(@PathVariable("id") Long id) {
+        LOGGER.info("Received request to re reserve item with ID {}", id);
+        CartItemDto item = cartItemService.reReserveItem(id);
+        LOGGER.info("Item with ID {} reserved successfully: {}", id, item);
+        return ResponseEntity.ok(new SuccessResponse("Item re reserve successfully", item, HttpStatus.OK.value()));
+    }
 }
