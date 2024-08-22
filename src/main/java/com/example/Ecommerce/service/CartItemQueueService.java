@@ -3,6 +3,7 @@ package com.example.Ecommerce.service;
 import com.example.Ecommerce.entity.CartItem;
 import com.example.Ecommerce.entity.CartItemStatus;
 import com.example.Ecommerce.entity.Product;
+import com.example.Ecommerce.entity.User;
 import com.example.Ecommerce.exception.ResourceNotFoundException;
 import com.example.Ecommerce.model.QueueItem;
 import com.example.Ecommerce.repository.CartItemRepo;
@@ -22,6 +23,8 @@ public class CartItemQueueService {
 
     private final ProductRepo productRepo;
     private final CartItemRepo cartItemRepo;
+    private final EmailService emailService;
+    private final UserService userService;
     private final PriorityQueue<QueueItem> queue = new PriorityQueue<>(
             (a, b) -> a.getAddedAt().compareTo(b.getAddedAt())
     );
@@ -53,7 +56,8 @@ public class CartItemQueueService {
                     });
 
             cartItem.setStatus(CartItemStatus.NOT_RESERVED);
-
+            User user = userService.currentUser();
+            emailService.sendItemNotReservedEmail(user, cartItem);
             Product product = cartItem.getProduct();
             product.setQuantity(product.getQuantity() + cartItem.getQuantityToTake());
 

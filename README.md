@@ -97,7 +97,8 @@ This E-Commerce application includes the following features:
     *  **Key Features:**
         * **Automatic Expiration:** Cart items that have not been reserved within 2 hours are automatically marked as NOT_RESERVED.
         * **Product Quantity Restoration:** When an item expires, the quantity of the associated product is restored to its original state.
-
+* **Email Notification:**
+   * the project includes an email notification system that sends notifications to users when certain events occur, such as when a cart item is marked as NOT_RESERVED because he reserved from 2 hours ago. The email service is implemented using Spring Boot's _**JavaMailSender**_ to interact with an SMTP server.
 
 ## Testing
 
