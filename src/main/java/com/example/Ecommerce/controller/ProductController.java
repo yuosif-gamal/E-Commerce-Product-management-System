@@ -82,7 +82,7 @@ public class ProductController {
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(required = false) String name,
-            @RequestParam(required = false) Integer minQuantity) {
+            @RequestParam(defaultValue = "0") Integer minQuantity) {
 
         LOGGER.info("Received request to get filtered products with parameters - page: {}, size: {}, sortBy: {}, minPrice: {}, maxPrice: {}, name: {}, minQuantity: {}",
                 page, size, sortBy, minPrice, maxPrice, name, minQuantity);
