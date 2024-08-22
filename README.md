@@ -42,19 +42,20 @@ mechanisms, along with various features for filtering and sorting products.
 
 ## Technologies Used
 
-- **Java 21**
-- **Spring Boot 3**
-- **Spring Data JPA** (Hibernate)
-- **Spring Security**
-- **Spring Web**
-- **Spring Cache**
-- **Spring Validation**
-- **Spring Testing** (Unit Test)
-- **Spring Logging** (log4j)
-- **Swagger/OpenAPI 3**
-- **MySQL Database**
-- **H2 Database**
-- **Maven**
+- **Java 21**: The programming language used for developing the application.
+- **Spring Boot 3**: The framework used to build the application, providing features for dependency injection, configuration, and more.
+- **Spring Data JPA (Hibernate)**: Used for data access and ORM (Object-Relational Mapping).
+- **Spring Security**: Provides authentication and authorization for securing the application.
+- **Spring Web**: Used for building web applications and RESTful APIs.
+- **Spring Cache**: Implements caching strategies to improve application performance.
+- **Spring Validation**: Handles validation of user input and data.
+- **Spring Testing (Unit Test)**: Used for writing and running unit tests to ensure code quality.
+- **Spring Logging (log4j)**: Manages application logging using log4j for logging events.
+- **Swagger/OpenAPI 3**: Provides API documentation and testing capabilities.
+- **MySQL Database**: The primary relational database management system used.
+- **H2 Database**: An in-memory database used for development and testing purposes.
+- **Maven**: The build automation tool used for dependency management and project builds.
+- **Email (SMTP)**: Implements email functionality using SMTP for sending notifications and alerts.
 
 ## Features
 
