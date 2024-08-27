@@ -23,7 +23,7 @@ public class CartItemQueueService {
 
     private final ProductRepo productRepo;
     private final CartItemRepo cartItemRepo;
-    private final EmailService emailService;
+    private final EmailSendService emailSendService;
     private final UserService userService;
     private final PriorityQueue<QueueItem> queue = new PriorityQueue<>(
             (a, b) -> a.getAddedAt().compareTo(b.getAddedAt())
@@ -57,7 +57,8 @@ public class CartItemQueueService {
 
             cartItem.setStatus(CartItemStatus.NOT_RESERVED);
             User user = userService.currentUser();
-            emailService.sendItemNotReservedEmail(user, cartItem);
+
+            emailSendService.sendItemNotReservedEmail(user.getEmail(),user.getFirstName() ,cartItem.getProduct().getName());
             Product product = cartItem.getProduct();
             product.setQuantity(product.getQuantity() + cartItem.getQuantityToTake());
 
