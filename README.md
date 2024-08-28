@@ -6,6 +6,27 @@ This E-Commerce application is online shopping platform built using Spring Boot.
 manage carts, apply vouchers, and make purchases. The application includes robust authentication and authorization
 mechanisms, along with various features for filtering and sorting products.
 
+## Microservices Architecture
+
+The E-Commerce application is designed using a microservices architecture, consisting of the following services:
+
+* **API Gateway:**
+    * **Role:** The API Gateway is the entry point for all client requests. It routes the requests to the appropriate
+      microservice and handles cross-cutting concerns like security, logging, and rate limiting.
+    * **Technology:** Spring Cloud Gateway.
+* **Notification Service:**
+
+    * **Role:** Handles sending notifications to users, such as email notifications when item still in cart more than 2
+      hours is marked as not reserved.
+    * **Technology:** Spring Boot with JavaMailSender for sending emails.
+
+* **E-commerce Service:**
+    * **Role:** Central service managing core e-commerce functionalities, including products, categories, and carts. It
+      coordinates product and cart management, handles user roles and access control, and interacts with other services
+      via the API Gateway.
+    * **Technology:** Spring Boot with Spring Data JPA for database interactions, Spring Security for authentication and
+      authorization.
+
 ## installations
 
 ### Prerequisites
@@ -28,7 +49,7 @@ mechanisms, along with various features for filtering and sorting products.
         * spring.datasource.url=jdbc:mysql://localhost:3306/your_schema_name
         * spring.datasource.password=your_password
         * spring.datasource.username=your_username
-      
+
 3. **Build the Project**
     ```
    cd E-Commerce-Product-management-System
@@ -43,7 +64,8 @@ mechanisms, along with various features for filtering and sorting products.
 ## Technologies Used
 
 - **Java 21**: The programming language used for developing the application.
-- **Spring Boot 3**: The framework used to build the application, providing features for dependency injection, configuration, and more.
+- **Spring Boot 3**: The framework used to build the application, providing features for dependency injection,
+  configuration, and more.
 - **Spring Data JPA (Hibernate)**: Used for data access and ORM (Object-Relational Mapping).
 - **Spring Security**: Provides authentication and authorization for securing the application.
 - **Spring Web**: Used for building web applications and RESTful APIs.
@@ -51,6 +73,7 @@ mechanisms, along with various features for filtering and sorting products.
 - **Spring Validation**: Handles validation of user input and data.
 - **Spring Testing (Unit Test)**: Used for writing and running unit tests to ensure code quality.
 - **Spring Logging (log4j)**: Manages application logging using log4j for logging events.
+- **Spring Cloud:** Provides a set of tools for building and managing microservices, including API Gateway.
 - **Swagger/OpenAPI 3**: Provides API documentation and testing capabilities.
 - **MySQL Database**: The primary relational database management system used.
 - **H2 Database**: An in-memory database used for development and testing purposes.
@@ -94,12 +117,18 @@ This E-Commerce application includes the following features:
     * **Custom Exceptions:** Specific exceptions for different error scenarios like resource not found, invalid input,
       etc.
 * **Scheduler for Cart Item Expiration**
-    * In this project, a scheduler has been implemented to manage cart item expiration. The scheduler periodically checks for cart items that have not been reserved within a specified time frame (e.g., 2 hours) and marks them as not reserved.
-    *  **Key Features:**
-        * **Automatic Expiration:** Cart items that have not been reserved within 2 hours are automatically marked as NOT_RESERVED.
-        * **Product Quantity Restoration:** When an item expires, the quantity of the associated product is restored to its original state.
+    * In this project, a scheduler has been implemented to manage cart item expiration. The scheduler periodically
+      checks for cart items that have not been reserved within a specified time frame (e.g., 2 hours) and marks them as
+      not reserved.
+    * **Key Features:**
+        * **Automatic Expiration:** Cart items that have not been reserved within 2 hours are automatically marked as
+          NOT_RESERVED.
+        * **Product Quantity Restoration:** When an item expires, the quantity of the associated product is restored to
+          its original state.
 * **Email Notification:**
-   * the project includes an email notification system that sends notifications to users when certain events occur, such as when a cart item is marked as NOT_RESERVED because he reserved from 2 hours ago. The email service is implemented using Spring Boot's _**JavaMailSender**_ to interact with an SMTP server.
+    * the project includes an email notification system that sends notifications to users when certain events occur,
+      such as when a cart item is marked as NOT_RESERVED because he reserved from 2 hours ago. The email service is
+      implemented using Spring Boot's _**JavaMailSender**_ to interact with an SMTP server.
 
 ## Testing
 
