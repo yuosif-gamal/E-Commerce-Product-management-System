@@ -39,6 +39,7 @@ public class CartItemServiceImpl implements CartItemService {
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
         int quantityToTake = getValidQuantity(cartItem, product);
+        checkLimitedQuantityToUser(quantityToTake);
         Double priceBeforeVoucher = product.getPrice();
 
         voucherService.applyVoucherDiscount(product);
@@ -152,8 +153,8 @@ public class CartItemServiceImpl implements CartItemService {
     @Transactional
     public CartItemDto increaseOneFromItem(Long itemID) {
         LOGGER.info("Increasing quantity of cart item with ID: {}", itemID);
-
         CartItem item = cartItemRepo.findById(itemID).orElseThrow(() -> new ResourceNotFoundException("Cart item not found"));
+        checkLimitedQuantityToUser(item.getQuantityToTake() + 1);
         Product product = productRepo.findById(item.getProduct().getId()).orElseThrow(() -> new ResourceNotFoundException("Product not found"));
         if (item.getStatus() == NOT_RESERVED){
             getValidQuantity(item, product);
@@ -211,6 +212,12 @@ public class CartItemServiceImpl implements CartItemService {
 
     private void deletingItemLogger(Long id){
         LOGGER.info("Deleting cart item with ID: {}", id);
+    }
+
+    private void checkLimitedQuantityToUser(Integer qun){
+        if (qun > 3){
+            throw new ResourceNotFoundException("this item limit exceeded, cannot take more than 3");
+        }
     }
 
 }

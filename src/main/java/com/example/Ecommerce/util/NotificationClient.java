@@ -1,4 +1,4 @@
-package com.example.Ecommerce.service;
+package com.example.Ecommerce.util;
 
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -9,9 +9,9 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
-public class EmailSendService {
+public class NotificationClient {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailSendService.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NotificationClient.class);
     private final RestTemplate restTemplate;
 
     @Value("${Notification.url}")
