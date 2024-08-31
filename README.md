@@ -74,6 +74,7 @@ The E-Commerce application is designed using a microservices architecture, consi
 - **Spring Testing (Unit Test)**: Used for writing and running unit tests to ensure code quality.
 - **Spring Logging (log4j)**: Manages application logging using log4j for logging events.
 - **Spring Cloud:** Provides a set of tools for building and managing microservices, including API Gateway.
+- **Spring AOP (Aspect-Oriented Programming):** ovides a mechanism for separating cross-cutting concerns such as logging and performance monitoring from the core business logic.
 - **Swagger/OpenAPI 3**: Provides API documentation and testing capabilities.
 - **MySQL Database**: The primary relational database management system used.
 - **H2 Database**: An in-memory database used for development and testing purposes.
@@ -129,6 +130,10 @@ This E-Commerce application includes the following features:
     * the project includes an email notification system that sends notifications to users when certain events occur,
       such as when a cart item is marked as NOT_RESERVED because he reserved from 2 hours ago. The email service is
       implemented using Spring Boot's _**JavaMailSender**_ to interact with an SMTP server.
+* **Logging Aspect** 
+    * To enhance observability and debugging, a Logging Aspect has been implemented using Aspect-Oriented Programming (AOP).
+    * This aspect provides comprehensive logging for method executions across all service classes.
+
 
 ## Testing
 
