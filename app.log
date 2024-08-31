@@ -546,3 +546,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'productsdb.user_role' doesn'
 2024-08-31T15:47:10.371+03:00  INFO 9920 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
 2024-08-31T15:47:10.372+03:00  INFO 9920 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
 2024-08-31T15:47:10.372+03:00  INFO 9920 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 1 ms with result: true
+2024-08-31T15:48:25.371+03:00  INFO 9920 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-08-31T15:48:25.372+03:00  INFO 9920 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-08-31T15:48:25.373+03:00  INFO 9920 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-08-31T15:48:25.373+03:00  INFO 9920 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 2 ms with result: true
