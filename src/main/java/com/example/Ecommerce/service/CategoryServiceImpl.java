@@ -23,96 +23,72 @@ import java.util.stream.Collectors;
 @EnableCaching
 public class CategoryServiceImpl implements CategoryService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
     private final CategoryRepo categoryRepo;
 
     @Cacheable(value = "categories", key = "'all'")
     @Override
     public List<CategoryDto> getAllCategory() {
-        LOGGER.info("Fetching all categories from the database.");
 
         List<Category> categories = categoryRepo.findAll();
-        List<CategoryDto> categoryDto = convertToDto(categories);
 
-        LOGGER.info("Successfully fetched {} categories.", categoryDto.size());
-        return categoryDto;
+        return convertToDto(categories);
     }
 
     @Override
     @Cacheable(value = "categories", key = "#id")
     public CategoryDto getCategory(Long id) {
-        LOGGER.info("Fetching category with ID: {}", id);
 
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
-            LOGGER.error("Category not found with ID: {}", id);
             throw new ResourceNotFoundException("Category not found with id: " + id);
         }
-        CategoryDto categoryDto = CategoryMapper.convertEntityToDto(category);
 
-        LOGGER.info("Category found and converted to DTO: {}", categoryDto);
-        return categoryDto;
+        return CategoryMapper.convertEntityToDto(category);
     }
 
     @Override
     @CacheEvict(value = "categories", allEntries = true)
     public Category createCategory(Category category) {
-        LOGGER.info("Creating new category: {}", category);
-
-        Category createdCategory = categoryRepo.save(category);
-
-        LOGGER.info("Category created with ID: {}", createdCategory.getId());
-        return createdCategory;
+        return categoryRepo.save(category);
     }
 
     @Override
     @CacheEvict(value = "categories", allEntries = true)
     public void deleteCategory(Long id) {
-        LOGGER.info("Deleting category with ID: {}", id);
 
         Category category = categoryRepo.findById(id).orElse(null);
         if (category == null) {
-            LOGGER.error("Category not found with ID: {}", id);
             throw new ResourceNotFoundException("Category not found with id: " + id);
         }
         categoryRepo.deleteById(id);
 
-        LOGGER.info("Category with ID: {} deleted successfully.", id);
     }
 
     @Override
     @Cacheable(value = "categories", key = "'main'")
     public List<CategoryDto> getAllMainCategories() {
-        LOGGER.info("Fetching all main categories.");
 
         List<Category> categories = categoryRepo.findByParentCategoryIsNull();
-        List<CategoryDto> categoryDto = convertToDto(categories);
 
-        LOGGER.info("Successfully fetched {} main categories.", categoryDto.size());
-        return categoryDto;
+        return convertToDto(categories);
     }
 
     @Override
     @Cacheable(value = "categories", key = "'sub_' + #categoryId")
     public List<CategoryDto> getCategoryChildren(Long categoryId) {
-        LOGGER.info("Fetching children categories for category ID: {}", categoryId);
 
         Category category = categoryRepo.findById(categoryId).orElse(null);
         if (category == null) {
-            LOGGER.error("Category not found with ID: {}", categoryId);
             throw new ResourceNotFoundException("Category not found with id: " + categoryId);
         }
 
         List<Category> categories = categoryRepo.findByParentCategoryId(categoryId);
-        List<CategoryDto> categoryDto = convertToDto(categories);
 
-        LOGGER.info("Successfully fetched {} child categories for parent ID: {}", categoryDto.size(), categoryId);
-        return categoryDto;
+        return convertToDto(categories);
     }
 
     private List<CategoryDto> convertToDto(List<Category> categories) {
-        LOGGER.debug("Converting {} categories to DTOs.", categories.size());
         return categories.stream()
                 .map(CategoryMapper::convertEntityToDto)
                 .collect(Collectors.toList());
@@ -121,7 +97,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Cacheable(value = "categories", key = "'tree'")
     public List<CategoryModelDto> getCategoriesTree() {
-        LOGGER.info("Building category tree.");
 
         List<Category> categoriesList = categoryRepo.findAll();
         Map<Long, CategoryModel> categoryModelMap = new HashMap<>();
@@ -143,12 +118,9 @@ public class CategoryServiceImpl implements CategoryService {
             }
         }
 
-        List<CategoryModelDto> finalResult = result.stream()
+        return result.stream()
                 .map(CategoryMapper::convertToModelDTO)
                 .collect(Collectors.toList());
-
-        LOGGER.info("Successfully built category tree with {} root categories.", finalResult.size());
-        return finalResult;
     }
 
 }

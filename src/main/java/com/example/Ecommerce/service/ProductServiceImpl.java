@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     private final ProductRepo productRepo;
     private final VoucherService voucherService;
@@ -32,9 +31,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Cacheable(value = "Products", key = "#categoryID + '_' + #page + '_' + #size + '_' + #sortBy")
     public List<ProductDto> getPaginatedProductsByCategoryID(Long categoryID, int page, int size, String sortBy) {
-        LOGGER.info("Fetching products for category ID: {} with page {}, size {}, and sort {}",
-                categoryID, page, size, sortBy);
-
         Sort sort = Sort.by(sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
 
@@ -43,7 +39,6 @@ public class ProductServiceImpl implements ProductService {
         applyVoucher(products);
         List<ProductDto> productDto = convertToDto(products);
 
-        LOGGER.info("Successfully fetched {} products for category ID: {}", productDto.size(), categoryID);
         return productDto;
     }
 
@@ -51,82 +46,62 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Cacheable(value = "Products", key = "#id")
     public ProductDto findProductById(Long id) {
-        LOGGER.info("Fetching product with ID: {}", id);
 
         Product product = verifyExistingProduct(id);
         voucherService.applyVoucherDiscount(product);
         ProductDto productDto = ProductMapper.convertEntityToDto(product);
 
-        LOGGER.info("Product found and converted to DTO: {}", productDto);
         return productDto;
     }
 
     @Cacheable(value = "Products", key = "#filter.toString() + '_' + #page + '_' + #size + '_' + #sortBy")
     @Override
     public List<ProductDto> getProducts(ProductFilter filter, int page, int size, String sortBy) {
-        LOGGER.info("Fetching products with filters: {}, page: {}, size: {}, sortBy: {}", filter, page, size, sortBy);
 
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
         Specification<Product> spec = new ProductSpecification(filter);
 
         Page<Product> productPage = productRepo.findAll(spec, pageable);
         List<Product> products = productPage.getContent();
-
-        LOGGER.info("Applying vouchers to the retrieved products.");
         applyVoucher(products);
-
-        LOGGER.info("Successfully converted {} products to DTOs.", products.size());
         return convertToDto(products);
     }
 
     @Override
     @CacheEvict(value = "Products", allEntries = true)
     public Product createProduct(Product product) {
-        LOGGER.info("Creating new product: {}", product);
 
-        Product createdProduct = productRepo.save(product);
-        LOGGER.info("Product created with ID: {}", createdProduct.getId());
-        return createdProduct;
+        return productRepo.save(product);
     }
 
     @Override
     @CacheEvict(value = "Products", allEntries = true)
     @CachePut(value = "FindProduct", key = "#product.id")
     public Product updateProduct(Product product) {
-        LOGGER.info("Updating product with ID: {}", product.getId());
-
         verifyExistingProduct(product.getId());
-        Product updatedProduct = productRepo.save(product);
-
-        LOGGER.info("Product updated successfully: {}", updatedProduct);
-        return updatedProduct;
+        return productRepo.save(product);
     }
 
     @Override
     @CacheEvict(value = "Products", allEntries = true)
     public void deleteProduct(Long id) {
-        LOGGER.info("Deleting product with ID: {}", id);
 
         verifyExistingProduct(id);
         productRepo.deleteById(id);
 
-        LOGGER.info("Product with ID: {} deleted successfully.", id);
     }
 
     private void applyVoucher(List<Product> products) {
-        LOGGER.debug("Applying vouchers to {} products.", products.size());
         products.forEach(voucherService::applyVoucherDiscount);
     }
 
     private List<ProductDto> convertToDto(List<Product> products) {
-        LOGGER.debug("Converting {} products to DTOs.", products.size());
         return products.stream()
                 .map(ProductMapper::convertEntityToDto)
                 .collect(Collectors.toList());
     }
 
     private Product verifyExistingProduct(Long id) {
-        LOGGER.debug("Verifying existence of product with ID: {}", id);
         return productRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
     }
