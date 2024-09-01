@@ -20,12 +20,12 @@ public class SwaggerConfig {
 
         Contact myContact = new Contact();
         myContact.setName("Yousif Gamal");
-        myContact.setEmail("Yousif.gamal@gmail.com");
+        myContact.setEmail("Yousifgamal8@gmail.com");
 
         Info information = new Info()
                 .title("E-commerce")
-                .version("1.0")
-                .description("This API exposes endpoints to manage e-commerce.")
+                .version("2.0")
+                .description("This API exposes endpoints to manage E-commerce.")
                 .contact(myContact);
 
         return new OpenAPI()
