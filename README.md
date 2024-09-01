@@ -67,14 +67,14 @@ The E-Commerce application is designed using a microservices architecture, consi
 - **Spring Boot 3**: The framework used to build the application, providing features for dependency injection,
   configuration, and more.
 - **Spring Data JPA (Hibernate)**: Used for data access and ORM (Object-Relational Mapping).
-- **Spring Security**: Provides authentication and authorization for securing the application.
+- **Spring Security**: [Provides authentication and authorization for securing the application.](https://docs.google.com/document/d/1WVqrsbo5-NaU8YUyhgyKr20ZCQZeZ2ieGTLZiRLYnCc/edit#heading=h.foorz6d7lthh)
 - **Spring Web**: Used for building web applications and RESTful APIs.
 - **Spring Cache**: Implements caching strategies to improve application performance.
 - **Spring Validation**: Handles validation of user input and data.
 - **Spring Testing (Unit Test)**: Used for writing and running unit tests to ensure code quality.
 - **Spring Logging (log4j)**: Manages application logging using log4j for logging events.
 - **Spring Cloud:** Provides a set of tools for building and managing microservices, including API Gateway.
-- **Spring AOP (Aspect-Oriented Programming):** ovides a mechanism for separating cross-cutting concerns such as logging and performance monitoring from the core business logic.
+- **Spring AOP (Aspect-Oriented Programming):** provides a mechanism for separating cross-cutting concerns such as logging and performance monitoring from the core business logic.
 - **Swagger/OpenAPI 3**: Provides API documentation and testing capabilities.
 - **MySQL Database**: The primary relational database management system used.
 - **H2 Database**: An in-memory database used for development and testing purposes.
