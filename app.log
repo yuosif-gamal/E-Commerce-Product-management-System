@@ -7210,3 +7210,47 @@ Caused by: java.sql.SQLSyntaxErrorException: Table 'productsdb.user_role' doesn'
 2024-09-04T03:43:56.087+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
 2024-09-04T03:43:56.087+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
 2024-09-04T03:43:56.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 1 ms with result: true
+2024-09-04T03:44:26.087+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:44:26.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:44:26.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:44:26.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 1 ms with result: true
+2024-09-04T03:44:56.086+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:44:56.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:44:56.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:44:56.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 2 ms with result: true
+2024-09-04T03:45:26.086+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:45:26.087+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:45:26.087+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:45:26.089+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 3 ms with result: true
+2024-09-04T03:45:56.087+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:45:56.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:45:56.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:45:56.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 1 ms with result: true
+2024-09-04T03:46:26.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:46:26.090+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:46:26.090+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:46:26.090+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 2 ms with result: true
+2024-09-04T03:46:56.086+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:46:56.089+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:46:56.089+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:46:56.089+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 3 ms with result: true
+2024-09-04T03:47:26.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:47:26.089+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:47:26.090+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:47:26.090+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 2 ms with result: true
+2024-09-04T03:47:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:47:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:47:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:47:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 0 ms with result: true
+2024-09-04T03:48:26.104+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:48:26.104+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:48:26.104+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:48:26.105+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 1 ms with result: true
+2024-09-04T03:48:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:48:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:48:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:48:56.085+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 0 ms with result: true
+2024-09-04T03:49:26.087+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Entering method: isQueueEmpty
+2024-09-04T03:49:26.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully with result: true
+2024-09-04T03:49:26.088+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Exiting method: isQueueEmpty
+2024-09-04T03:49:26.089+03:00  INFO 8392 --- [scheduling-1] c.e.Ecommerce.aspect.LoggingAspect       : Method isQueueEmpty completed successfully in 2 ms with result: true

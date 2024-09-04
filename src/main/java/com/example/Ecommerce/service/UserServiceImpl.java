@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto changeSubscribeStatus(Long id) {
+    public User changeSubscribeStatus(Long id) {
         User user = isExist(id);
 
         if (user.getSubscribeStatus() == SUBSCRIBED) {
@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
             user.setSubscribeStatus(SUBSCRIBED);
         }
         userRepo.save(user);
-        return UserMapper.convertEntityToDto(user);
+        return user;
     }
 
     private User isExist(Long id) {

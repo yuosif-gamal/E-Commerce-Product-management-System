@@ -19,5 +19,5 @@ public interface UserService {
 
     UserDto changeRole(Long id, String myRole);
 
-    UserDto changeSubscribeStatus(Long id);
+    User changeSubscribeStatus(Long id);
 }
