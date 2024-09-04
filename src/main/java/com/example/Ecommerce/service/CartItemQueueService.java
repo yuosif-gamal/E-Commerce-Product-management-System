@@ -1,9 +1,6 @@
 package com.example.Ecommerce.service;
 
-import com.example.Ecommerce.entity.CartItem;
-import com.example.Ecommerce.entity.CartItemStatus;
-import com.example.Ecommerce.entity.Product;
-import com.example.Ecommerce.entity.User;
+import com.example.Ecommerce.entity.*;
 import com.example.Ecommerce.exception.ResourceNotFoundException;
 import com.example.Ecommerce.model.QueueItem;
 import com.example.Ecommerce.repository.CartItemRepo;
@@ -51,7 +48,8 @@ public class CartItemQueueService {
             cartItem.setStatus(CartItemStatus.NOT_RESERVED);
             User user = userService.currentUser();
 
-            emailSendService.sendItemNotReservedEmail(user.getEmail(),user.getFirstName() ,cartItem.getProduct().getName());
+            if (user.getSubscribeStatus() == UserSubscribeStatus.SUBSCRIBED)
+                emailSendService.sendItemNotReservedEmail(user.getEmail(),user.getFirstName() ,cartItem.getProduct().getName(),user.getId());
             Product product = cartItem.getProduct();
             product.setQuantity(product.getQuantity() + cartItem.getQuantityToTake());
 

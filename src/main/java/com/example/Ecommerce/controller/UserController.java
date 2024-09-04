@@ -94,4 +94,15 @@ public class UserController {
         LOGGER.info("User with ID {} changed to User successfully", id);
         return ResponseEntity.ok(new SuccessResponse(user.getFirstName() + " became User successfully", user, HttpStatus.OK.value()));
     }
+
+    @PutMapping("/subscribe-status/{id}")
+    @Operation(summary = "Change User subscribe status to User", description = "Change the subscribe status of a user")
+    @ApiResponse(responseCode = "200", description = "User status changed to User successfully")
+    @ApiResponse(responseCode = "404", description = "User not found")
+    public ResponseEntity<SuccessResponse> changeStatus(@PathVariable("id") Long id) {
+        LOGGER.info("Received request to change status to ID user with id {} ", id);
+        UserDto user = userService.changeSubscribeStatus(id);
+        LOGGER.info("User with ID {} changed to status successfully", id);
+        return ResponseEntity.ok(new SuccessResponse("change status success", user, HttpStatus.OK.value()));
+    }
 }

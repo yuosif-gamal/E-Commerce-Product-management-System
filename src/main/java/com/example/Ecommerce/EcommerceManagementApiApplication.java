@@ -12,6 +12,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import static com.example.Ecommerce.entity.UserSubscribeStatus.SUBSCRIBED;
 
 @SpringBootApplication
 @EnableCaching
@@ -56,7 +57,7 @@ public class EcommerceManagementApiApplication {
             }
             if (userRepo.findAllByEmail(defaultEmail) == null) {
                 String encodedPassword = passwordEncoder.encode(defaultPassword);
-                User user = new User(defaultFirstName, defaultLastName, encodedPassword, defaultEmail);
+                User user = new User(defaultFirstName, defaultLastName, encodedPassword, defaultEmail, SUBSCRIBED);
                 Role role = new Role("MANAGER");
                 roleRepo.save(role);
                 user.addRole(role);
