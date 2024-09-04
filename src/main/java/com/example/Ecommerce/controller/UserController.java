@@ -2,6 +2,7 @@ package com.example.Ecommerce.controller;
 
 import com.example.Ecommerce.dto.SuccessResponse;
 import com.example.Ecommerce.dto.UserDto;
+import com.example.Ecommerce.entity.User;
 import com.example.Ecommerce.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -101,8 +102,8 @@ public class UserController {
     @ApiResponse(responseCode = "404", description = "User not found")
     public ResponseEntity<SuccessResponse> changeStatus(@PathVariable("id") Long id) {
         LOGGER.info("Received request to change status to ID user with id {} ", id);
-        UserDto user = userService.changeSubscribeStatus(id);
+        User user = userService.changeSubscribeStatus(id);
         LOGGER.info("User with ID {} changed to status successfully", id);
-        return ResponseEntity.ok(new SuccessResponse("change status success", user, HttpStatus.OK.value()));
+        return ResponseEntity.ok(new SuccessResponse("change status success", user.getSubscribeStatus(), HttpStatus.OK.value()));
     }
 }
