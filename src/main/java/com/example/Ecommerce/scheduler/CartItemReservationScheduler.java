@@ -11,7 +11,7 @@ public class CartItemReservationScheduler {
     private final CartItemQueueService cartItemQueueService;
 
 
-    @Scheduled(fixedRate = 75 * 1000)
+    @Scheduled(fixedRate = 30 * 1000)
     public void scheduleQueueProcessing() {
         if (!cartItemQueueService.isQueueEmpty()) {
             cartItemQueueService.processQueue();

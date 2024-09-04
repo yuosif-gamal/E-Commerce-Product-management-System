@@ -7,14 +7,17 @@ import com.example.Ecommerce.exception.ResourceNotFoundException;
 import com.example.Ecommerce.mapper.UserMapper;
 import com.example.Ecommerce.entity.User;
 import com.example.Ecommerce.repository.UserRepo;
+import com.example.Ecommerce.util.NotificationClient;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static com.example.Ecommerce.entity.UserSubscribeStatus.SUBSCRIBED;
+import static com.example.Ecommerce.entity.UserSubscribeStatus.UNSUBSCRIBED;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final RoleService roleService;
+    private final NotificationClient notificationClient;
 
     @Override
     public void register(UserDto request) {
@@ -38,8 +42,9 @@ public class UserServiceImpl implements UserService {
         User user = UserMapper.convertDtoToEntity(request);
         Role userRole = roleService.findRoleByName("USER");
         user.addRole(userRole);
+        user.setSubscribeStatus(SUBSCRIBED);
         userRepo.save(user);
-
+        notificationClient.registrationCompleteEmail(request.getEmail(), request.getFirstName(), user.getId());
     }
 
     @Override
@@ -57,24 +62,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Long userId) {
-
-        User user = userRepo.getUserById(userId);
-        if (user == null) {
-            throw new ResourceNotFoundException("User not found with id: " + userId);
-        }
-
+        User user = isExist(userId);
         return UserMapper.convertEntityToDto(user);
     }
 
     @Override
     public UserDto deleteUserById(Long userId) {
 
-        User user = userRepo.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
+        User user = isExist(userId);
 
         userRepo.deleteById(userId);
-        UserDto userDto = UserMapper.convertEntityToDto(user);
-        return userDto;
+        return UserMapper.convertEntityToDto(user);
     }
 
     @Override
@@ -98,9 +96,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto changeRole(Long id, String myRole) {
 
-        User user = userRepo.findById(id).orElseThrow(() -> {
-            return new ResourceNotFoundException("No user found with id: " + id);
-        });
+        User user = isExist(id);
 
         Role role = roleService.findRoleByName(myRole);
         user.getRoles().clear();
@@ -108,5 +104,22 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
 
         return UserMapper.convertEntityToDto(user);
+    }
+
+    @Override
+    public UserDto changeSubscribeStatus(Long id) {
+        User user = isExist(id);
+
+        if (user.getSubscribeStatus() == SUBSCRIBED) {
+            user.setSubscribeStatus(UNSUBSCRIBED);
+        } else {
+            user.setSubscribeStatus(SUBSCRIBED);
+        }
+        userRepo.save(user);
+        return UserMapper.convertEntityToDto(user);
+    }
+
+    private User isExist(Long id) {
+        return userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("No user found with id: " + id));
     }
 }

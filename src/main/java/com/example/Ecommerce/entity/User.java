@@ -25,11 +25,12 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
 
-    public User(String firstName, String lastName, String password, String email) {
+    public User(String firstName, String lastName, String password, String email , UserSubscribeStatus subscribeStatus) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+        this.subscribeStatus = subscribeStatus;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -46,5 +47,7 @@ public class User {
         }
         roles.add(role);
     }
+    @Enumerated(EnumType.STRING)
+    UserSubscribeStatus subscribeStatus;
 
 }
