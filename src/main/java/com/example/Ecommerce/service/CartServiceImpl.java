@@ -34,9 +34,7 @@ public class CartServiceImpl implements CartService {
         }
         updateCartItemsAndTotalPrice(cart);
 
-        CartDto cartDto = CartMapper.convertEntityToDto(cart);
-
-        return cartDto;
+        return CartMapper.convertEntityToDto(cart);
     }
 
     private void updateCartItemsAndTotalPrice(Cart cart) {

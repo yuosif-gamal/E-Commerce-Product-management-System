@@ -20,7 +20,9 @@ import static com.example.Ecommerce.entity.UserSubscribeStatus.SUBSCRIBED;
 import static com.example.Ecommerce.entity.UserSubscribeStatus.UNSUBSCRIBED;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -37,14 +39,19 @@ public class UserServiceImpl implements UserService {
         if (existingUser != null) {
             throw new DuplicateResourceException("Email is connected to another account.");
         }
-
         request.setPassword(passwordEncoder.encode(request.getPassword()));
         User user = UserMapper.convertDtoToEntity(request);
         Role userRole = roleService.findRoleByName("USER");
         user.addRole(userRole);
         user.setSubscribeStatus(SUBSCRIBED);
         userRepo.save(user);
-        notificationClient.registrationCompleteEmail(request.getEmail(), request.getFirstName(), user.getId());
+        Map<String, Object> mailInfo = new HashMap<>();
+        String username = request.getFirstName() + " " + request.getLastName();
+        mailInfo.put("email", user.getEmail());
+        mailInfo.put("username", username);
+        mailInfo.put("id", user.getId());
+        mailInfo.put("type", "registration");
+        notificationClient.sendEmail(mailInfo);
     }
 
     @Override

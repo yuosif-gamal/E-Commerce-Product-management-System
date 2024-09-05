@@ -10,8 +10,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.example.Ecommerce.entity.UserSubscribeStatus.SUBSCRIBED;
 import static com.example.Ecommerce.entity.UserSubscribeStatus.UNSUBSCRIBED;
+
 @Service
 @RequiredArgsConstructor
 public class NotificationClient {
@@ -22,47 +27,17 @@ public class NotificationClient {
     @Value("${Notification.url}")
     private String notificationUrl;
 
-    public void sendItemNotReservedEmail(String to, String userName, String itemName,Long id) {
-
-        String url = String.format("%s/email?to=%s&userName=%s&itemName=%s&id=%d",
-                notificationUrl, to, userName, itemName, id);
-
-
-        sendingEmailLogger(url);
-        try {
-            restTemplate.postForObject(url, null, Void.class);
-            sendingEmailSuccessLogger(to);
-        } catch (Exception e) {
-            sendingEmailFailedLogger(to, e.getMessage());
-        }
-    }
     @Async("taskExecutor")
-    public void registrationCompleteEmail(String to, String userName,Long id) {
-        String url = String.format("%s/email/register?to=%s&userName=%s&id=%d",
-                notificationUrl, to, userName,id);
-        sendingEmailLogger(url);
+    public void sendEmail(Map<String, Object> mailInfo) {
+        String url = String.format("%s/email", notificationUrl);
 
+        LOGGER.info("Calling Notification Service URL: {}", url);
         try {
-            restTemplate.postForObject(url, null, Void.class);
-            sendingEmailSuccessLogger(to);
+            restTemplate.postForObject(url, mailInfo, Void.class);
+            LOGGER.info("Email sent successfully to {}", mailInfo.get("username"));
         } catch (Exception e) {
-            sendingEmailFailedLogger(to, e.getMessage());
-
+            LOGGER.error("Failed to send email to {} : ", mailInfo.get("username"), e);
         }
     }
-
-
-    private void sendingEmailLogger(String url) {
-        LOGGER.info("Calling Notification Service URL: {}", url);
-    }
-
-    private void sendingEmailFailedLogger(String to, String e) {
-        LOGGER.error("Failed to send email to {}: {}", to, e);
-    }
-
-    private void sendingEmailSuccessLogger(String to) {
-        LOGGER.info("Email sent successfully to {}", to);
-    }
-
 
 }
