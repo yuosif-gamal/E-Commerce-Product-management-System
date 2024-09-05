@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 @Service
@@ -20,7 +22,7 @@ public class CartItemQueueService {
 
     private final ProductRepo productRepo;
     private final CartItemRepo cartItemRepo;
-    private final NotificationClient emailSendService;
+    private final NotificationClient notificationClient;
     private final UserService userService;
     private final PriorityQueue<QueueItem> queue = new PriorityQueue<>(
             (a, b) -> a.getAddedAt().compareTo(b.getAddedAt())
@@ -48,8 +50,15 @@ public class CartItemQueueService {
             cartItem.setStatus(CartItemStatus.NOT_RESERVED);
             User user = userService.currentUser();
 
-            if (user.getSubscribeStatus() == UserSubscribeStatus.SUBSCRIBED)
-                emailSendService.sendItemNotReservedEmail(user.getEmail(),user.getFirstName() ,cartItem.getProduct().getName(),user.getId());
+            if (user.getSubscribeStatus() == UserSubscribeStatus.SUBSCRIBED) {
+                String username = user.getFirstName() + " " + user.getLastName();
+                Map<String,Object> mailInfo= new HashMap<>();
+                mailInfo.put("email",user.getEmail());
+                mailInfo.put("username",username);
+                mailInfo.put("itemName",cartItem.getProduct().getName());
+                mailInfo.put("type", "NOT_RESERVED");
+                notificationClient.sendEmail(mailInfo);
+            }
             Product product = cartItem.getProduct();
             product.setQuantity(product.getQuantity() + cartItem.getQuantityToTake());
 
