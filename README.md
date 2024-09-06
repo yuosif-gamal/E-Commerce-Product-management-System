@@ -38,10 +38,13 @@ The E-Commerce application is designed using a microservices architecture, consi
 ### Steps
 
 1. **Clone the Repository**
-
+    clone all microservices
    ```bash
    git clone https://github.com/yuosif-gamal/E-Commerce-Product-management-System.git
 
+   git clone https://github.com/yuosif-gamal/Notification.git
+   
+   git clone https://github.com/yuosif-gamal/API-Gateway.git
 2. **Setup Database connections** </br>
     * Ensure that MySQL is installed and running, and that the database schema is created.
     * You can configure the database connection by modifying the src/main/resources/application.properties file. </br>
@@ -54,9 +57,16 @@ The E-Commerce application is designed using a microservices architecture, consi
     ```
    cd E-Commerce-Product-management-System
    mvn clean install
+   
+   cd Notification
+   mvn clean install
+   
+   cd API-Gateway
+   mvn clean install
 4. **Run the Project**
-   ```
-    .\mvnw spring-boot:run
+   * for each service.
+      ```
+       .\mvnw spring-boot:run
 
 5. **Swagger/OpenAPI** </br>
    and for testing  **endpoints** open a web browser and navigate to http://localhost:8080/swagger-ui.html
@@ -101,6 +111,7 @@ This E-Commerce application includes the following features:
 * **User Management**
     * Manage user roles with different levels of access control.
     * Handle user registration, authentication, and authorization using Spring Security.
+    * user can subscribe and unsubscribe the notification.
 * **Access Control by User Roles**
     * Ensure only authorized users can access specific features based on their roles.
 * **Caching**
@@ -128,8 +139,9 @@ This E-Commerce application includes the following features:
           its original state.
 * **Email Notification:**
     * the project includes an email notification system that sends notifications to users when certain events occur,
-      such as when a cart item is marked as NOT_RESERVED because he reserved from 2 hours ago. The email service is
-      implemented using Spring Boot's _**JavaMailSender**_ to interact with an SMTP server.
+      such as when a cart item is marked as NOT_RESERVED because he reserved from 2 hours ago.
+    * also include email regeneration when he complete register .
+    * implemented using Spring Boot's _**JavaMailSender**_ to interact with an SMTP server and **_HTML_** for emails templates .
 * **Logging Aspect** 
     * To enhance observability and debugging, a Logging Aspect has been implemented using Aspect-Oriented Programming (AOP).
     * This aspect provides comprehensive logging for method executions across all service classes.
