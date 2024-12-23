@@ -1,0 +1,22 @@
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`) VALUES ('1', 'main_category_1');
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`) VALUES ('2', 'main_category_2');
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`) VALUES ('3', 'main_category_3');
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`, `parent_id`) VALUES ('4', 'sub_category_for_main_1', '1');
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`, `parent_id`) VALUES ('5', 'sub_category_for_main_2', '2');
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`, `parent_id`) VALUES ('6', 'sub_category_for_main_3', '3');
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`, `parent_id`) VALUES ('7', 'sub_category_for_sub_4', '4');
+    INSERT INTO `productsdb`.`category` (`categoryid`, `name`, `parent_id`) VALUES ('8', 'sub_category_for_sub_5', '5');
+
+
+
+    INSERT INTO `productsdb`.`product` (`id`, `description`, `name`, `price`, `quantity`, `category_id`) VALUES ('1', 'product_1', 'product_1', '1000', '10', '6');
+    INSERT INTO `productsdb`.`product` (`id`, `description`, `name`, `price`, `quantity`, `category_id`) VALUES ('2', 'product_2', 'product_2', '1100', '18', '6');
+    INSERT INTO `productsdb`.`product` (`id`, `description`, `name`, `price`, `quantity`, `category_id`) VALUES ('3', 'product_3', 'product_3', '1200', '5', '7');
+    INSERT INTO `productsdb`.`product` (`id`, `description`, `name`, `price`, `quantity`, `category_id`) VALUES ('4', 'product_4', 'product_4', '900', '32', '8');
+    INSERT INTO `productsdb`.`product` (`id`, `description`, `name`, `price`, `quantity`, `category_id`) VALUES ('5', 'product_5', 'product_5', '7', '32', '8');
+    INSERT INTO `productsdb`.`product` (`id`, `description`, `name`, `price`, `quantity`, `category_id`) VALUES ('6', 'product_6', 'product_6', '233', '21', '7');
+    INSERT INTO `productsdb`.`product` (`id`, `description`, `name`, `price`, `quantity`, `category_id`) VALUES ('7', 'product_7', 'product_7', '123', '123', '7');
+
+
+    INSERT INTO `productsdb`.`voucher` (`id`, `code`, `discount`, `expiry_date`) VALUES ('1', 'SALE', '13', '2025-9-1');
+    INSERT INTO `productsdb`.`voucher` (`id`, `code`, `discount`, `expiry_date`) VALUES ('2', 'BIG_SALE', '16', '2025-9-2');
